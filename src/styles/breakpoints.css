@@ -1,0 +1,22 @@
+/* ==================================
+   BREAKPOINTS
+   Точки адаптивности для медиа-запросов
+   ================================== */
+
+/*
+  large:   >=1300px  (Desktop)        → Header (верхний)
+  medium:  600-1299px (Tablet)        → Bottom Panel (нижний)
+  small:   400-599px  (Mobile Large)  → Bottom Panel (нижний)
+  xsmall:  <=399px    (Mobile)        → Bottom Panel (нижний)
+*/
+
+/* Min-width breakpoints */
+--breakpoint-large-min: 1300px;
+--breakpoint-medium-min: 600px;
+--breakpoint-small-min: 400px;
+
+/* Max-width breakpoints */
+--breakpoint-large-max: 1919px;
+--breakpoint-medium-max: 1299px;
+--breakpoint-small-max: 599px;
+--breakpoint-xsmall-max: 399px;

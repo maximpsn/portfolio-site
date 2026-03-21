@@ -3,6 +3,7 @@
    Главный файл импорта стилей
    ================================== */
 
+@import './breakpoints.css';
 @import './fonts.css';
 @import './maximpsn_raw_colors.css';
 @import './maximpsn_semantic_colors.css';
