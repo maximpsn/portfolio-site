@@ -1,33 +1,31 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import ComponentsPage from './pages/ComponentsPage'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [page, setPage] = useState<'home' | 'components'>('home')
+
+  if (page === 'components') {
+    return <ComponentsPage />
+  }
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
+      {/* Navigation for testing */}
+      <nav style={{ position: 'fixed', top: '10px', right: '10px', zIndex: 1000 }}>
+        <button onClick={() => setPage('home')} style={{ marginRight: '8px' }}>
+          Home
         </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <button onClick={() => setPage('components')}>
+          Components
+        </button>
+      </nav>
+
+      {/* Home Page (placeholder) */}
+      <div style={{ padding: '40px' }}>
+        <h1>Home Page</h1>
+        <p>Главная страница портфолио (в разработке)</p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
