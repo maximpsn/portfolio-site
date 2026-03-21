@@ -1,0 +1,37 @@
+/* ==================================
+   SEMANTIC COLORS
+   Семантические цвета (ссылаются на raw colors)
+   ================================== */
+
+:root {
+  /* Page */
+  --page-page-front: var(--color-white-1000);
+  --page-page-back: var(--color-zinc-100);
+
+  /* Surface */
+  --surface-neutral-soft-primary: var(--color-zinc-100);
+  --surface-neutral-soft-secondary: var(--color-zinc-200);
+  --surface-accent-primary: var(--color-pink-400);
+  --surface-accent-secondary: var(--color-pink-500);
+
+  /* Glass */
+  --glass-glass-soft-primary: var(--color-white-200);
+  --glass-glass-soft-secondary: var(--color-white-300);
+  --glass-glass-hard-primary: var(--color-black-600);
+  --glass-glass-fade-min: var(--color-white-0);
+  --glass-glass-fade-max: var(--color-white-1000);
+
+  /* Text & Icons */
+  --text-icons-primary: var(--color-zinc-800);
+  --text-icons-secondary: var(--color-zinc-500);
+  --text-icons-tertiary: var(--color-zinc-400);
+  --text-icons-on-color-primary: var(--color-white-1000);
+  --text-icons-accent-primary: var(--color-pink-400);
+
+  /* Outline */
+  --outline-primary: var(--color-zinc-200);
+  --outline-glass-primary: var(--color-white-200);
+
+  /* Success */
+  --success-primary: var(--color-emerald-500);
+}

@@ -1,0 +1,99 @@
+/* family */
+--family/sans-large: Vercel Geist;
+--family/sans-medium: Vercel Geist;
+--family/sans-small: Vercel Geist;
+--family/sans-xsmall: Vercel Geist;
+--family/mono-large: IBM Plex Mono;
+--family/mono-medium: IBM Plex Mono;
+--family/mono-small: IBM Plex Mono;
+--family/mono-xsmall: IBM Plex Mono;
+
+/* weight */
+--weight/regular-large: regular;
+--weight/regular-medium: regular;
+--weight/regular-small: regular;
+--weight/regular-xsmall: regular;
+--weight/medium-large: medium;
+--weight/medium-medium: medium;
+--weight/medium-small: medium;
+--weight/medium-xsmall: medium;
+--weight/semibold-large: semibold;
+--weight/semibold-medium: semibold;
+--weight/semibold-small: semibold;
+--weight/semibold-xsmall: semibold;
+
+/* size */
+--size/heading-lg-large: 28;
+--size/heading-lg-medium: 24;
+--size/heading-lg-small: 24;
+--size/heading-lg-xsmall: 20;
+--size/heading-md-large: 22;
+--size/heading-md-medium: 20;
+--size/heading-md-small: 20;
+--size/heading-md-xsmall: 18;
+--size/body-text-large: 18;
+--size/body-text-medium: 17;
+--size/body-text-small: 17;
+--size/body-text-xsmall: 17;
+--size/body-title-large: 18;
+--size/body-title-medium: 17;
+--size/body-title-small: 17;
+--size/body-title-xsmall: 17;
+--size/button-title-large: 16;
+--size/button-title-medium: 16;
+--size/button-title-small: 16;
+--size/button-title-xsmall: 16;
+
+/* line-height */
+--line-height/heading-lg-large: 32;
+--line-height/heading-lg-medium: 28;
+--line-height/heading-lg-small: 28;
+--line-height/heading-lg-xsmall: 24;
+--line-height/heading-md-large: 28;
+--line-height/heading-md-medium: 24;
+--line-height/heading-md-small: 24;
+--line-height/heading-md-xsmall: 22;
+--line-height/body-text-large: 26;
+--line-height/body-text-medium: 24;
+--line-height/body-text-small: 24;
+--line-height/body-text-xsmall: 24;
+--line-height/body-title-large: 26;
+--line-height/body-title-medium: 24;
+--line-height/body-title-small: 24;
+--line-height/body-title-xsmall: 24;
+--line-height/button-title-large: 24;
+--line-height/button-title-medium: 24;
+--line-height/button-title-small: 24;
+--line-height/button-title-xsmall: 24;
+
+/* tracking */
+--tracking/heading-lg-large: -0.5600000023841858;
+--tracking/heading-lg-medium: -0.5600000023841858;
+--tracking/heading-lg-small: -0.5600000023841858;
+--tracking/heading-lg-xsmall: -0.5600000023841858;
+--tracking/heading-md-large: -0.4399999976158142;
+--tracking/heading-md-medium: -0.4399999976158142;
+--tracking/heading-md-small: -0.4399999976158142;
+--tracking/heading-md-xsmall: -0.4399999976158142;
+--tracking/body-text-large: -0.18000000715255737;
+--tracking/body-text-medium: -0.18000000715255737;
+--tracking/body-text-small: -0.18000000715255737;
+--tracking/body-text-xsmall: -0.18000000715255737;
+--tracking/body-title-large: -0.18000000715255737;
+--tracking/body-title-medium: -0.18000000715255737;
+--tracking/body-title-small: -0.18000000715255737;
+--tracking/body-title-xsmall: -0.18000000715255737;
+--tracking/button-title-large: 0;
+--tracking/button-title-medium: 0;
+--tracking/button-title-small: 0;
+--tracking/button-title-xsmall: 0;
+
+/* paragraph-spacing */
+--paragraph-spacing/without-large: 0;
+--paragraph-spacing/without-medium: 0;
+--paragraph-spacing/without-small: 0;
+--paragraph-spacing/without-xsmall: 0;
+--paragraph-spacing/with-large: 16;
+--paragraph-spacing/with-medium: 16;
+--paragraph-spacing/with-small: 16;
+--paragraph-spacing/with-xsmall: 16;

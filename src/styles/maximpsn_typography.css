@@ -1,0 +1,106 @@
+/* ==================================
+   TYPOGRAPHY
+   Шрифты, размеры, веса (из Figma)
+   ================================== */
+
+:root {
+  /* Font Family */
+  --family-sans-large: 'Vercel Geist', sans-serif;
+  --family-sans-medium: 'Vercel Geist', sans-serif;
+  --family-sans-small: 'Vercel Geist', sans-serif;
+  --family-sans-xsmall: 'Vercel Geist', sans-serif;
+  --family-mono-large: 'IBM Plex Mono', monospace;
+  --family-mono-medium: 'IBM Plex Mono', monospace;
+  --family-mono-small: 'IBM Plex Mono', monospace;
+  --family-mono-xsmall: 'IBM Plex Mono', monospace;
+
+  /* Font Weight */
+  --weight-regular-large: 400;
+  --weight-regular-medium: 400;
+  --weight-regular-small: 400;
+  --weight-regular-xsmall: 400;
+  --weight-medium-large: 500;
+  --weight-medium-medium: 500;
+  --weight-medium-small: 500;
+  --weight-medium-xsmall: 500;
+  --weight-semibold-large: 600;
+  --weight-semibold-medium: 600;
+  --weight-semibold-small: 600;
+  --weight-semibold-xsmall: 600;
+
+  /* Font Size (px) */
+  --size-heading-lg-large: 28px;
+  --size-heading-lg-medium: 24px;
+  --size-heading-lg-small: 24px;
+  --size-heading-lg-xsmall: 20px;
+  --size-heading-md-large: 22px;
+  --size-heading-md-medium: 20px;
+  --size-heading-md-small: 20px;
+  --size-heading-md-xsmall: 18px;
+  --size-body-text-large: 18px;
+  --size-body-text-medium: 17px;
+  --size-body-text-small: 17px;
+  --size-body-text-xsmall: 17px;
+  --size-body-title-large: 18px;
+  --size-body-title-medium: 17px;
+  --size-body-title-small: 17px;
+  --size-body-title-xsmall: 17px;
+  --size-button-title-large: 16px;
+  --size-button-title-medium: 16px;
+  --size-button-title-small: 16px;
+  --size-button-title-xsmall: 16px;
+
+  /* Line Height (px) */
+  --line-height-heading-lg-large: 32px;
+  --line-height-heading-lg-medium: 28px;
+  --line-height-heading-lg-small: 28px;
+  --line-height-heading-lg-xsmall: 24px;
+  --line-height-heading-md-large: 28px;
+  --line-height-heading-md-medium: 24px;
+  --line-height-heading-md-small: 24px;
+  --line-height-heading-md-xsmall: 22px;
+  --line-height-body-text-large: 26px;
+  --line-height-body-text-medium: 24px;
+  --line-height-body-text-small: 24px;
+  --line-height-body-text-xsmall: 24px;
+  --line-height-body-title-large: 26px;
+  --line-height-body-title-medium: 24px;
+  --line-height-body-title-small: 24px;
+  --line-height-body-title-xsmall: 24px;
+  --line-height-button-title-large: 24px;
+  --line-height-button-title-medium: 24px;
+  --line-height-button-title-small: 24px;
+  --line-height-button-title-xsmall: 24px;
+
+  /* Letter Spacing (px) */
+  --tracking-heading-lg-large: -0.56px;
+  --tracking-heading-lg-medium: -0.56px;
+  --tracking-heading-lg-small: -0.56px;
+  --tracking-heading-lg-xsmall: -0.56px;
+  --tracking-heading-md-large: -0.44px;
+  --tracking-heading-md-medium: -0.44px;
+  --tracking-heading-md-small: -0.44px;
+  --tracking-heading-md-xsmall: -0.44px;
+  --tracking-body-text-large: -0.18px;
+  --tracking-body-text-medium: -0.18px;
+  --tracking-body-text-small: -0.18px;
+  --tracking-body-text-xsmall: -0.18px;
+  --tracking-body-title-large: -0.18px;
+  --tracking-body-title-medium: -0.18px;
+  --tracking-body-title-small: -0.18px;
+  --tracking-body-title-xsmall: -0.18px;
+  --tracking-button-title-large: 0px;
+  --tracking-button-title-medium: 0px;
+  --tracking-button-title-small: 0px;
+  --tracking-button-title-xsmall: 0px;
+
+  /* Paragraph Spacing (px) */
+  --paragraph-spacing-without-large: 0px;
+  --paragraph-spacing-without-medium: 0px;
+  --paragraph-spacing-without-small: 0px;
+  --paragraph-spacing-without-xsmall: 0px;
+  --paragraph-spacing-with-large: 16px;
+  --paragraph-spacing-with-medium: 16px;
+  --paragraph-spacing-with-small: 16px;
+  --paragraph-spacing-with-xsmall: 16px;
+}
