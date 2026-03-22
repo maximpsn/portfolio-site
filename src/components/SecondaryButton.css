@@ -53,6 +53,10 @@
   background: var(--surface-neutral-soft-secondary);
 }
 
+.secondary-button--touch-pressed {
+  transform: scale(0.95);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .secondary-button:hover,
   .secondary-button:active {
@@ -67,7 +71,6 @@
 @media (hover: none), (pointer: coarse) {
   .secondary-button:active {
     background: var(--surface-neutral-soft-secondary);
-    transform: scale(0.95);
   }
 }
 

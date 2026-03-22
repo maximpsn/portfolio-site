@@ -36,6 +36,14 @@
   transform: scale(0.98);
 }
 
+.primary-button--touch-pressed {
+  transform: scale(0.95);
+}
+
+.primary-button--l-soft-press.primary-button--touch-pressed {
+  transform: scale(0.98);
+}
+
 .primary-button__label {
   font-family: var(--family-mono-medium);
   font-size: var(--size-button-title-medium);
@@ -68,11 +76,6 @@
 @media (hover: none), (pointer: coarse) {
   .primary-button:active {
     background: var(--surface-accent-secondary);
-    transform: scale(0.95);
-  }
-
-  .primary-button--l-soft-press:active {
-    transform: scale(0.98);
   }
 }
 

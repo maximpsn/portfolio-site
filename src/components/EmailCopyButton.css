@@ -82,7 +82,6 @@
 @media (hover: none), (pointer: coarse) {
   .email-copy-button:not(.email-copy-button--success):active {
     background: var(--surface-neutral-soft-secondary);
-    transform: scale(0.98);
   }
 }
 

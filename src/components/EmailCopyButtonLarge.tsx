@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import IconCopy from './icons/IconCopy'
 import IconSuccess from './icons/IconSuccess'
+import useTouchPressState from './useTouchPressState'
 import './EmailCopyButton.css'
 
 const EMAIL_TO_COPY = 'pavlusenko.maksim@mail.ru'
@@ -16,9 +17,9 @@ function EmailCopyButtonLarge({ text = EMAIL_TO_COPY }: EmailCopyButtonLargeProp
   const [isCopied, setIsCopied] = useState(false)
   const [contentPhase, setContentPhase] = useState<'copy' | 'success'>('copy')
   const [contentVisible, setContentVisible] = useState(true)
-  const [isPressed, setIsPressed] = useState(false)
   const resetTimeoutRef = useRef<number | null>(null)
   const contentFadeTimeoutRef = useRef<number | null>(null)
+  const { isTouchPressed, handlers } = useTouchPressState()
 
   useEffect(() => {
     return () => {
@@ -64,24 +65,11 @@ function EmailCopyButtonLarge({ text = EMAIL_TO_COPY }: EmailCopyButtonLargeProp
     }
   }
 
-  const handlePointerDown = () => {
-    if (window.matchMedia('(pointer: coarse)').matches) {
-      setIsPressed(true)
-    }
-  }
-
-  const handlePointerUp = () => {
-    setIsPressed(false)
-  }
-
   return (
     <button
-      className={`email-copy-button${isCopied ? ' email-copy-button--success' : ''}${isPressed ? ' email-copy-button--pressed' : ''}`}
+      className={`email-copy-button${isCopied ? ' email-copy-button--success' : ''}${isTouchPressed ? ' email-copy-button--pressed' : ''}`}
       onClick={handleCopy}
-      onPointerDown={handlePointerDown}
-      onPointerUp={handlePointerUp}
-      onPointerLeave={handlePointerUp}
-      onPointerCancel={handlePointerUp}
+      {...handlers}
       type="button"
     >
       <span

@@ -1,4 +1,5 @@
 import './AnchorLink.css'
+import useTouchPressState from './useTouchPressState'
 
 type AnchorLinkPreviewState = 'default' | 'interactive'
 
@@ -13,15 +14,17 @@ function AnchorLink({
   text,
   previewState = 'default',
 }: AnchorLinkProps) {
+  const { isTouchPressed, handlers } = useTouchPressState()
   const className = [
     'anchor-link',
+    isTouchPressed ? 'anchor-link--touch-pressed' : '',
     previewState === 'interactive' ? 'anchor-link--interactive-preview' : '',
   ]
     .filter(Boolean)
     .join(' ')
 
   return (
-    <a className={className} href={href}>
+    <a className={className} href={href} {...handlers}>
       {text}
     </a>
   )

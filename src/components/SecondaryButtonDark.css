@@ -49,6 +49,10 @@
   background: var(--glass-glass-soft-secondary);
 }
 
+.secondary-button-dark--touch-pressed {
+  transform: scale(0.95);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .secondary-button-dark:hover,
   .secondary-button-dark:active {
@@ -63,7 +67,6 @@
 @media (hover: none), (pointer: coarse) {
   .secondary-button-dark:active {
     background: var(--glass-glass-soft-secondary);
-    transform: scale(0.95);
   }
 }
 

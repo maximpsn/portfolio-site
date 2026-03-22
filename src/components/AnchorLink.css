@@ -22,6 +22,10 @@
   color: var(--text-icons-accent-primary);
 }
 
+.anchor-link--touch-pressed {
+  transform: scale(0.95);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .anchor-link:hover,
   .anchor-link:active {
