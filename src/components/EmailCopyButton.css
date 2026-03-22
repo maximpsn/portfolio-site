@@ -83,6 +83,12 @@
   .email-copy-button:not(.email-copy-button--success):active {
     background: var(--surface-neutral-soft-secondary);
   }
+
+  .email-copy-button,
+  .email-copy-button:active,
+  .email-copy-button--pressed {
+    transform: none !important;
+  }
 }
 
 .email-copy-button:focus-visible {

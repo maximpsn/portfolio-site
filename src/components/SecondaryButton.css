@@ -72,6 +72,11 @@
   .secondary-button:active {
     background: var(--surface-neutral-soft-secondary);
   }
+
+  .secondary-button,
+  .secondary-button:active {
+    transform: none !important;
+  }
 }
 
 .secondary-button:focus-visible {

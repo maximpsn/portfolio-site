@@ -68,6 +68,11 @@
   .secondary-button-dark:active {
     background: var(--glass-glass-soft-secondary);
   }
+
+  .secondary-button-dark,
+  .secondary-button-dark:active {
+    transform: none !important;
+  }
 }
 
 .secondary-button-dark:focus-visible {

@@ -47,3 +47,11 @@
     transition: color 0.15s ease;
   }
 }
+
+@media (hover: none), (pointer: coarse) {
+  .anchor-link,
+  .anchor-link:active,
+  .anchor-link--touch-pressed {
+    transform: none !important;
+  }
+}
