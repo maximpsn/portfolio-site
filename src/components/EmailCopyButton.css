@@ -58,7 +58,6 @@
   letter-spacing: var(--tracking-button-title-medium);
   text-transform: uppercase;
   white-space: nowrap;
-  min-width: var(--email-copy-button-label-min-width, 0);
 }
 
 .email-copy-button--success {
@@ -89,12 +88,6 @@
   .email-copy-button:active,
   .email-copy-button--pressed {
     transform: none !important;
-  }
-}
-
-@media (max-width: 399px) {
-  .email-copy-button {
-    --email-copy-button-label-min-width: 16ch;
   }
 }
 
