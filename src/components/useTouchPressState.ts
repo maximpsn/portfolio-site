@@ -13,7 +13,7 @@ type UseTouchPressStateResult = {
   handlers: TouchPressHandlers
 }
 
-const TOUCH_PRESS_ANIMATION_MS = 250
+const TOUCH_PRESS_ANIMATION_MS = 350
 
 function useTouchPressState(): UseTouchPressStateResult {
   const [isTouchPressed, setIsTouchPressed] = useState(false)
