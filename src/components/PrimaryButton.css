@@ -46,6 +46,10 @@
   background: var(--surface-accent-secondary);
 }
 
+.primary-button--touch-pressed {
+  transform: scale(0.95);
+}
+
 @media (hover: hover) and (pointer: fine) {
   .primary-button:hover,
   .primary-button:active {
@@ -54,10 +58,6 @@
 
   .primary-button:active {
     transform: scale(0.95);
-  }
-
-  .primary-button--l-soft-press:active {
-    transform: scale(0.98);
   }
 }
 
