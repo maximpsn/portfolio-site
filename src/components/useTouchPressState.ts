@@ -12,7 +12,7 @@ type UseTouchPressStateResult = {
   handlers: TouchPressHandlers
 }
 
-const TOUCH_PRESS_ANIMATION_MS = 240
+const TOUCH_PRESS_ANIMATION_MS = 500
 
 const isCoarsePointer = () => {
   if (typeof window === 'undefined') {

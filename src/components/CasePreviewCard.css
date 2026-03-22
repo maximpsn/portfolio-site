@@ -80,13 +80,22 @@
   will-change: transform;
 }
 
-.case-preview-card__cover:hover .case-preview-card__cover-image {
-  transform: scale(1.05);
-}
-
 .case-preview-card:focus-visible {
   outline: 2px solid var(--outline-primary);
   outline-offset: 4px;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .case-preview-card__cover:hover .case-preview-card__cover-image {
+    transform: scale(1.05);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .case-preview-card__cover-image {
+    transition: none;
+    transform: scale(1);
+  }
 }
 
 @media (min-width: 600px) and (max-width: 1299px) {
