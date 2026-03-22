@@ -51,6 +51,14 @@ function useTouchPressState(): UseTouchPressStateResult {
 
   const handlePointerDown = (event: ReactPointerEvent) => {
     lastPointerTypeRef.current = event.pointerType as 'mouse' | 'pen' | 'touch'
+
+    if (event.pointerType === 'touch') {
+      clearReleaseTimer()
+      setIsTouchPressed(false)
+      pressStartedAtRef.current = null
+      return
+    }
+
     pressStartedAtRef.current = Date.now()
     setIsTouchPressed(true)
     clearReleaseTimer()
