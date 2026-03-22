@@ -9,20 +9,54 @@ const SUCCESS_TEXT = 'Email скопирован'
 const SUCCESS_TIMEOUT_MS = 850
 const CONTENT_FADE_MS = 150
 
+type EmailCopyButtonResolution = 'large' | 'medium' | 'small' | 'xsmall'
+
 type EmailCopyButtonLargeProps = {
   text?: string
+}
+
+const resolutionFromViewport = (): EmailCopyButtonResolution => {
+  if (typeof window === 'undefined') {
+    return 'large'
+  }
+
+  const width = window.innerWidth
+
+  if (width >= 1300) {
+    return 'large'
+  }
+
+  if (width >= 600) {
+    return 'medium'
+  }
+
+  if (width >= 400) {
+    return 'small'
+  }
+
+  return 'xsmall'
 }
 
 function EmailCopyButtonLarge({ text = EMAIL_TO_COPY }: EmailCopyButtonLargeProps) {
   const [isCopied, setIsCopied] = useState(false)
   const [contentPhase, setContentPhase] = useState<'copy' | 'success'>('copy')
   const [contentVisible, setContentVisible] = useState(true)
+  const [autoResolution, setAutoResolution] = useState(resolutionFromViewport)
   const resetTimeoutRef = useRef<number | null>(null)
   const contentFadeTimeoutRef = useRef<number | null>(null)
   const { isTouchPressed, handlers } = useTouchPressState()
 
   useEffect(() => {
+    const handleResize = () => {
+      setAutoResolution(resolutionFromViewport())
+    }
+
+    handleResize()
+    window.addEventListener('resize', handleResize)
+
     return () => {
+      window.removeEventListener('resize', handleResize)
+
       if (resetTimeoutRef.current !== null) {
         window.clearTimeout(resetTimeoutRef.current)
       }
@@ -65,6 +99,8 @@ function EmailCopyButtonLarge({ text = EMAIL_TO_COPY }: EmailCopyButtonLargeProp
     }
   }
 
+  const visibleLabel = autoResolution === 'xsmall' ? 'email' : text
+
   return (
     <button
       className={`email-copy-button${isCopied ? ' email-copy-button--success' : ''}${isTouchPressed ? ' email-copy-button--pressed' : ''}`}
@@ -84,7 +120,7 @@ function EmailCopyButtonLarge({ text = EMAIL_TO_COPY }: EmailCopyButtonLargeProp
           )}
         </span>
         <span className="email-copy-button__label">
-          {contentPhase === 'success' ? SUCCESS_TEXT : text}
+          {contentPhase === 'success' ? SUCCESS_TEXT : visibleLabel}
         </span>
       </span>
     </button>

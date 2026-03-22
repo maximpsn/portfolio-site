@@ -7,7 +7,7 @@
   max-width: 700px;
   min-width: 0;
   height: var(--size-64);
-  padding: var(--spacing-5x);
+  padding: var(--spacing-5x) var(--spacing-6x) var(--spacing-5x) var(--spacing-5x);
   border: none;
   border-radius: var(--radius-absolute);
   background: var(--surface-neutral-soft-primary);

@@ -25,7 +25,7 @@
 
 .primary-button--l {
   height: var(--size-64);
-  padding: var(--spacing-5x) var(--spacing-5x);
+  padding: var(--spacing-5x) var(--spacing-6x);
 }
 
 .primary-button--l-stretch {
