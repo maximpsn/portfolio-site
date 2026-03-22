@@ -1,19 +1,19 @@
 import type { ReactNode } from 'react'
 import './SecondaryButtonDark.css'
 
-type SecondaryButtonDarkPreviewState = 'default' | 'interactive'
+type SecondaryButtonDarkMediumPreviewState = 'default' | 'interactive'
 
-type SecondaryButtonDarkProps = {
+type SecondaryButtonDarkMediumProps = {
   text: string
   icon?: ReactNode
-  previewState?: SecondaryButtonDarkPreviewState
+  previewState?: SecondaryButtonDarkMediumPreviewState
 }
 
-function SecondaryButtonDark({
+function SecondaryButtonDarkMedium({
   text,
   icon,
   previewState = 'default',
-}: SecondaryButtonDarkProps) {
+}: SecondaryButtonDarkMediumProps) {
   const className = [
     'secondary-button-dark',
     previewState === 'interactive' ? 'secondary-button-dark--interactive-preview' : '',
@@ -29,4 +29,4 @@ function SecondaryButtonDark({
   )
 }
 
-export default SecondaryButtonDark
+export default SecondaryButtonDarkMedium

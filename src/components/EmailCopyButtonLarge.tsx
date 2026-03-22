@@ -8,14 +8,15 @@ const SUCCESS_TEXT = 'Email скопирован'
 const SUCCESS_TIMEOUT_MS = 850
 const CONTENT_FADE_MS = 150
 
-type EmailCopyButtonProps = {
+type EmailCopyButtonLargeProps = {
   text?: string
 }
 
-function EmailCopyButton({ text = EMAIL_TO_COPY }: EmailCopyButtonProps) {
+function EmailCopyButtonLarge({ text = EMAIL_TO_COPY }: EmailCopyButtonLargeProps) {
   const [isCopied, setIsCopied] = useState(false)
   const [contentPhase, setContentPhase] = useState<'copy' | 'success'>('copy')
   const [contentVisible, setContentVisible] = useState(true)
+  const [isPressed, setIsPressed] = useState(false)
   const resetTimeoutRef = useRef<number | null>(null)
   const contentFadeTimeoutRef = useRef<number | null>(null)
 
@@ -63,10 +64,24 @@ function EmailCopyButton({ text = EMAIL_TO_COPY }: EmailCopyButtonProps) {
     }
   }
 
+  const handlePointerDown = () => {
+    if (window.matchMedia('(pointer: coarse)').matches) {
+      setIsPressed(true)
+    }
+  }
+
+  const handlePointerUp = () => {
+    setIsPressed(false)
+  }
+
   return (
     <button
-      className={`email-copy-button${isCopied ? ' email-copy-button--success' : ''}`}
+      className={`email-copy-button${isCopied ? ' email-copy-button--success' : ''}${isPressed ? ' email-copy-button--pressed' : ''}`}
       onClick={handleCopy}
+      onPointerDown={handlePointerDown}
+      onPointerUp={handlePointerUp}
+      onPointerLeave={handlePointerUp}
+      onPointerCancel={handlePointerUp}
       type="button"
     >
       <span
@@ -88,4 +103,4 @@ function EmailCopyButton({ text = EMAIL_TO_COPY }: EmailCopyButtonProps) {
   )
 }
 
-export default EmailCopyButton
+export default EmailCopyButtonLarge

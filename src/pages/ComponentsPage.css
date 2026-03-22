@@ -4,13 +4,14 @@
   background: var(--page-page-front);
   color: var(--text-icons-primary);
   display: grid;
+  justify-items: center;
   gap: var(--spacing-10x);
 }
 
 .components-section {
   display: grid;
   gap: var(--spacing-10x);
-  width: min(100%, 760px);
+  width: min(100%, 700px);
 }
 
 .components-section--dark {
@@ -56,41 +57,75 @@
 }
 
 .components-button-grid {
-  display: grid;
+  display: inline-grid;
+  width: fit-content;
   grid-template-columns: repeat(2, max-content);
   gap: var(--spacing-6x) var(--spacing-12x);
+  justify-content: start;
+  justify-items: start;
   align-items: center;
+  align-content: start;
+}
+
+.components-button-grid--stacked {
+  display: grid;
+  width: 100%;
+  grid-template-columns: 1fr;
+  justify-items: stretch;
+}
+
+.components-button-grid--stacked > * {
+  width: 100%;
+}
+
+.components-button-grid--stacked .primary-button {
+  width: 100%;
 }
 
 .components-anchor-grid {
-  display: grid;
+  display: inline-grid;
+  width: fit-content;
   gap: var(--spacing-6x);
+  justify-content: start;
   justify-items: start;
+  align-content: start;
 }
 
 .components-email-grid {
   display: grid;
-  justify-items: start;
+  width: 100%;
+  justify-items: stretch;
 }
 
 .components-avatar-grid {
-  display: grid;
-  grid-template-columns: repeat(4, max-content);
+  display: inline-grid;
+  grid-template-columns: max-content;
   gap: var(--spacing-6x);
   align-items: end;
 }
 
+.components-case-grid {
+  display: inline-grid;
+  justify-items: start;
+}
+
 .components-icons-grid {
-  display: grid;
+  display: inline-grid;
+  width: fit-content;
   grid-template-columns: repeat(3, minmax(0, max-content));
   gap: var(--spacing-6x);
+  justify-content: start;
 }
 
 .components-dark-grid {
-  display: grid;
+  display: inline-grid;
+  width: fit-content;
   grid-template-columns: repeat(2, max-content);
   gap: var(--spacing-6x) var(--spacing-12x);
+  justify-content: start;
+  justify-items: start;
   align-items: center;
+  align-content: start;
 }
 
 .components-icon-card {
@@ -215,6 +250,12 @@
     grid-template-columns: max-content;
   }
 
+  .components-button-grid--stacked {
+    grid-template-columns: 1fr;
+    width: 100%;
+    justify-items: stretch;
+  }
+
   .components-icons-grid {
     grid-template-columns: max-content;
   }
@@ -224,6 +265,10 @@
   }
 
   .components-avatar-grid {
-    grid-template-columns: repeat(2, max-content);
+    grid-template-columns: max-content;
+  }
+
+  .components-section {
+    width: 100%;
   }
 }

@@ -28,3 +28,4 @@ dist-ssr
 .qwen/local-preview.pid
 .qwen/vite-dev.out.log
 .qwen/vite-dev.err.log
+.qwen/local-preview-supervisor.*

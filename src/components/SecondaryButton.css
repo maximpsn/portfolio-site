@@ -5,7 +5,7 @@
   gap: var(--spacing-2x);
   min-width: 0;
   height: var(--size-48);
-  padding: var(--spacing-3x) var(--spacing-5x) var(--spacing-3x) var(--spacing-3x);
+  padding: var(--spacing-3x) var(--spacing-5x);
   border: none;
   border-radius: var(--radius-absolute);
   background: var(--surface-neutral-soft-primary);
@@ -18,6 +18,10 @@
   transition:
     background-color 0.15s ease,
     transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.secondary-button--m {
+  min-width: 185px;
 }
 
 .secondary-button__icon {

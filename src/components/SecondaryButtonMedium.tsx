@@ -1,19 +1,19 @@
 import type { ReactNode } from 'react'
 import './SecondaryButton.css'
 
-type SecondaryButtonPreviewState = 'default' | 'interactive'
+type SecondaryButtonMediumPreviewState = 'default' | 'interactive'
 
-type SecondaryButtonProps = {
+type SecondaryButtonMediumProps = {
   text: string
   icon?: ReactNode
-  previewState?: SecondaryButtonPreviewState
+  previewState?: SecondaryButtonMediumPreviewState
 }
 
-function SecondaryButton({
+function SecondaryButtonMedium({
   text,
   icon,
   previewState = 'default',
-}: SecondaryButtonProps) {
+}: SecondaryButtonMediumProps) {
   const className = [
     'secondary-button',
     previewState === 'interactive' ? 'secondary-button--interactive-preview' : '',
@@ -29,4 +29,4 @@ function SecondaryButton({
   )
 }
 
-export default SecondaryButton
+export default SecondaryButtonMedium

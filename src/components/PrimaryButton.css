@@ -19,15 +19,21 @@
 }
 
 .primary-button--m {
-  min-width: 98px;
   height: var(--size-48);
   padding: var(--spacing-3x) var(--spacing-5x);
 }
 
 .primary-button--l {
-  min-width: 161px;
   height: var(--size-64);
-  padding: var(--spacing-5x) var(--spacing-8x);
+  padding: var(--spacing-5x) var(--spacing-5x);
+}
+
+.primary-button--l-stretch {
+  width: 100%;
+}
+
+.primary-button--l-soft-press:active {
+  transform: scale(0.98);
 }
 
 .primary-button__label {
@@ -53,12 +59,20 @@
   .primary-button:active {
     transform: scale(0.95);
   }
+
+  .primary-button--l-soft-press:active {
+    transform: scale(0.98);
+  }
 }
 
 @media (hover: none), (pointer: coarse) {
   .primary-button:active {
     background: var(--surface-accent-secondary);
     transform: scale(0.95);
+  }
+
+  .primary-button--l-soft-press:active {
+    transform: scale(0.98);
   }
 }
 
