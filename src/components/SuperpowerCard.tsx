@@ -180,9 +180,10 @@ function SuperpowerCard({ className, resolution }: SuperpowerCardProps) {
       <div className="superpower-card__content">
         <p className="superpower-card__heading">Сильные стороны: визуал и системность</p>
         <p className="superpower-card__text">
-          Делаю красиво, умею в UI-анимацию, 3D, Ai генерации. Готовые концепции собираю в качественно оформленные
-          макеты, которые можно с гордостью — компоненты, переменные, автолейауты. Кайфую от грамотных процессов в
-          работе над сложными задачами
+          Windscribe doesn’t offer a traditional free trial, but we do offer a completely free plan with up to 10GB of
+          data per month (no credit card required). If you need more, you can upgrade to Windscribe Pro for as little
+          as $3 USD per month. If you aren’t ready to upgrade, you can always get more data by referring a friend or
+          posting about us on X.
         </p>
       </div>
     </article>

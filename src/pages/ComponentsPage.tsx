@@ -28,6 +28,8 @@ function ComponentsPage() {
         <Avatar />
       </section>
 
+      <div className="components-divider" aria-hidden="true" />
+
       <section className="components-section">
         <div className="components-section__intro">
           <p className="components-section__eyebrow">Components</p>
@@ -41,6 +43,8 @@ function ComponentsPage() {
         <CasePreviewCard />
       </section>
 
+      <div className="components-divider" aria-hidden="true" />
+
       <section className="components-section">
         <div className="components-section__intro">
           <p className="components-section__eyebrow">Components</p>
@@ -53,6 +57,8 @@ function ComponentsPage() {
 
         <SuperpowerCard />
       </section>
+
+      <div className="components-divider" aria-hidden="true" />
 
       <section className="components-section">
         <div className="components-section__intro">
@@ -70,6 +76,8 @@ function ComponentsPage() {
         </div>
       </section>
 
+      <div className="components-divider" aria-hidden="true" />
+
       <section className="components-section">
         <div className="components-section__intro">
           <p className="components-section__eyebrow">Components</p>
@@ -85,6 +93,8 @@ function ComponentsPage() {
           <PrimaryButtonLarge text="Button" previewState="interactive" />
         </div>
       </section>
+
+      <div className="components-divider" aria-hidden="true" />
 
       <section className="components-section">
         <div className="components-section__intro">
@@ -105,6 +115,8 @@ function ComponentsPage() {
           />
         </div>
       </section>
+
+      <div className="components-divider" aria-hidden="true" />
 
       <section className="components-section">
         <div className="components-section__intro">
@@ -128,6 +140,8 @@ function ComponentsPage() {
         </div>
       </section>
 
+      <div className="components-divider" aria-hidden="true" />
+
       <section className="components-section">
         <div className="components-section__intro">
           <p className="components-section__eyebrow">Components</p>
@@ -142,6 +156,8 @@ function ComponentsPage() {
           <EmailCopyButtonLarge />
         </div>
       </section>
+
+      <div className="components-divider" aria-hidden="true" />
 
       <section className="components-section">
         <div className="components-section__intro">
@@ -158,6 +174,8 @@ function ComponentsPage() {
           <AnchorLink href="#components" text="Anchor link" previewState="interactive" />
         </div>
       </section>
+
+      <div className="components-divider" aria-hidden="true" />
 
       <section className="components-section">
         <div className="components-section__intro">

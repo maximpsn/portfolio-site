@@ -14,6 +14,13 @@
   width: min(100%, 700px);
 }
 
+.components-divider {
+  width: min(100%, 700px);
+  height: 0.5px;
+  background: var(--outline-primary);
+  justify-self: center;
+}
+
 .components-section--dark {
   padding: var(--spacing-8x);
   border-radius: var(--radius-36);
