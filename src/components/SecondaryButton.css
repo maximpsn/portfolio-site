@@ -1,0 +1,79 @@
+.secondary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2x);
+  min-width: 0;
+  height: var(--size-48);
+  padding: var(--spacing-3x) var(--spacing-5x) var(--spacing-3x) var(--spacing-3x);
+  border: none;
+  border-radius: var(--radius-absolute);
+  background: var(--surface-neutral-soft-primary);
+  color: var(--text-icons-primary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transform: scale(1);
+  transform-origin: center;
+  will-change: transform;
+  transition:
+    background-color 0.15s ease,
+    transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.secondary-button__icon {
+  width: var(--size-24);
+  height: var(--size-24);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.secondary-button__icon > svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.secondary-button__label {
+  font-family: var(--family-mono-medium);
+  font-size: var(--size-button-title-medium);
+  font-weight: var(--weight-medium-medium);
+  line-height: var(--line-height-button-title-medium);
+  letter-spacing: var(--tracking-button-title-medium);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.secondary-button--interactive-preview {
+  background: var(--surface-neutral-soft-secondary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .secondary-button:hover,
+  .secondary-button:active {
+    background: var(--surface-neutral-soft-secondary);
+  }
+
+  .secondary-button:active {
+    transform: scale(0.95);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .secondary-button:active {
+    background: var(--surface-neutral-soft-secondary);
+    transform: scale(0.95);
+  }
+}
+
+.secondary-button:focus-visible {
+  outline: 2px solid var(--outline-primary);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .secondary-button {
+    transition: background-color 0.15s ease;
+  }
+}

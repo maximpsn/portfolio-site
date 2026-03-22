@@ -1,45 +1,52 @@
-/* spacing */
---spacing/spacing-0x: 0;
---spacing/spacing-0,5x: 2;
---spacing/spacing-x: 4;
---spacing/spacing-1,5x: 6;
---spacing/spacing-2x: 8;
---spacing/spacing-3x: 12;
---spacing/spacing-4x: 16;
---spacing/spacing-5x: 20;
---spacing/spacing-6x: 24;
---spacing/spacing-7x: 28;
---spacing/spacing-8x: 32;
---spacing/spacing-10x: 40;
---spacing/spacing-12x: 48;
---spacing/spacing-16x: 64;
---spacing/spacing-20x: 80;
---spacing/spacing-24x: 96;
---spacing/spacing-32x: 128;
+/* ==================================
+   NUMBERS
+   Отступы, размеры и скругления из Figma в рабочем CSS-формате
+   ================================== */
 
-/* size */
---size/size-6: 6;
---size/size-8: 8;
---size/size-12: 12;
---size/size-16: 16;
---size/size-20: 20;
---size/size-24: 24;
---size/size-28: 28;
---size/size-32: 32;
---size/size-36: 36;
---size/size-40: 40;
---size/size-48: 48;
---size/size-64: 64;
+:root {
+  /* Spacing */
+  --spacing-0x: 0px;
+  --spacing-0-5x: 2px;
+  --spacing-x: 4px;
+  --spacing-1-5x: 6px;
+  --spacing-2x: 8px;
+  --spacing-3x: 12px;
+  --spacing-4x: 16px;
+  --spacing-5x: 20px;
+  --spacing-6x: 24px;
+  --spacing-7x: 28px;
+  --spacing-8x: 32px;
+  --spacing-10x: 40px;
+  --spacing-12x: 48px;
+  --spacing-16x: 64px;
+  --spacing-20x: 80px;
+  --spacing-24x: 96px;
+  --spacing-32x: 128px;
 
-/* radius */
---radius/radius-0: 0;
---radius/radius-4: 4;
---radius/radius-8: 8;
---radius/radius-12: 12;
---radius/radius-16: 16;
---radius/radius-20: 20;
---radius/radius-24: 24;
---radius/radius-28: 28;
---radius/radius-36: 36;
---radius/radius-48: 48;
---radius/radius-absolute: 9999;
+  /* Size */
+  --size-6: 6px;
+  --size-8: 8px;
+  --size-12: 12px;
+  --size-16: 16px;
+  --size-20: 20px;
+  --size-24: 24px;
+  --size-28: 28px;
+  --size-32: 32px;
+  --size-36: 36px;
+  --size-40: 40px;
+  --size-48: 48px;
+  --size-64: 64px;
+
+  /* Radius */
+  --radius-0: 0px;
+  --radius-4: 4px;
+  --radius-8: 8px;
+  --radius-12: 12px;
+  --radius-16: 16px;
+  --radius-20: 20px;
+  --radius-24: 24px;
+  --radius-28: 28px;
+  --radius-36: 36px;
+  --radius-48: 48px;
+  --radius-absolute: 9999px;
+}

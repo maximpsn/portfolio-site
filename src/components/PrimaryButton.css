@@ -1,0 +1,74 @@
+.primary-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  border: none;
+  border-radius: var(--radius-absolute);
+  background: var(--surface-accent-primary);
+  padding: 0;
+  color: var(--text-icons-on-color-primary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transform: scale(1);
+  transform-origin: center;
+  will-change: transform;
+  transition:
+    background-color 0.15s ease,
+    transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.primary-button--m {
+  min-width: 98px;
+  height: var(--size-48);
+  padding: var(--spacing-3x) var(--spacing-5x);
+}
+
+.primary-button--l {
+  min-width: 161px;
+  height: var(--size-64);
+  padding: var(--spacing-5x) var(--spacing-8x);
+}
+
+.primary-button__label {
+  font-family: var(--family-mono-medium);
+  font-size: var(--size-button-title-medium);
+  font-weight: var(--weight-medium-medium);
+  line-height: var(--line-height-button-title-medium);
+  letter-spacing: var(--tracking-button-title-medium);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.primary-button--interactive-preview {
+  background: var(--surface-accent-secondary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .primary-button:hover,
+  .primary-button:active {
+    background: var(--surface-accent-secondary);
+  }
+
+  .primary-button:active {
+    transform: scale(0.95);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .primary-button:active {
+    background: var(--surface-accent-secondary);
+    transform: scale(0.95);
+  }
+}
+
+.primary-button:focus-visible {
+  outline: 2px solid var(--outline-primary);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .primary-button {
+    transition: background-color 0.15s ease;
+  }
+}

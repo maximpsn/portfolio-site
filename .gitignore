@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local Codex/Qwen runtime files
+.qwen/vite-dev.pid
+.qwen/vite-dev.out.log
+.qwen/vite-dev.err.log

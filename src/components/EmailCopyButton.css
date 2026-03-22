@@ -1,0 +1,97 @@
+.email-copy-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2x);
+  width: min(100%, 700px);
+  min-width: 0;
+  height: var(--size-64);
+  padding: var(--spacing-5x) var(--spacing-8x);
+  border: none;
+  border-radius: var(--radius-absolute);
+  background: var(--surface-neutral-soft-primary);
+  color: var(--text-icons-primary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transform: scale(1);
+  transform-origin: center;
+  will-change: transform;
+  transition:
+    background-color 0.15s ease,
+    transform 0.24s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.email-copy-button__content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2x);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.email-copy-button__content--visible {
+  opacity: 1;
+}
+
+.email-copy-button__icon {
+  width: var(--size-24);
+  height: var(--size-24);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.email-copy-button__svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.email-copy-button__label {
+  font-family: var(--family-mono-medium);
+  font-size: var(--size-button-title-medium);
+  font-weight: var(--weight-medium-medium);
+  line-height: var(--line-height-button-title-medium);
+  letter-spacing: var(--tracking-button-title-medium);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.email-copy-button--success {
+  background: var(--surface-neutral-soft-primary);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .email-copy-button:not(.email-copy-button--success):hover,
+  .email-copy-button:not(.email-copy-button--success):active {
+    background: var(--surface-neutral-soft-secondary);
+  }
+
+  .email-copy-button:not(.email-copy-button--success):active {
+    transform: scale(0.95);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .email-copy-button:not(.email-copy-button--success):active {
+    background: var(--surface-neutral-soft-secondary);
+    transform: scale(0.95);
+  }
+}
+
+.email-copy-button:focus-visible {
+  outline: 2px solid var(--outline-primary);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .email-copy-button {
+    transition: background-color 0.15s ease;
+  }
+
+  .email-copy-button__content {
+    transition: none;
+  }
+}
