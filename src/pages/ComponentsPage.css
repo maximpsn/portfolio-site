@@ -73,6 +73,13 @@
   justify-items: start;
 }
 
+.components-avatar-grid {
+  display: grid;
+  grid-template-columns: repeat(4, max-content);
+  gap: var(--spacing-6x);
+  align-items: end;
+}
+
 .components-icons-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, max-content));
@@ -214,5 +221,9 @@
 
   .components-dark-grid {
     grid-template-columns: max-content;
+  }
+
+  .components-avatar-grid {
+    grid-template-columns: repeat(2, max-content);
   }
 }

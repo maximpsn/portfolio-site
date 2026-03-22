@@ -3,6 +3,7 @@ import SecondaryButton from '../components/SecondaryButton'
 import SecondaryButtonDark from '../components/SecondaryButtonDark'
 import EmailCopyButton from '../components/EmailCopyButton'
 import AnchorLink from '../components/AnchorLink'
+import Avatar from '../components/Avatar'
 import IconCopy from '../components/icons/IconCopy'
 import IconDownload from '../components/icons/IconDownload'
 import IconSuccess from '../components/icons/IconSuccess'
@@ -11,6 +12,24 @@ import './ComponentsPage.css'
 function ComponentsPage() {
   return (
     <main className="components-page">
+      <section className="components-section">
+        <div className="components-section__intro">
+          <p className="components-section__eyebrow">Components</p>
+          <h2 className="components-section__title">Avatar</h2>
+          <p className="components-section__description">
+            Аватарка по умолчанию показывает лицо, на компьютере меняется по hover, а на тач-экранах по
+            нажатию переключается на альтернативную картинку и через 600 мс возвращается обратно.
+          </p>
+        </div>
+
+        <div className="components-avatar-grid">
+          <Avatar resolution="large" />
+          <Avatar resolution="medium" />
+          <Avatar resolution="small" />
+          <Avatar resolution="xsmall" />
+        </div>
+      </section>
+
       <section className="components-section">
         <div className="components-section__intro">
           <p className="components-section__eyebrow">Components</p>
