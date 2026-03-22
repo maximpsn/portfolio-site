@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
+import type { PointerEvent as ReactPointerEvent } from 'react'
 
 type TouchPressHandlers = {
-  onPointerDown: () => void
+  onPointerDown: (event: ReactPointerEvent<HTMLButtonElement | HTMLAnchorElement>) => void
   onPointerUp: () => void
   onPointerLeave: () => void
   onPointerCancel: () => void
@@ -12,20 +13,12 @@ type UseTouchPressStateResult = {
   handlers: TouchPressHandlers
 }
 
-const TOUCH_PRESS_ANIMATION_MS = 500
-
-const isCoarsePointer = () => {
-  if (typeof window === 'undefined') {
-    return false
-  }
-
-  return window.matchMedia('(pointer: coarse)').matches
-}
+const TOUCH_PRESS_ANIMATION_MS = 250
 
 function useTouchPressState(): UseTouchPressStateResult {
   const [isTouchPressed, setIsTouchPressed] = useState(false)
   const pressStartedAtRef = useRef<number | null>(null)
-  const isPointerDownRef = useRef(false)
+  const lastPointerTypeRef = useRef<'mouse' | 'pen' | 'touch' | ''>('')
   const releaseTimerRef = useRef<number | null>(null)
 
   useEffect(() => {
@@ -50,36 +43,27 @@ function useTouchPressState(): UseTouchPressStateResult {
 
     clearReleaseTimer()
     releaseTimerRef.current = window.setTimeout(() => {
-      if (!isPointerDownRef.current) {
-        setIsTouchPressed(false)
-        pressStartedAtRef.current = null
-      }
-
+      setIsTouchPressed(false)
+      pressStartedAtRef.current = null
       releaseTimerRef.current = null
     }, remainingMs)
   }
 
-  const handlePointerDown = () => {
-    if (!isCoarsePointer()) {
-      return
-    }
-
-    isPointerDownRef.current = true
+  const handlePointerDown = (event: ReactPointerEvent) => {
+    lastPointerTypeRef.current = event.pointerType as 'mouse' | 'pen' | 'touch'
     pressStartedAtRef.current = Date.now()
     setIsTouchPressed(true)
     clearReleaseTimer()
   }
 
   const handlePointerUp = () => {
-    if (!isCoarsePointer()) {
+    if (lastPointerTypeRef.current === 'touch') {
+      setIsTouchPressed(false)
+      pressStartedAtRef.current = null
+      clearReleaseTimer()
       return
     }
 
-    if (!isPointerDownRef.current && !isTouchPressed) {
-      return
-    }
-
-    isPointerDownRef.current = false
     scheduleRelease()
   }
 
