@@ -1,0 +1,219 @@
+.company-card {
+  --company-card-width: 700px;
+  --company-card-avatar-size: 48px;
+  --company-card-avatar-radius: var(--radius-16);
+  --company-card-gap: var(--spacing-5x);
+  --company-card-header-gap: var(--spacing-3x);
+  --company-card-main-text-gap: 6px;
+  --company-card-section-gap: 8px;
+  --company-card-heading-font: var(--family-sans-large);
+  --company-card-heading-size: var(--size-heading-lg-large);
+  --company-card-heading-weight: var(--weight-semibold-large);
+  --company-card-heading-line-height: var(--line-height-heading-lg-large);
+  --company-card-heading-tracking: var(--tracking-heading-lg-large);
+  --company-card-body-title-font: var(--family-sans-large);
+  --company-card-body-title-size: var(--size-body-title-large);
+  --company-card-body-title-weight: var(--weight-semibold-large);
+  --company-card-body-title-line-height: var(--line-height-body-title-large);
+  --company-card-body-title-tracking: var(--tracking-body-title-large);
+  --company-card-body-font: var(--family-sans-large);
+  --company-card-body-size: var(--size-body-text-large);
+  --company-card-body-weight: var(--weight-regular-large);
+  --company-card-body-line-height: var(--line-height-body-text-large);
+  --company-card-body-tracking: var(--tracking-body-text-large);
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--company-card-gap);
+  width: min(100%, var(--company-card-width));
+  color: var(--text-icons-primary);
+}
+
+.company-card__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--company-card-header-gap);
+  width: 100%;
+}
+
+.company-card__avatar {
+  position: relative;
+  width: var(--company-card-avatar-size);
+  height: var(--company-card-avatar-size);
+  border-radius: var(--company-card-avatar-radius);
+  overflow: hidden;
+  background: var(--surface-neutral-soft-primary);
+  flex: none;
+}
+
+.company-card__avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.company-card__main-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--company-card-main-text-gap);
+  width: 100%;
+}
+
+.company-card__company-name {
+  margin: 0;
+  width: 100%;
+  font-family: var(--company-card-heading-font);
+  font-size: var(--company-card-heading-size);
+  font-weight: var(--company-card-heading-weight);
+  line-height: var(--company-card-heading-line-height);
+  letter-spacing: var(--company-card-heading-tracking);
+}
+
+.company-card__period {
+  margin: 0;
+  width: 100%;
+  font-family: var(--company-card-body-font);
+  font-size: var(--company-card-body-size);
+  font-weight: var(--company-card-body-weight);
+  line-height: var(--company-card-body-line-height);
+  letter-spacing: var(--company-card-body-tracking);
+  color: var(--text-icons-tertiary);
+}
+
+.company-card__about {
+  margin: 0;
+  width: 100%;
+  font-family: var(--company-card-body-font);
+  font-size: var(--company-card-body-size);
+  font-weight: var(--company-card-body-weight);
+  line-height: var(--company-card-body-line-height);
+  letter-spacing: var(--company-card-body-tracking);
+  color: var(--text-icons-primary);
+}
+
+.company-card__section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--company-card-section-gap);
+  width: 100%;
+}
+
+.company-card__section-title {
+  margin: 0;
+  width: 100%;
+  font-family: var(--company-card-body-title-font);
+  font-size: var(--company-card-body-title-size);
+  font-weight: var(--company-card-body-title-weight);
+  line-height: var(--company-card-body-title-line-height);
+  letter-spacing: var(--company-card-body-title-tracking);
+}
+
+.company-card__list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  width: 100%;
+}
+
+.company-card__list-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: var(--spacing-2x);
+  align-items: start;
+  width: 100%;
+}
+
+.company-card__dash,
+.company-card__list-text {
+  font-family: var(--company-card-body-font);
+  font-size: var(--company-card-body-size);
+  font-weight: var(--company-card-body-weight);
+  line-height: var(--company-card-body-line-height);
+  letter-spacing: var(--company-card-body-tracking);
+}
+
+.company-card__dash {
+  flex: none;
+}
+
+.company-card__list-text {
+  min-width: 0;
+}
+
+@media (min-width: 600px) and (max-width: 1299px) {
+  .company-card {
+    --company-card-width: 700px;
+    --company-card-avatar-size: 48px;
+    --company-card-avatar-radius: var(--radius-16);
+    --company-card-heading-font: var(--family-sans-medium);
+    --company-card-heading-size: var(--size-heading-lg-medium);
+    --company-card-heading-weight: var(--weight-semibold-medium);
+    --company-card-heading-line-height: var(--line-height-heading-lg-medium);
+    --company-card-heading-tracking: var(--tracking-heading-lg-medium);
+    --company-card-body-title-font: var(--family-sans-medium);
+    --company-card-body-title-size: var(--size-body-title-medium);
+    --company-card-body-title-weight: var(--weight-semibold-medium);
+    --company-card-body-title-line-height: var(--line-height-body-title-medium);
+    --company-card-body-title-tracking: var(--tracking-body-title-medium);
+    --company-card-body-font: var(--family-sans-medium);
+    --company-card-body-size: var(--size-body-text-medium);
+    --company-card-body-weight: var(--weight-regular-medium);
+    --company-card-body-line-height: var(--line-height-body-text-medium);
+    --company-card-body-tracking: var(--tracking-body-text-medium);
+  }
+}
+
+@media (min-width: 400px) and (max-width: 599px) {
+  .company-card {
+    --company-card-width: 450px;
+    --company-card-avatar-size: 40px;
+    --company-card-avatar-radius: var(--radius-12);
+    --company-card-heading-font: var(--family-sans-small);
+    --company-card-heading-size: var(--size-heading-lg-small);
+    --company-card-heading-weight: var(--weight-semibold-small);
+    --company-card-heading-line-height: var(--line-height-heading-lg-small);
+    --company-card-heading-tracking: var(--tracking-heading-lg-small);
+    --company-card-body-title-font: var(--family-sans-small);
+    --company-card-body-title-size: var(--size-body-title-small);
+    --company-card-body-title-weight: var(--weight-semibold-small);
+    --company-card-body-title-line-height: var(--line-height-body-title-small);
+    --company-card-body-title-tracking: var(--tracking-body-title-small);
+    --company-card-body-font: var(--family-sans-small);
+    --company-card-body-size: var(--size-body-text-medium);
+    --company-card-body-weight: var(--weight-regular-small);
+    --company-card-body-line-height: var(--line-height-body-text-medium);
+    --company-card-body-tracking: var(--tracking-body-text-small);
+  }
+}
+
+@media (max-width: 399px) {
+  .company-card {
+    --company-card-width: 340px;
+    --company-card-avatar-size: 40px;
+    --company-card-avatar-radius: var(--radius-12);
+    --company-card-heading-font: var(--family-sans-xsmall);
+    --company-card-heading-size: var(--size-heading-lg-xsmall);
+    --company-card-heading-weight: var(--weight-semibold-xsmall);
+    --company-card-heading-line-height: var(--line-height-heading-lg-xsmall);
+    --company-card-heading-tracking: var(--tracking-heading-lg-xsmall);
+    --company-card-body-title-font: var(--family-sans-xsmall);
+    --company-card-body-title-size: var(--size-body-title-xsmall);
+    --company-card-body-title-weight: var(--weight-semibold-xsmall);
+    --company-card-body-title-line-height: var(--line-height-body-title-xsmall);
+    --company-card-body-title-tracking: var(--tracking-body-title-xsmall);
+    --company-card-body-font: var(--family-sans-xsmall);
+    --company-card-body-size: var(--size-body-text-medium);
+    --company-card-body-weight: var(--weight-regular-xsmall);
+    --company-card-body-line-height: var(--line-height-body-text-medium);
+    --company-card-body-tracking: var(--tracking-body-text-xsmall);
+  }
+}

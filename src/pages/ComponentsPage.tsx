@@ -6,6 +6,7 @@ import EmailCopyButtonLarge from '../components/EmailCopyButtonLarge'
 import AnchorLink from '../components/AnchorLink'
 import Avatar from '../components/Avatar'
 import CasePreviewCard from '../components/CasePreviewCard'
+import CompanyCard from '../components/CompanyCard'
 import SuperpowerCard from '../components/SuperpowerCard'
 import IconCopy from '../components/icons/IconCopy'
 import IconDownload from '../components/icons/IconDownload'
@@ -56,6 +57,21 @@ function ComponentsPage() {
         </div>
 
         <SuperpowerCard />
+      </section>
+
+      <div className="components-divider" aria-hidden="true" />
+
+      <section className="components-section">
+        <div className="components-section__intro">
+          <p className="components-section__eyebrow">Components</p>
+          <h2 className="components-section__title">Company Card</h2>
+          <p className="components-section__description">
+            Карточка опыта работы: заголовки секций фиксированы, а остальной текст можно менять. Список выравнивается
+            по левому краю и использует dash вместо стандартного bullet.
+          </p>
+        </div>
+
+        <CompanyCard />
       </section>
 
       <div className="components-divider" aria-hidden="true" />
