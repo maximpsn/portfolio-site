@@ -113,11 +113,9 @@ function HomePage() {
             <Avatar className="home-page__hero-avatar" />
 
             <div className="home-page__hero-copy">
-              <h1 className="home-page__hero-name">Максим Павлусенко, Продуктовый дизайнер</h1>
+              <h1 className="home-page__hero-name">Максим Павлусенко, Продуктовый дизайнер</h1>
               <p className="home-page__hero-text">
-                В одном волшебном королевстве проживал могучий зелёный исполин по имени Шрэк, который ценил
-                уединение в своём болотистом уголке лесной чащи. С этого момента начинаются приключения огромного
-                огра.
+                В одном волшебном королевстве проживал могучий зелёный исполин по имени Шрэк, который ценил уединение в своём болотистом уголке лесной чащи. С этого момента начинаются приключения огромного огра.
               </p>
             </div>
           </div>
@@ -134,17 +132,17 @@ function HomePage() {
               iconSrc={afrasuezProjectAvatar}
               coverSrc={caseThumbnailImage}
               projectName="Afrasuez"
-              heading="Веб-платформа для нефтяных трейдеров. Поиск инфраструктуры и специалистов, объявления о купле и продаже"
+              heading="Веб-платформа для нефтяных трейдеров. Поиск инфраструктуры и специалистов, объявления о купле и продаже"
             />
             <CasePreviewCard
               iconSrc={regroVahtaProjectAvatar}
               projectName="Регро Вахта"
-              heading="Приложение для вахтовиков. Устраивайся на работу, оформляй документы, получай билеты — всё в одном месте"
+              heading="Приложение для вахтовиков. Устраивайся на работу, оформляй документы, получай билеты — всё в одном месте"
             />
             <CasePreviewCard
               iconSrc={votveteProjectAvatar}
               projectName="ВотВете"
-              heading="Приложение для клиентов ветклиники. Записывай питомца к врачу, смотри результаты анализов, пополняй баланс для стационара"
+              heading="Приложение для клиентов ветклиники. Записывай питомца к врачу, смотри результаты анализов, пополняй баланс для стационара"
             />
           </div>
         </section>
@@ -154,7 +152,7 @@ function HomePage() {
             <CompanyCard
               avatarSrc={elseCompanyAvatar}
               companyName="Else Digital: UI/UX дизайнер"
-              period={"Июль 2024 — сейчас (1\u00A0год\u00A0и\u00A09\u00A0месяцев)"}
+              period={"Июль 2024 — сейчас (1 год и 9 месяцев)"}
               aboutCompany="IT-агентство c командой 35 человек. Разрабатываем веб-сервисы и мобильные приложения. Делали проекты в сфере медицины, промышленности, e-commerce, инвестиций, HoReCa, HR, образования, строительства, недвижимости."
               responsibilities={firstCompanyResponsibilities}
               achievements={firstCompanyAchievements}
@@ -162,7 +160,7 @@ function HomePage() {
             <CompanyCard
               avatarSrc={smartbookingCompanyAvatar}
               companyName="Smartbooking: Веб, Коммуникационный дизайнер"
-              period={"Август 2022 — Сентябрь 2023 (1\u00A0год\u00A0и\u00A02\u00A0месяца)"}
+              period={"Август 2022 — Сентябрь 2023 (1 год и 2 месяца)"}
               aboutCompany="PMS-платформа для управления гостиницами: автоматизация бронирований, интеграция с 70+ OTA-каналами (Booking, Airbnb, Expedia и т. д.), аналитика, мобильное приложение и конструктор сайта отеля с прямым бронированием."
               responsibilities={secondCompanyResponsibilities}
               achievements={[]}
