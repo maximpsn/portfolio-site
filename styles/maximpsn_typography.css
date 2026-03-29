@@ -37,6 +37,10 @@
   --size-heading-md-medium: 20px;
   --size-heading-md-small: 20px;
   --size-heading-md-xsmall: 18px;
+  --size-heading-new-large: 24px;
+  --size-heading-new-medium: 24px;
+  --size-heading-new-small: 24px;
+  --size-heading-new-xsmall: 20px;
   --size-body-text-large: 18px;
   --size-body-text-medium: 17px;
   --size-body-text-small: 17px;
@@ -59,6 +63,10 @@
   --line-height-heading-md-medium: 24px;
   --line-height-heading-md-small: 24px;
   --line-height-heading-md-xsmall: 22px;
+  --line-height-heading-new-large: 28px;
+  --line-height-heading-new-medium: 28px;
+  --line-height-heading-new-small: 28px;
+  --line-height-heading-new-xsmall: 24px;
   --line-height-body-text-large: 26px;
   --line-height-body-text-medium: 24px;
   --line-height-body-text-small: 24px;
@@ -81,6 +89,10 @@
   --tracking-heading-md-medium: -0.44px;
   --tracking-heading-md-small: -0.44px;
   --tracking-heading-md-xsmall: -0.44px;
+  --tracking-heading-new-large: -0.56px;
+  --tracking-heading-new-medium: -0.56px;
+  --tracking-heading-new-small: -0.56px;
+  --tracking-heading-new-xsmall: -0.44px;
   --tracking-body-text-large: -0.18px;
   --tracking-body-text-medium: -0.18px;
   --tracking-body-text-small: -0.18px;

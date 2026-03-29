@@ -5,7 +5,7 @@
   gap: var(--spacing-2x);
   min-width: 0;
   height: var(--size-48);
-  padding: var(--spacing-3x) var(--spacing-5x);
+  padding: var(--spacing-3x) var(--spacing-5x) var(--spacing-3x) var(--spacing-3x);
   border: none;
   border-radius: var(--radius-absolute);
   background: var(--glass-glass-soft-primary);

@@ -6,11 +6,17 @@ type PrimaryButtonMediumPreviewState = 'default' | 'interactive'
 type PrimaryButtonMediumProps = {
   text: string
   previewState?: PrimaryButtonMediumPreviewState
+  href?: string
+  target?: '_self' | '_blank' | '_parent' | '_top'
+  rel?: string
 }
 
 function PrimaryButtonMedium({
   text,
   previewState = 'default',
+  href,
+  target,
+  rel,
 }: PrimaryButtonMediumProps) {
   const { isTouchPressed, handlers } = useTouchPressState()
   const className = [
@@ -21,6 +27,14 @@ function PrimaryButtonMedium({
   ]
     .filter(Boolean)
     .join(' ')
+
+  if (href) {
+    return (
+      <a className={className} href={href} target={target} rel={rel} {...handlers}>
+        <span className="primary-button__label">{text}</span>
+      </a>
+    )
+  }
 
   return (
     <button className={className} type="button" {...handlers}>

@@ -9,6 +9,7 @@ type CompanyCardResolution = 'large' | 'medium' | 'small' | 'xsmall'
 type CompanyCardProps = {
   className?: string
   resolution?: CompanyCardResolution
+  avatarSrc?: string
   companyName?: string
   period?: string
   aboutCompany?: string
@@ -45,10 +46,10 @@ const GAP_BY_RESOLUTION = {
 } as const
 
 const HEADER_GAP_BY_RESOLUTION = {
-  large: 'var(--spacing-3x)',
-  medium: 'var(--spacing-3x)',
-  small: 'var(--spacing-3x)',
-  xsmall: 'var(--spacing-3x)',
+  large: 'var(--spacing-4x)',
+  medium: 'var(--spacing-4x)',
+  small: 'var(--spacing-4x)',
+  xsmall: 'var(--spacing-4x)',
 } as const
 
 const MAIN_TEXT_GAP_BY_RESOLUTION = {
@@ -73,10 +74,10 @@ const HEADING_FONT_BY_RESOLUTION = {
 } as const
 
 const HEADING_SIZE_BY_RESOLUTION = {
-  large: 'var(--size-heading-lg-large)',
-  medium: 'var(--size-heading-lg-medium)',
-  small: 'var(--size-heading-lg-small)',
-  xsmall: 'var(--size-heading-lg-xsmall)',
+  large: 'var(--size-heading-new-large)',
+  medium: 'var(--size-heading-new-medium)',
+  small: 'var(--size-heading-new-small)',
+  xsmall: 'var(--size-heading-new-xsmall)',
 } as const
 
 const HEADING_WEIGHT_BY_RESOLUTION = {
@@ -87,17 +88,17 @@ const HEADING_WEIGHT_BY_RESOLUTION = {
 } as const
 
 const HEADING_LINE_HEIGHT_BY_RESOLUTION = {
-  large: 'var(--line-height-heading-lg-large)',
-  medium: 'var(--line-height-heading-lg-medium)',
-  small: 'var(--line-height-heading-lg-small)',
-  xsmall: 'var(--line-height-heading-lg-xsmall)',
+  large: 'var(--line-height-heading-new-large)',
+  medium: 'var(--line-height-heading-new-medium)',
+  small: 'var(--line-height-heading-new-small)',
+  xsmall: 'var(--line-height-heading-new-xsmall)',
 } as const
 
 const HEADING_TRACKING_BY_RESOLUTION = {
-  large: 'var(--tracking-heading-lg-large)',
-  medium: 'var(--tracking-heading-lg-medium)',
-  small: 'var(--tracking-heading-lg-small)',
-  xsmall: 'var(--tracking-heading-lg-xsmall)',
+  large: 'var(--tracking-heading-new-large)',
+  medium: 'var(--tracking-heading-new-medium)',
+  small: 'var(--tracking-heading-new-small)',
+  xsmall: 'var(--tracking-heading-new-xsmall)',
 } as const
 
 const BODY_TITLE_FONT_BY_RESOLUTION = {
@@ -195,6 +196,7 @@ const resolutionFromViewport = (): CompanyCardResolution => {
 function CompanyCard({
   className,
   resolution,
+  avatarSrc = companyAvatar,
   companyName = 'Company: Position',
   period = 'Date — Date (Time)',
   aboutCompany = 'About company',
@@ -252,7 +254,7 @@ function CompanyCard({
     >
       <div className="company-card__header">
         <div className="company-card__avatar">
-          <img alt="" className="company-card__avatar-image" src={companyAvatar} />
+          <img alt="" className="company-card__avatar-image" src={avatarSrc} />
         </div>
 
         <div className="company-card__main-text">
@@ -266,8 +268,8 @@ function CompanyCard({
       <div className="company-card__section">
         <p className="company-card__section-title">Чем занимался:</p>
         <ul className="company-card__list">
-          {responsibilities.map((item) => (
-            <li key={item} className="company-card__list-item">
+          {responsibilities.map((item, index) => (
+            <li key={`${item}-${index}`} className="company-card__list-item">
               <span className="company-card__dash">–</span>
               <span className="company-card__list-text">{item}</span>
             </li>
@@ -275,17 +277,19 @@ function CompanyCard({
         </ul>
       </div>
 
-      <div className="company-card__section">
-        <p className="company-card__section-title">Достижения:</p>
-        <ul className="company-card__list">
-          {achievements.map((item) => (
-            <li key={item} className="company-card__list-item">
-              <span className="company-card__dash">–</span>
-              <span className="company-card__list-text">{item}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      {achievements.length > 0 ? (
+        <div className="company-card__section">
+          <p className="company-card__section-title">Достижения:</p>
+          <ul className="company-card__list">
+            {achievements.map((item, index) => (
+              <li key={`${item}-${index}`} className="company-card__list-item">
+                <span className="company-card__dash">–</span>
+                <span className="company-card__list-text">{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </article>
   )
 }

@@ -3,14 +3,14 @@
   --company-card-avatar-size: 48px;
   --company-card-avatar-radius: var(--radius-16);
   --company-card-gap: var(--spacing-5x);
-  --company-card-header-gap: var(--spacing-3x);
+  --company-card-header-gap: var(--spacing-4x);
   --company-card-main-text-gap: 6px;
   --company-card-section-gap: 8px;
   --company-card-heading-font: var(--family-sans-large);
-  --company-card-heading-size: var(--size-heading-lg-large);
+  --company-card-heading-size: var(--size-heading-new-large);
   --company-card-heading-weight: var(--weight-semibold-large);
-  --company-card-heading-line-height: var(--line-height-heading-lg-large);
-  --company-card-heading-tracking: var(--tracking-heading-lg-large);
+  --company-card-heading-line-height: var(--line-height-heading-new-large);
+  --company-card-heading-tracking: var(--tracking-heading-new-large);
   --company-card-body-title-font: var(--family-sans-large);
   --company-card-body-title-size: var(--size-body-title-large);
   --company-card-body-title-weight: var(--weight-semibold-large);
@@ -117,7 +117,7 @@
 .company-card__list {
   display: flex;
   flex-direction: column;
-  gap: 0;
+  gap: var(--spacing-2x);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -155,10 +155,10 @@
     --company-card-avatar-size: 48px;
     --company-card-avatar-radius: var(--radius-16);
     --company-card-heading-font: var(--family-sans-medium);
-    --company-card-heading-size: var(--size-heading-lg-medium);
+    --company-card-heading-size: var(--size-heading-new-medium);
     --company-card-heading-weight: var(--weight-semibold-medium);
-    --company-card-heading-line-height: var(--line-height-heading-lg-medium);
-    --company-card-heading-tracking: var(--tracking-heading-lg-medium);
+    --company-card-heading-line-height: var(--line-height-heading-new-medium);
+    --company-card-heading-tracking: var(--tracking-heading-new-medium);
     --company-card-body-title-font: var(--family-sans-medium);
     --company-card-body-title-size: var(--size-body-title-medium);
     --company-card-body-title-weight: var(--weight-semibold-medium);
@@ -174,46 +174,46 @@
 
 @media (min-width: 400px) and (max-width: 599px) {
   .company-card {
-    --company-card-width: 450px;
     --company-card-avatar-size: 40px;
     --company-card-avatar-radius: var(--radius-12);
     --company-card-heading-font: var(--family-sans-small);
-    --company-card-heading-size: var(--size-heading-lg-small);
+    --company-card-heading-size: var(--size-heading-new-small);
     --company-card-heading-weight: var(--weight-semibold-small);
-    --company-card-heading-line-height: var(--line-height-heading-lg-small);
-    --company-card-heading-tracking: var(--tracking-heading-lg-small);
+    --company-card-heading-line-height: var(--line-height-heading-new-small);
+    --company-card-heading-tracking: var(--tracking-heading-new-small);
     --company-card-body-title-font: var(--family-sans-small);
     --company-card-body-title-size: var(--size-body-title-small);
     --company-card-body-title-weight: var(--weight-semibold-small);
     --company-card-body-title-line-height: var(--line-height-body-title-small);
     --company-card-body-title-tracking: var(--tracking-body-title-small);
     --company-card-body-font: var(--family-sans-small);
-    --company-card-body-size: var(--size-body-text-medium);
+    --company-card-body-size: var(--size-body-text-small);
     --company-card-body-weight: var(--weight-regular-small);
-    --company-card-body-line-height: var(--line-height-body-text-medium);
+    --company-card-body-line-height: var(--line-height-body-text-small);
     --company-card-body-tracking: var(--tracking-body-text-small);
+    width: 100%;
+    max-width: 700px;
   }
 }
 
 @media (max-width: 399px) {
   .company-card {
-    --company-card-width: 340px;
     --company-card-avatar-size: 40px;
     --company-card-avatar-radius: var(--radius-12);
     --company-card-heading-font: var(--family-sans-xsmall);
-    --company-card-heading-size: var(--size-heading-lg-xsmall);
+    --company-card-heading-size: var(--size-heading-new-xsmall);
     --company-card-heading-weight: var(--weight-semibold-xsmall);
-    --company-card-heading-line-height: var(--line-height-heading-lg-xsmall);
-    --company-card-heading-tracking: var(--tracking-heading-lg-xsmall);
+    --company-card-heading-line-height: var(--line-height-heading-new-xsmall);
+    --company-card-heading-tracking: var(--tracking-heading-new-xsmall);
     --company-card-body-title-font: var(--family-sans-xsmall);
     --company-card-body-title-size: var(--size-body-title-xsmall);
     --company-card-body-title-weight: var(--weight-semibold-xsmall);
     --company-card-body-title-line-height: var(--line-height-body-title-xsmall);
     --company-card-body-title-tracking: var(--tracking-body-title-xsmall);
     --company-card-body-font: var(--family-sans-xsmall);
-    --company-card-body-size: var(--size-body-text-medium);
+    --company-card-body-size: var(--size-body-text-xsmall);
     --company-card-body-weight: var(--weight-regular-xsmall);
-    --company-card-body-line-height: var(--line-height-body-text-medium);
+    --company-card-body-line-height: var(--line-height-body-text-xsmall);
     --company-card-body-tracking: var(--tracking-body-text-xsmall);
   }
 }

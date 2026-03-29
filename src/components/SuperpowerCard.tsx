@@ -9,11 +9,13 @@ type SuperpowerCardResolution = 'large' | 'medium' | 'small' | 'xsmall'
 type SuperpowerCardProps = {
   className?: string
   resolution?: SuperpowerCardResolution
+  heading?: string
+  text?: string
 }
 
 const SIZE_BY_RESOLUTION = {
   large: '700px',
-  medium: '650px',
+  medium: '700px',
   small: '450px',
   xsmall: '340px',
 } as const
@@ -47,10 +49,10 @@ const HEADING_FONT_BY_RESOLUTION = {
 } as const
 
 const HEADING_SIZE_BY_RESOLUTION = {
-  large: 'var(--size-heading-lg-large)',
-  medium: 'var(--size-heading-lg-medium)',
-  small: 'var(--size-heading-lg-small)',
-  xsmall: 'var(--size-heading-lg-xsmall)',
+  large: 'var(--size-heading-new-large)',
+  medium: 'var(--size-heading-new-medium)',
+  small: 'var(--size-heading-new-small)',
+  xsmall: 'var(--size-heading-new-xsmall)',
 } as const
 
 const HEADING_WEIGHT_BY_RESOLUTION = {
@@ -61,17 +63,17 @@ const HEADING_WEIGHT_BY_RESOLUTION = {
 } as const
 
 const HEADING_LINE_HEIGHT_BY_RESOLUTION = {
-  large: 'var(--line-height-heading-lg-large)',
-  medium: 'var(--line-height-heading-lg-medium)',
-  small: 'var(--line-height-heading-lg-small)',
-  xsmall: 'var(--line-height-heading-lg-xsmall)',
+  large: 'var(--line-height-heading-new-large)',
+  medium: 'var(--line-height-heading-new-medium)',
+  small: 'var(--line-height-heading-new-small)',
+  xsmall: 'var(--line-height-heading-new-xsmall)',
 } as const
 
 const HEADING_TRACKING_BY_RESOLUTION = {
-  large: 'var(--tracking-heading-lg-large)',
-  medium: 'var(--tracking-heading-lg-medium)',
-  small: 'var(--tracking-heading-lg-small)',
-  xsmall: 'var(--tracking-heading-lg-xsmall)',
+  large: 'var(--tracking-heading-new-large)',
+  medium: 'var(--tracking-heading-new-medium)',
+  small: 'var(--tracking-heading-new-small)',
+  xsmall: 'var(--tracking-heading-new-xsmall)',
 } as const
 
 const BODY_FONT_BY_RESOLUTION = {
@@ -131,7 +133,12 @@ const resolutionFromViewport = (): SuperpowerCardResolution => {
   return 'xsmall'
 }
 
-function SuperpowerCard({ className, resolution }: SuperpowerCardProps) {
+function SuperpowerCard({
+  className,
+  resolution,
+  heading = 'Сильные стороны: визуал и системность',
+  text = 'Windscribe doesn’t offer a traditional free trial, but we do offer a completely free plan with up to 10GB of data per month (no credit card required). If you need more, you can upgrade to Windscribe Pro for as little as $3 USD per month. If you aren’t ready to upgrade, you can always get more data by referring a friend or posting about us on X.',
+}: SuperpowerCardProps) {
   const [autoResolution, setAutoResolution] = useState(resolutionFromViewport)
 
   useEffect(() => {
@@ -178,13 +185,8 @@ function SuperpowerCard({ className, resolution }: SuperpowerCardProps) {
       </div>
 
       <div className="superpower-card__content">
-        <p className="superpower-card__heading">Сильные стороны: визуал и системность</p>
-        <p className="superpower-card__text">
-          Windscribe doesn’t offer a traditional free trial, but we do offer a completely free plan with up to 10GB of
-          data per month (no credit card required). If you need more, you can upgrade to Windscribe Pro for as little
-          as $3 USD per month. If you aren’t ready to upgrade, you can always get more data by referring a friend or
-          posting about us on X.
-        </p>
+        <p className="superpower-card__heading">{heading}</p>
+        <p className="superpower-card__text">{text}</p>
       </div>
     </article>
   )

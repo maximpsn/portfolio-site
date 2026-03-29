@@ -6,11 +6,17 @@ type PrimaryButtonLargePreviewState = 'default' | 'interactive'
 type PrimaryButtonLargeProps = {
   text: string
   previewState?: PrimaryButtonLargePreviewState
+  href?: string
+  target?: '_self' | '_blank' | '_parent' | '_top'
+  rel?: string
 }
 
 function PrimaryButtonLarge({
   text,
   previewState = 'default',
+  href,
+  target,
+  rel,
 }: PrimaryButtonLargeProps) {
   const { isTouchPressed, handlers } = useTouchPressState()
   const className = [
@@ -23,6 +29,14 @@ function PrimaryButtonLarge({
   ]
     .filter(Boolean)
     .join(' ')
+
+  if (href) {
+    return (
+      <a className={className} href={href} target={target} rel={rel} {...handlers}>
+        <span className="primary-button__label">{text}</span>
+      </a>
+    )
+  }
 
   return (
     <button className={className} type="button" {...handlers}>

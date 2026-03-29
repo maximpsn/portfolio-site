@@ -86,6 +86,7 @@ function Avatar({ className, resolution }: AvatarProps) {
   const size = SIZE_BY_RESOLUTION[activeResolution]
   const radius = RADIUS_BY_RESOLUTION[activeResolution]
   const label = LABEL_BY_RESOLUTION[activeResolution]
+  const avatarClassName = className ? `avatar ${className}` : 'avatar'
 
   const handlePointerEnter = () => {
     setIsHovering(true)
@@ -110,7 +111,7 @@ function Avatar({ className, resolution }: AvatarProps) {
   return (
     <button
       type="button"
-      className={className || 'avatar'}
+      className={avatarClassName}
       data-name={`Avatar ${label}`}
       data-resolution={resolution}
       aria-label="Показать альтернативную аватарку"

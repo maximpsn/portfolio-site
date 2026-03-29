@@ -56,10 +56,10 @@
   margin: 0;
   width: 100%;
   font-family: var(--family-sans-medium);
-  font-size: var(--size-heading-lg-large);
+  font-size: var(--size-heading-new-large);
   font-weight: var(--weight-semibold-medium);
-  line-height: var(--line-height-heading-lg-large);
-  letter-spacing: var(--tracking-heading-lg-large);
+  line-height: var(--line-height-heading-new-large);
+  letter-spacing: var(--tracking-heading-new-large);
 }
 
 .case-preview-card__cover {
@@ -110,16 +110,15 @@
   }
 
   .case-preview-card__heading {
-    font-size: var(--size-heading-lg-medium);
-    line-height: var(--line-height-heading-lg-medium);
-    letter-spacing: var(--tracking-heading-lg-medium);
+    font-size: var(--size-heading-new-medium);
+    line-height: var(--line-height-heading-new-medium);
+    letter-spacing: var(--tracking-heading-new-medium);
   }
 }
 
 @media (min-width: 400px) and (max-width: 599px) {
   .case-preview-card {
     gap: var(--spacing-5x);
-    width: min(100%, 450px);
   }
 
   .case-preview-card__project-name {
@@ -129,9 +128,9 @@
   }
 
   .case-preview-card__heading {
-    font-size: var(--size-heading-lg-small);
-    line-height: var(--line-height-heading-lg-small);
-    letter-spacing: var(--tracking-heading-lg-small);
+    font-size: var(--size-heading-new-small);
+    line-height: var(--line-height-heading-new-small);
+    letter-spacing: var(--tracking-heading-new-small);
   }
 
   .case-preview-card__cover {
@@ -143,7 +142,6 @@
 @media (max-width: 399px) {
   .case-preview-card {
     gap: var(--spacing-5x);
-    width: min(100%, 340px);
   }
 
   .case-preview-card__project-name {
@@ -153,9 +151,9 @@
   }
 
   .case-preview-card__heading {
-    font-size: var(--size-heading-lg-xsmall);
-    line-height: var(--line-height-heading-lg-xsmall);
-    letter-spacing: var(--tracking-heading-lg-xsmall);
+    font-size: var(--size-heading-new-xsmall);
+    line-height: var(--line-height-heading-new-xsmall);
+    letter-spacing: var(--tracking-heading-new-xsmall);
   }
 
   .case-preview-card__cover {

@@ -4,10 +4,10 @@
   --superpower-card-image-radius: var(--radius-24);
   --superpower-card-text-gap: var(--spacing-3x);
   --superpower-card-heading-font: var(--family-sans-large);
-  --superpower-card-heading-size: var(--size-heading-lg-large);
+  --superpower-card-heading-size: var(--size-heading-new-large);
   --superpower-card-heading-weight: var(--weight-semibold-large);
-  --superpower-card-heading-line-height: var(--line-height-heading-lg-large);
-  --superpower-card-heading-tracking: var(--tracking-heading-lg-large);
+  --superpower-card-heading-line-height: var(--line-height-heading-new-large);
+  --superpower-card-heading-tracking: var(--tracking-heading-new-large);
   --superpower-card-body-font: var(--family-sans-large);
   --superpower-card-body-size: var(--size-body-text-large);
   --superpower-card-body-weight: var(--weight-regular-large);
@@ -68,14 +68,14 @@
 
 @media (min-width: 600px) and (max-width: 1299px) {
   .superpower-card {
-    --superpower-card-width: 650px;
+    --superpower-card-width: 700px;
     --superpower-card-gap: var(--spacing-6x);
     --superpower-card-text-gap: var(--spacing-3x);
     --superpower-card-heading-font: var(--family-sans-medium);
-    --superpower-card-heading-size: var(--size-heading-lg-medium);
+    --superpower-card-heading-size: var(--size-heading-new-medium);
     --superpower-card-heading-weight: var(--weight-semibold-medium);
-    --superpower-card-heading-line-height: var(--line-height-heading-lg-medium);
-    --superpower-card-heading-tracking: var(--tracking-heading-lg-medium);
+    --superpower-card-heading-line-height: var(--line-height-heading-new-medium);
+    --superpower-card-heading-tracking: var(--tracking-heading-new-medium);
     --superpower-card-body-font: var(--family-sans-medium);
     --superpower-card-body-size: var(--size-body-text-medium);
     --superpower-card-body-weight: var(--weight-regular-medium);
@@ -84,25 +84,26 @@
   }
 
   .superpower-card__media {
-    aspect-ratio: 650 / 465;
+    aspect-ratio: 700 / 500;
   }
 }
 
 @media (min-width: 400px) and (max-width: 599px) {
   .superpower-card {
-    --superpower-card-width: 450px;
     --superpower-card-gap: var(--spacing-5x);
     --superpower-card-text-gap: var(--spacing-2x);
     --superpower-card-heading-font: var(--family-sans-small);
-    --superpower-card-heading-size: var(--size-heading-lg-small);
+    --superpower-card-heading-size: var(--size-heading-new-small);
     --superpower-card-heading-weight: var(--weight-semibold-small);
-    --superpower-card-heading-line-height: var(--line-height-heading-lg-small);
-    --superpower-card-heading-tracking: var(--tracking-heading-lg-small);
+    --superpower-card-heading-line-height: var(--line-height-heading-new-small);
+    --superpower-card-heading-tracking: var(--tracking-heading-new-small);
     --superpower-card-body-font: var(--family-sans-small);
-    --superpower-card-body-size: var(--size-body-text-medium);
+    --superpower-card-body-size: var(--size-body-text-small);
     --superpower-card-body-weight: var(--weight-regular-small);
-    --superpower-card-body-line-height: var(--line-height-body-text-medium);
+    --superpower-card-body-line-height: var(--line-height-body-text-small);
     --superpower-card-body-tracking: var(--tracking-body-text-small);
+    width: 100%;
+    max-width: 700px;
   }
 
   .superpower-card__media {
@@ -113,23 +114,22 @@
 
 @media (max-width: 399px) {
   .superpower-card {
-    --superpower-card-width: 340px;
     --superpower-card-gap: var(--spacing-5x);
     --superpower-card-text-gap: var(--spacing-2x);
     --superpower-card-heading-font: var(--family-sans-xsmall);
-    --superpower-card-heading-size: var(--size-heading-lg-xsmall);
+    --superpower-card-heading-size: var(--size-heading-new-xsmall);
     --superpower-card-heading-weight: var(--weight-semibold-xsmall);
-    --superpower-card-heading-line-height: var(--line-height-heading-lg-xsmall);
-    --superpower-card-heading-tracking: var(--tracking-heading-lg-xsmall);
+    --superpower-card-heading-line-height: var(--line-height-heading-new-xsmall);
+    --superpower-card-heading-tracking: var(--tracking-heading-new-xsmall);
     --superpower-card-body-font: var(--family-sans-xsmall);
-    --superpower-card-body-size: var(--size-body-text-medium);
+    --superpower-card-body-size: var(--size-body-text-xsmall);
     --superpower-card-body-weight: var(--weight-regular-xsmall);
-    --superpower-card-body-line-height: var(--line-height-body-text-medium);
+    --superpower-card-body-line-height: var(--line-height-body-text-xsmall);
     --superpower-card-body-tracking: var(--tracking-body-text-xsmall);
   }
 
   .superpower-card__media {
-    aspect-ratio: 340 / 340;
+    aspect-ratio: 343 / 343;
     border-radius: var(--radius-20);
   }
 }
