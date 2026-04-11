@@ -90,7 +90,7 @@
   }
 
   .home-page__block--about .home-page__section {
-    gap: var(--spacing-6x);
+    gap: var(--spacing-7x);
   }
 
 .home-page__section {
@@ -346,7 +346,7 @@
     }
 
     .home-page__block--about .home-page__section {
-      gap: var(--spacing-12x);
+      gap: var(--spacing-6x);
     }
 
     .home-page__block {
@@ -763,6 +763,10 @@
       gap: var(--spacing-10x);
       border-top-left-radius: 0;
       border-top-right-radius: 0;
+    }
+
+    .home-page__block--about .home-page__section {
+      gap: var(--spacing-5x);
     }
 
     .home-page__content > .home-page__block:last-child {
