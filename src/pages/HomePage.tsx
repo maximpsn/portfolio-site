@@ -183,8 +183,7 @@ function HomePage() {
             </ul>
           </div>
 
-          <div className="home-page__section" id="contact">
-            <p className="home-page__section-title home-page__section-title--md">Связаться</p>
+        <div className="home-page__section" id="contact">
             <div className="home-page__contact-row">
               <div className="home-page__contact-action">
                 <PrimaryButtonLarge
