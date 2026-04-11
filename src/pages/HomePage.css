@@ -568,6 +568,10 @@
       gap: var(--spacing-6x);
     }
 
+    .home-page__content > .home-page__block:last-child .home-page__section {
+      gap: var(--spacing-4x);
+    }
+
     .home-page__content > .home-page__block:last-child {
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
@@ -767,6 +771,10 @@
 
     .home-page__block--about .home-page__section {
       gap: var(--spacing-5x);
+    }
+
+    .home-page__content > .home-page__block:last-child .home-page__section {
+      gap: var(--spacing-4x);
     }
 
     .home-page__content > .home-page__block:last-child {
