@@ -67,10 +67,8 @@ function EmailCopyButtonLarge({ text = EMAIL_TO_COPY }: EmailCopyButtonLargeProp
   }, [])
 
   const handleCopy = async () => {
-    console.log('[v0] handleCopy called')
     try {
       await navigator.clipboard.writeText(EMAIL_TO_COPY)
-      console.log('[v0] clipboard write successful')
 
       if (resetTimeoutRef.current !== null) {
         window.clearTimeout(resetTimeoutRef.current)
@@ -96,8 +94,7 @@ function EmailCopyButtonLarge({ text = EMAIL_TO_COPY }: EmailCopyButtonLargeProp
         }, CONTENT_FADE_MS)
         resetTimeoutRef.current = null
       }, SUCCESS_TIMEOUT_MS)
-    } catch (error) {
-      console.log('[v0] clipboard error:', error)
+    } catch {
       // No-op: if clipboard access is denied, keep the button in its current state.
     }
   }
