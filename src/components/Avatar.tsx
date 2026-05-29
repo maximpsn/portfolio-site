@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { motion } from 'framer-motion'
+import { Tilt } from '../../components/motion-primitives/tilt'
 import './Avatar.css'
 
 import defaultAvatarWebp from '../assets/avatar/webp-avatar-default.webp'
@@ -64,10 +64,7 @@ function Avatar({ className, resolution }: AvatarProps) {
   const [autoResolution, setAutoResolution] = useState(resolutionFromViewport)
   const [isHovering, setIsHovering] = useState(false)
   const [isPressed, setIsPressed] = useState(false)
-  const [rotateX, setRotateX] = useState(0)
-  const [rotateY, setRotateY] = useState(0)
   const resetTimerRef = useRef<number | null>(null)
-  const buttonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handleResize = () => {
@@ -98,25 +95,6 @@ function Avatar({ className, resolution }: AvatarProps) {
 
   const handlePointerLeave = () => {
     setIsHovering(false)
-    setRotateX(0)
-    setRotateY(0)
-  }
-
-  const handlePointerMove = (e: React.PointerEvent<HTMLButtonElement>) => {
-    if (!buttonRef.current) return
-
-    const rect = buttonRef.current.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-
-    const rotationX = ((y - centerY) / rect.height) * 8
-    const rotationY = ((centerX - x) / rect.width) * 8
-
-    setRotateX(rotationX)
-    setRotateY(rotationY)
   }
 
   const handlePointerDown = () => {
@@ -132,33 +110,39 @@ function Avatar({ className, resolution }: AvatarProps) {
   }
 
   return (
-    <button
-      type="button"
-      className={avatarClassName}
-      data-name={`Avatar ${label}`}
-      data-resolution={resolution}
-      aria-label="Показать альтернативную аватарку"
-      style={
-        {
-          '--avatar-size': size,
-          '--avatar-radius': radius,
-        } as CSSProperties
-      }
-      onPointerEnter={handlePointerEnter}
-      onPointerLeave={handlePointerLeave}
-      onPointerDown={handlePointerDown}
+    <Tilt
+      rotationFactor={12}
+      springOptions={{ stiffness: 300, damping: 20 }}
+      style={{ borderRadius: radius }}
     >
-      <picture className={`avatar__picture avatar__picture--default${showHoverImage ? ' avatar__picture--hidden' : ''}`}>
-        <source srcSet={defaultAvatarWebp} type="image/webp" />
-        <source srcSet={defaultAvatarJpeg} type="image/jpeg" />
-        <img alt="" className="avatar__image" src={defaultAvatarJpeg} />
-      </picture>
-      <picture className={`avatar__picture avatar__picture--hover${showHoverImage ? ' avatar__picture--visible' : ''}`}>
-        <source srcSet={shrekAvatarWebp} type="image/webp" />
-        <source srcSet={shrekAvatarJpeg} type="image/jpeg" />
-        <img alt="" className="avatar__image" src={shrekAvatarJpeg} />
-      </picture>
-    </button>
+      <button
+        type="button"
+        className={avatarClassName}
+        data-name={`Avatar ${label}`}
+        data-resolution={resolution}
+        aria-label="Показать альтернативную аватарку"
+        style={
+          {
+            '--avatar-size': size,
+            '--avatar-radius': radius,
+          } as CSSProperties
+        }
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
+        onPointerDown={handlePointerDown}
+      >
+        <picture className={`avatar__picture avatar__picture--default${showHoverImage ? ' avatar__picture--hidden' : ''}`}>
+          <source srcSet={defaultAvatarWebp} type="image/webp" />
+          <source srcSet={defaultAvatarJpeg} type="image/jpeg" />
+          <img alt="" className="avatar__image" src={defaultAvatarJpeg} />
+        </picture>
+        <picture className={`avatar__picture avatar__picture--hover${showHoverImage ? ' avatar__picture--visible' : ''}`}>
+          <source srcSet={shrekAvatarWebp} type="image/webp" />
+          <source srcSet={shrekAvatarJpeg} type="image/jpeg" />
+          <img alt="" className="avatar__image" src={shrekAvatarJpeg} />
+        </picture>
+      </button>
+    </Tilt>
   )
 }
 
