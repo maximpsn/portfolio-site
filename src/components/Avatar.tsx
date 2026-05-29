@@ -138,7 +138,7 @@ function Avatar({ className, resolution }: AvatarProps) {
         onPointerDown={handlePointerDown}
       >
         <Spotlight
-          className="rounded-[inherit] from-white/20 via-white/10 to-transparent"
+          className="z-10 rounded-[inherit] from-white/50 via-white/30 to-transparent"
           size={180}
           springOptions={{ bounce: 0 }}
         />
