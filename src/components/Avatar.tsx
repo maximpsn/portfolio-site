@@ -117,7 +117,7 @@ function Avatar({ className, resolution }: AvatarProps) {
   return (
     <Tilt
       rotationFactor={10}
-      springOptions={{ stiffness: 150, damping: 20 }}
+      springOptions={{ stiffness: 300, damping: 20 }}
       style={{ borderRadius: radius }}
     >
       <button
