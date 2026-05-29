@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
+import { motion } from 'framer-motion'
 import './Avatar.css'
 
 import defaultAvatarWebp from '../assets/avatar/webp-avatar-default.webp'
@@ -63,7 +64,10 @@ function Avatar({ className, resolution }: AvatarProps) {
   const [autoResolution, setAutoResolution] = useState(resolutionFromViewport)
   const [isHovering, setIsHovering] = useState(false)
   const [isPressed, setIsPressed] = useState(false)
+  const [rotateX, setRotateX] = useState(0)
+  const [rotateY, setRotateY] = useState(0)
   const resetTimerRef = useRef<number | null>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handleResize = () => {
@@ -94,6 +98,25 @@ function Avatar({ className, resolution }: AvatarProps) {
 
   const handlePointerLeave = () => {
     setIsHovering(false)
+    setRotateX(0)
+    setRotateY(0)
+  }
+
+  const handlePointerMove = (e: React.PointerEvent<HTMLButtonElement>) => {
+    if (!buttonRef.current) return
+
+    const rect = buttonRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+
+    const rotationX = ((y - centerY) / rect.height) * 8
+    const rotationY = ((centerX - x) / rect.width) * 8
+
+    setRotateX(rotationX)
+    setRotateY(rotationY)
   }
 
   const handlePointerDown = () => {
