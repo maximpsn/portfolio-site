@@ -56,16 +56,20 @@ function CasePreviewCard({
         <p className="case-preview-card__heading">{heading}</p>
       </div>
 
-      <motion.div
+      <div
         className="case-preview-card__cover"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        animate={{ rotateX, rotateY }}
-        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-        style={{ perspective: 1000 }}
       >
-        <img alt="" className="case-preview-card__cover-image" src={coverSrc} />
-      </motion.div>
+        <motion.img
+          alt=""
+          className="case-preview-card__cover-image"
+          src={coverSrc}
+          animate={{ rotateX, rotateY }}
+          transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+          style={{ perspective: 1000 }}
+        />
+      </div>
     </a>
   )
 }
