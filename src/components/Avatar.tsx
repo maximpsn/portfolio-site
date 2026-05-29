@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Tilt } from '../../components/motion-primitives/tilt'
-import { Spotlight } from '../../components/motion-primitives/spotlight'
 import './Avatar.css'
 
 import defaultAvatarWebp from '../assets/avatar/webp-avatar-default.webp'
@@ -137,11 +136,6 @@ function Avatar({ className, resolution }: AvatarProps) {
         onPointerLeave={handlePointerLeave}
         onPointerDown={handlePointerDown}
       >
-        <Spotlight
-          className="z-10 rounded-[inherit] from-white/50 via-white/30 to-transparent"
-          size={180}
-          springOptions={{ bounce: 0 }}
-        />
         <picture className={`avatar__picture avatar__picture--default${showHoverImage ? ' avatar__picture--hidden' : ''}`}>
           <source srcSet={defaultAvatarWebp} type="image/webp" />
           <source srcSet={defaultAvatarJpeg} type="image/jpeg" />
