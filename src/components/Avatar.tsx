@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Tilt } from '../../components/motion-primitives/tilt'
+import { Spotlight } from '../../components/motion-primitives/spotlight'
 import './Avatar.css'
 
 import defaultAvatarWebp from '../assets/avatar/webp-avatar-default.webp'
@@ -111,8 +112,8 @@ function Avatar({ className, resolution }: AvatarProps) {
 
   return (
     <Tilt
-      rotationFactor={12}
-      springOptions={{ stiffness: 300, damping: 20 }}
+      rotationFactor={6}
+      springOptions={{ stiffness: 80, damping: 20 }}
       style={{ borderRadius: radius }}
     >
       <button
@@ -131,6 +132,11 @@ function Avatar({ className, resolution }: AvatarProps) {
         onPointerLeave={handlePointerLeave}
         onPointerDown={handlePointerDown}
       >
+        <Spotlight
+          className="rounded-[inherit] from-white/20 via-white/10 to-transparent"
+          size={180}
+          springOptions={{ bounce: 0 }}
+        />
         <picture className={`avatar__picture avatar__picture--default${showHoverImage ? ' avatar__picture--hidden' : ''}`}>
           <source srcSet={defaultAvatarWebp} type="image/webp" />
           <source srcSet={defaultAvatarJpeg} type="image/jpeg" />
