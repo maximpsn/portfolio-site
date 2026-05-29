@@ -1,4 +1,5 @@
 import './CasePreviewCard.css'
+import { Tilt } from 'motion-primitives'
 
 import placeholderImage from '/image-placeholder.svg'
 
@@ -31,9 +32,9 @@ function CasePreviewCard({
         <p className="case-preview-card__heading">{heading}</p>
       </div>
 
-      <div className="case-preview-card__cover">
+      <Tilt rotationFactor={10} className="case-preview-card__cover">
         <img alt="" className="case-preview-card__cover-image" src={coverSrc} />
-      </div>
+      </Tilt>
     </a>
   )
 }
