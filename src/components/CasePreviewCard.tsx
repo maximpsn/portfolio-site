@@ -1,4 +1,6 @@
 import './CasePreviewCard.css'
+import { useState } from 'react'
+import { motion } from 'framer-motion'
 
 import placeholderImage from '/image-placeholder.svg'
 
@@ -19,6 +21,29 @@ function CasePreviewCard({
   projectName = 'Project name',
   heading = 'Heading',
 }: CasePreviewCardProps) {
+  const [rotateX, setRotateX] = useState(0)
+  const [rotateY, setRotateY] = useState(0)
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    const centerX = rect.width / 2
+    const centerY = rect.height / 2
+
+    const rotationX = ((y - centerY) / rect.height) * 10
+    const rotationY = ((centerX - x) / rect.width) * 10
+
+    setRotateX(rotationX)
+    setRotateY(rotationY)
+  }
+
+  const handleMouseLeave = () => {
+    setRotateX(0)
+    setRotateY(0)
+  }
+
   return (
     <a className={className || 'case-preview-card'} href={href}>
       <div className="case-preview-card__text">
@@ -31,9 +56,16 @@ function CasePreviewCard({
         <p className="case-preview-card__heading">{heading}</p>
       </div>
 
-      <div className="case-preview-card__cover">
+      <motion.div
+        className="case-preview-card__cover"
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        animate={{ rotateX, rotateY }}
+        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
+        style={{ perspective: 1000 }}
+      >
         <img alt="" className="case-preview-card__cover-image" src={coverSrc} />
-      </div>
+      </motion.div>
     </a>
   )
 }

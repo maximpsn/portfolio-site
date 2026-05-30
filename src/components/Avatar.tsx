@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
+import { Tilt } from '../../components/motion-primitives/tilt'
 import './Avatar.css'
 
 import defaultAvatarWebp from '../assets/avatar/webp-avatar-default.webp'
@@ -61,9 +62,15 @@ const SWITCH_BACK_DELAY_MS = 600
 
 function Avatar({ className, resolution }: AvatarProps) {
   const [autoResolution, setAutoResolution] = useState(resolutionFromViewport)
-  const [isHovering, setIsHovering] = useState(false)
-  const [isPressed, setIsPressed] = useState(false)
+  const [showHoverImage, setShowHoverImage] = useState(false)
   const resetTimerRef = useRef<number | null>(null)
+
+  const clearResetTimer = () => {
+    if (resetTimerRef.current !== null) {
+      window.clearTimeout(resetTimerRef.current)
+      resetTimerRef.current = null
+    }
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -75,67 +82,72 @@ function Avatar({ className, resolution }: AvatarProps) {
 
     return () => {
       window.removeEventListener('resize', handleResize)
-      if (resetTimerRef.current !== null) {
-        window.clearTimeout(resetTimerRef.current)
-      }
+      clearResetTimer()
     }
   }, [])
 
   const activeResolution: AvatarResolution = resolution ?? autoResolution
-  const showHoverImage = isHovering || isPressed
   const size = SIZE_BY_RESOLUTION[activeResolution]
   const radius = RADIUS_BY_RESOLUTION[activeResolution]
   const label = LABEL_BY_RESOLUTION[activeResolution]
   const avatarClassName = className ? `avatar ${className}` : 'avatar'
 
   const handlePointerEnter = () => {
-    setIsHovering(true)
+    clearResetTimer()
+    setShowHoverImage(true)
   }
 
   const handlePointerLeave = () => {
-    setIsHovering(false)
+    clearResetTimer()
+    resetTimerRef.current = window.setTimeout(() => {
+      setShowHoverImage(false)
+      resetTimerRef.current = null
+    }, SWITCH_BACK_DELAY_MS)
   }
 
   const handlePointerDown = () => {
-    if (resetTimerRef.current !== null) {
-      window.clearTimeout(resetTimerRef.current)
-    }
-
-    setIsPressed(true)
+    clearResetTimer()
+    setShowHoverImage(true)
     resetTimerRef.current = window.setTimeout(() => {
-      setIsPressed(false)
+      setShowHoverImage(false)
       resetTimerRef.current = null
     }, SWITCH_BACK_DELAY_MS)
   }
 
   return (
-    <button
-      type="button"
-      className={avatarClassName}
-      data-name={`Avatar ${label}`}
-      data-resolution={resolution}
-      aria-label="Показать альтернативную аватарку"
-      style={
-        {
-          '--avatar-size': size,
-          '--avatar-radius': radius,
-        } as CSSProperties
-      }
-      onPointerEnter={handlePointerEnter}
-      onPointerLeave={handlePointerLeave}
-      onPointerDown={handlePointerDown}
+    <Tilt
+      rotationFactor={10}
+      springOptions={{ stiffness: 300, damping: 20 }}
+      style={{ borderRadius: radius }}
     >
-      <picture className={`avatar__picture avatar__picture--default${showHoverImage ? ' avatar__picture--hidden' : ''}`}>
-        <source srcSet={defaultAvatarWebp} type="image/webp" />
-        <source srcSet={defaultAvatarJpeg} type="image/jpeg" />
-        <img alt="" className="avatar__image" src={defaultAvatarJpeg} />
-      </picture>
-      <picture className={`avatar__picture avatar__picture--hover${showHoverImage ? ' avatar__picture--visible' : ''}`}>
-        <source srcSet={shrekAvatarWebp} type="image/webp" />
-        <source srcSet={shrekAvatarJpeg} type="image/jpeg" />
-        <img alt="" className="avatar__image" src={shrekAvatarJpeg} />
-      </picture>
-    </button>
+      <button
+        type="button"
+        className={avatarClassName}
+        data-name={`Avatar ${label}`}
+        data-resolution={resolution}
+        aria-label="Показать альтернативную аватарку"
+        style={
+          {
+            '--avatar-size': size,
+            '--avatar-radius': radius,
+          } as CSSProperties
+        }
+        onPointerEnter={handlePointerEnter}
+        onPointerLeave={handlePointerLeave}
+        onPointerDown={handlePointerDown}
+      >
+        <picture className={`avatar__picture avatar__picture--default${showHoverImage ? ' avatar__picture--hidden' : ''}`}>
+          <source srcSet={defaultAvatarWebp} type="image/webp" />
+          <source srcSet={defaultAvatarJpeg} type="image/jpeg" />
+          <img alt="" className="avatar__image" src={defaultAvatarJpeg} />
+        </picture>
+        <picture className={`avatar__picture avatar__picture--hover${showHoverImage ? ' avatar__picture--visible' : ''}`}>
+          <source srcSet={shrekAvatarWebp} type="image/webp" />
+          <source srcSet={shrekAvatarJpeg} type="image/jpeg" />
+          <img alt="" className="avatar__image" src={shrekAvatarJpeg} />
+        </picture>
+      </button>
+    </Tilt>
   )
 }
 
