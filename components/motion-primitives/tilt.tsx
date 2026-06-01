@@ -7,8 +7,8 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-  MotionStyle,
-  SpringOptions,
+  type MotionStyle,
+  type SpringOptions,
 } from 'motion/react';
 
 export type TiltProps = {
