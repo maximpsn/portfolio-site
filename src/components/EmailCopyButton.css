@@ -51,12 +51,11 @@
 }
 
 .email-copy-button__label {
-  font-family: var(--family-mono-medium);
-  font-size: var(--size-button-title-medium);
+  font-family: var(--family-sans-medium);
+  font-size: var(--size-body-text-medium);
   font-weight: var(--weight-medium-medium);
-  line-height: var(--line-height-button-title-medium);
-  letter-spacing: var(--tracking-button-title-medium);
-  text-transform: uppercase;
+  line-height: var(--line-height-body-text-medium);
+  letter-spacing: var(--tracking-body-text-medium);
   white-space: nowrap;
 }
 

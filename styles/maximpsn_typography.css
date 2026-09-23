@@ -5,10 +5,10 @@
 
 :root {
   /* Font Family */
-  --family-sans-large: 'Vercel Geist', sans-serif;
-  --family-sans-medium: 'Vercel Geist', sans-serif;
-  --family-sans-small: 'Vercel Geist', sans-serif;
-  --family-sans-xsmall: 'Vercel Geist', sans-serif;
+  --family-sans-large: 'Inter', sans-serif;
+  --family-sans-medium: 'Inter', sans-serif;
+  --family-sans-small: 'Inter', sans-serif;
+  --family-sans-xsmall: 'Inter', sans-serif;
   --family-mono-large: 'IBM Plex Mono', monospace;
   --family-mono-medium: 'IBM Plex Mono', monospace;
   --family-mono-small: 'IBM Plex Mono', monospace;
@@ -27,6 +27,10 @@
   --weight-semibold-medium: 600;
   --weight-semibold-small: 600;
   --weight-semibold-xsmall: 600;
+  --weight-body-text-medium-large: 500;
+  --weight-body-text-medium-medium: 500;
+  --weight-body-text-medium-small: 500;
+  --weight-body-text-medium-xsmall: 500;
 
   /* Font Size */
   --size-heading-lg-large: 28px;
@@ -41,11 +45,15 @@
   --size-heading-new-medium: 24px;
   --size-heading-new-small: 24px;
   --size-heading-new-xsmall: 20px;
-  --size-body-text-large: 18px;
+  --size-body-text-large: 17px;
   --size-body-text-medium: 17px;
   --size-body-text-small: 17px;
   --size-body-text-xsmall: 17px;
-  --size-body-title-large: 18px;
+  --size-body-text-medium-large: 17px;
+  --size-body-text-medium-medium: 17px;
+  --size-body-text-medium-small: 17px;
+  --size-body-text-medium-xsmall: 17px;
+  --size-body-title-large: 17px;
   --size-body-title-medium: 17px;
   --size-body-title-small: 17px;
   --size-body-title-xsmall: 17px;
@@ -67,11 +75,15 @@
   --line-height-heading-new-medium: 28px;
   --line-height-heading-new-small: 28px;
   --line-height-heading-new-xsmall: 24px;
-  --line-height-body-text-large: 26px;
+  --line-height-body-text-large: 24px;
   --line-height-body-text-medium: 24px;
   --line-height-body-text-small: 24px;
   --line-height-body-text-xsmall: 24px;
-  --line-height-body-title-large: 26px;
+  --line-height-body-text-medium-large: 24px;
+  --line-height-body-text-medium-medium: 24px;
+  --line-height-body-text-medium-small: 24px;
+  --line-height-body-text-medium-xsmall: 24px;
+  --line-height-body-title-large: 24px;
   --line-height-body-title-medium: 24px;
   --line-height-body-title-small: 24px;
   --line-height-body-title-xsmall: 24px;
@@ -93,14 +105,18 @@
   --tracking-heading-new-medium: -0.56px;
   --tracking-heading-new-small: -0.56px;
   --tracking-heading-new-xsmall: -0.44px;
-  --tracking-body-text-large: -0.18px;
-  --tracking-body-text-medium: -0.18px;
-  --tracking-body-text-small: -0.18px;
-  --tracking-body-text-xsmall: -0.18px;
-  --tracking-body-title-large: -0.18px;
-  --tracking-body-title-medium: -0.18px;
-  --tracking-body-title-small: -0.18px;
-  --tracking-body-title-xsmall: -0.18px;
+  --tracking-body-text-large: -0.4px;
+  --tracking-body-text-medium: -0.4px;
+  --tracking-body-text-small: -0.4px;
+  --tracking-body-text-xsmall: -0.4px;
+  --tracking-body-text-medium-large: -0.4px;
+  --tracking-body-text-medium-medium: -0.4px;
+  --tracking-body-text-medium-small: -0.4px;
+  --tracking-body-text-medium-xsmall: -0.4px;
+  --tracking-body-title-large: -0.4px;
+  --tracking-body-title-medium: -0.4px;
+  --tracking-body-title-small: -0.4px;
+  --tracking-body-title-xsmall: -0.4px;
   --tracking-button-title-large: 0px;
   --tracking-button-title-medium: 0px;
   --tracking-button-title-small: 0px;

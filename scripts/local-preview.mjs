@@ -65,24 +65,6 @@ const server = createServer((req, res) => {
   res.end('dist/index.html not found. Run the build first.')
 })
 
-const ensureBuildDrive = async () => {
-  if (process.platform !== 'win32') {
-    return
-  }
-
-  try {
-    await execFileAsync('cmd.exe', ['/c', 'subst', 'Z:', projectRoot], {
-      cwd: projectRoot,
-      windowsHide: true,
-    })
-  } catch (error) {
-    const output = `${error?.stdout || ''}\n${error?.stderr || ''}\n${error?.message || ''}`
-    if (!output.includes('Drive already SUBSTed')) {
-      throw error
-    }
-  }
-}
-
 const rebuild = async (reason) => {
   if (rebuildFlag.running) {
     rebuildFlag.pending = true
@@ -92,8 +74,7 @@ const rebuild = async (reason) => {
   rebuildFlag.running = true
 
   try {
-    const buildCommand = 'pushd Z:\\ && npm.cmd run build'
-    await execFileAsync('cmd.exe', ['/d', '/s', '/c', buildCommand], {
+    await execFileAsync('npm.cmd', ['run', 'build'], {
       cwd: projectRoot,
       windowsHide: true,
     })
@@ -146,7 +127,6 @@ server.listen(port, host, () => {
   console.log(`Local preview is running at http://${host}:${port}/#components`)
 })
 
-await ensureBuildDrive()
 await rebuild('startup')
 
 process.on('SIGINT', () => {

@@ -23,8 +23,23 @@ function AnchorLink({
     .filter(Boolean)
     .join(' ')
 
+  const handleClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (!href.startsWith('#')) {
+      return
+    }
+
+    event.preventDefault()
+
+    const targetId = href.slice(1)
+    const target = document.getElementById(targetId)
+
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
-    <a className={className} href={href} {...handlers}>
+    <a className={className} href={href} onClick={handleClick} {...handlers}>
       {text}
     </a>
   )

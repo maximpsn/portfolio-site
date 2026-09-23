@@ -45,9 +45,9 @@
   margin: 0;
   min-width: 0;
   flex: 1 0 0;
-  font-family: var(--family-mono-medium);
+  font-family: var(--family-sans-medium);
   font-size: var(--size-body-text-large);
-  font-weight: var(--weight-medium-medium);
+  font-weight: var(--weight-body-text-medium-medium);
   line-height: var(--line-height-body-text-large);
   letter-spacing: var(--tracking-body-text-large);
 }
@@ -63,6 +63,7 @@
 }
 
 .case-preview-card__cover {
+  position: relative;
   width: 100%;
   aspect-ratio: 700 / 500;
   overflow: hidden;
@@ -70,7 +71,24 @@
   background: var(--surface-neutral-soft-primary);
 }
 
+.case-preview-card__glow {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.18) 0%,
+    rgba(255, 255, 255, 0) 45%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
 .case-preview-card__cover-image {
+  position: relative;
+  z-index: 0;
   display: block;
   width: 100%;
   height: 100%;

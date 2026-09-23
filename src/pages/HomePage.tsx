@@ -10,9 +10,9 @@ import SuperpowerCard from '../components/SuperpowerCard'
 import CasePreviewCard from '../components/CasePreviewCard'
 import CompanyCard from '../components/CompanyCard'
 import IconDownload from '../components/icons/IconDownload'
+import IconTelegram from '../components/icons/IconTelegram'
 
-import defaultAvatarWebp from '../assets/avatar/webp-avatar-default.webp'
-import defaultAvatarJpeg from '../assets/avatar/jpeg-avatar-default.jpeg'
+import sideAvatar from '../assets/avatar/avatar-side_optimized.jpeg'
 import elseCompanyAvatar from '../assets/avatars-companies/else-icon.webp'
 import smartbookingCompanyAvatar from '../assets/avatars-companies/smartbooking-icon.webp'
 import afrasuezProjectAvatar from '../assets/avatars-projects/afrasuez-icon.webp'
@@ -87,10 +87,9 @@ function HomePage() {
       <aside className="home-page__anchors" aria-label="Навигация">
         <div className="home-page__avatar-wrap">
           <picture className="home-page__avatar-picture">
-            <source srcSet={defaultAvatarWebp} type="image/webp" />
-            <source srcSet={defaultAvatarJpeg} type="image/jpeg" />
-            <img alt="" className="home-page__avatar-image" src={defaultAvatarJpeg} />
+            <img alt="" className="home-page__avatar-image" src={sideAvatar} />
           </picture>
+          <span className="home-page__avatar-badge" aria-hidden="true" />
         </div>
 
         <div className="home-page__links">
@@ -133,16 +132,19 @@ function HomePage() {
               coverSrc={caseThumbnailImage}
               projectName="Afrasuez"
               heading="Веб-платформа для нефтяных трейдеров. Поиск инфраструктуры и специалистов, объявления о купле и продаже"
+              href="/cases/afrasuez"
             />
             <CasePreviewCard
               iconSrc={regroVahtaProjectAvatar}
               projectName="Регро Вахта"
               heading="Приложение для вахтовиков. Устраивайся на работу, оформляй документы, получай билеты — всё в одном месте"
+              href="/cases/regro-vahta"
             />
             <CasePreviewCard
               iconSrc={votveteProjectAvatar}
               projectName="ВотВете"
               heading="Приложение для клиентов ветклиники. Записывай питомца к врачу, смотри результаты анализов, пополняй баланс для стационара"
+              href="/cases/votvete"
             />
           </div>
         </section>
@@ -191,10 +193,11 @@ function HomePage() {
                   text="Написать в телеграм"
                   target="_blank"
                   rel="noreferrer"
+                  icon={<IconTelegram />}
                 />
               </div>
               <div className="home-page__contact-email">
-                <EmailCopyButtonLarge text="pavlusenko.maksim@mail.ru" />
+                <EmailCopyButtonLarge text="Pavlusenko.maksim@mail.ru" />
               </div>
             </div>
           </div>

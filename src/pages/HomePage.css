@@ -24,8 +24,6 @@
   position: relative;
   width: 48px;
   height: 48px;
-  border-radius: 50%;
-  overflow: hidden;
   flex: none;
   -webkit-tap-highlight-color: transparent;
 }
@@ -37,9 +35,25 @@
   height: 100%;
 }
 
+.home-page__avatar-picture {
+  border-radius: 50%;
+  overflow: hidden;
+}
+
 .home-page__avatar-image {
   object-fit: cover;
   object-position: center;
+}
+
+.home-page__avatar-badge {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--success-primary);
+  border: 2px solid var(--page-page-front);
 }
 
 .home-page__links {
@@ -130,7 +144,7 @@
 .home-page__hero-name {
   font-family: var(--family-sans-large);
   font-size: var(--size-body-text-large);
-  font-weight: var(--weight-regular-large);
+  font-weight: var(--weight-medium-large);
   line-height: var(--line-height-body-text-large);
   letter-spacing: var(--tracking-body-text-large);
   color: var(--text-icons-primary);
@@ -185,7 +199,7 @@
 .home-page__list-text {
   font-family: var(--family-sans-large);
   font-size: var(--size-body-text-large);
-  font-weight: var(--weight-regular-large);
+  font-weight: var(--weight-medium-large);
   line-height: var(--line-height-body-text-large);
   letter-spacing: var(--tracking-body-text-large);
   color: var(--text-icons-primary);
@@ -511,7 +525,7 @@
   .home-page__hero-name {
     font-family: var(--family-sans-medium);
     font-size: var(--size-body-text-medium);
-    font-weight: var(--weight-regular-medium);
+    font-weight: var(--weight-medium-medium);
     line-height: var(--line-height-body-text-medium);
     letter-spacing: var(--tracking-body-text-medium);
   }
@@ -535,7 +549,7 @@
   .home-page__list-text {
     font-family: var(--family-sans-medium);
     font-size: var(--size-body-text-medium);
-    font-weight: var(--weight-regular-medium);
+    font-weight: var(--weight-medium-medium);
     line-height: var(--line-height-body-text-medium);
     letter-spacing: var(--tracking-body-text-medium);
   }
@@ -708,7 +722,7 @@
     .home-page__hero-name {
       font-family: var(--family-sans-small);
       font-size: var(--size-body-text-medium);
-      font-weight: var(--weight-regular-small);
+      font-weight: var(--weight-medium-small);
       line-height: var(--line-height-body-text-medium);
       letter-spacing: var(--tracking-body-text-small);
   }
@@ -732,7 +746,7 @@
   .home-page__list-text {
     font-family: var(--family-sans-small);
     font-size: var(--size-body-text-small);
-    font-weight: var(--weight-regular-small);
+    font-weight: var(--weight-medium-small);
     line-height: var(--line-height-body-text-small);
     letter-spacing: var(--tracking-body-text-small);
   }
@@ -913,7 +927,7 @@
   .home-page__hero-name {
     font-family: var(--family-sans-xsmall);
     font-size: var(--size-body-text-medium);
-    font-weight: var(--weight-regular-xsmall);
+    font-weight: var(--weight-medium-xsmall);
     line-height: var(--line-height-body-text-medium);
     letter-spacing: var(--tracking-body-text-xsmall);
   }
@@ -937,7 +951,7 @@
   .home-page__list-text {
     font-family: var(--family-sans-xsmall);
     font-size: var(--size-body-text-xsmall);
-    font-weight: var(--weight-regular-xsmall);
+    font-weight: var(--weight-medium-xsmall);
     line-height: var(--line-height-body-text-xsmall);
     letter-spacing: var(--tracking-body-text-xsmall);
   }

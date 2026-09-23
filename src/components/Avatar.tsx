@@ -3,10 +3,8 @@ import type { CSSProperties } from 'react'
 import { Tilt } from '../../components/motion-primitives/tilt'
 import './Avatar.css'
 
-import defaultAvatarWebp from '../assets/avatar/webp-avatar-default.webp'
-import defaultAvatarJpeg from '../assets/avatar/jpeg-avatar-default.jpeg'
-import shrekAvatarWebp from '../assets/avatar/webp-avatar-shrek.webp'
-import shrekAvatarJpeg from '../assets/avatar/jpeg-avatar-shrek.jpeg'
+import sideAvatar from '../assets/avatar/avatar-side_optimized.jpeg'
+import shrekAvatar from '../assets/avatar/jpeg-avatar-shrek.jpeg'
 
 type AvatarProps = {
   className?: string
@@ -63,6 +61,7 @@ const SWITCH_BACK_DELAY_MS = 600
 function Avatar({ className, resolution }: AvatarProps) {
   const [autoResolution, setAutoResolution] = useState(resolutionFromViewport)
   const [showHoverImage, setShowHoverImage] = useState(false)
+  const [glowPosition, setGlowPosition] = useState<{ x: number; y: number } | null>(null)
   const resetTimerRef = useRef<number | null>(null)
 
   const clearResetTimer = () => {
@@ -97,7 +96,16 @@ function Avatar({ className, resolution }: AvatarProps) {
     setShowHoverImage(true)
   }
 
+  const handlePointerMove = (event: React.PointerEvent<HTMLButtonElement>) => {
+    const rect = event.currentTarget.getBoundingClientRect()
+    setGlowPosition({
+      x: event.clientX - rect.left,
+      y: event.clientY - rect.top,
+    })
+  }
+
   const handlePointerLeave = () => {
+    setGlowPosition(null)
     clearResetTimer()
     resetTimerRef.current = window.setTimeout(() => {
       setShowHoverImage(false)
@@ -133,18 +141,26 @@ function Avatar({ className, resolution }: AvatarProps) {
           } as CSSProperties
         }
         onPointerEnter={handlePointerEnter}
+        onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
         onPointerDown={handlePointerDown}
       >
+        <span
+          className="avatar__glow"
+          aria-hidden="true"
+          style={
+            {
+              '--mx': glowPosition ? `${glowPosition.x}px` : '50%',
+              '--my': glowPosition ? `${glowPosition.y}px` : '50%',
+              opacity: glowPosition ? 1 : 0,
+            } as CSSProperties
+          }
+        />
         <picture className={`avatar__picture avatar__picture--default${showHoverImage ? ' avatar__picture--hidden' : ''}`}>
-          <source srcSet={defaultAvatarWebp} type="image/webp" />
-          <source srcSet={defaultAvatarJpeg} type="image/jpeg" />
-          <img alt="" className="avatar__image" src={defaultAvatarJpeg} />
+          <img alt="" className="avatar__image" src={sideAvatar} />
         </picture>
         <picture className={`avatar__picture avatar__picture--hover${showHoverImage ? ' avatar__picture--visible' : ''}`}>
-          <source srcSet={shrekAvatarWebp} type="image/webp" />
-          <source srcSet={shrekAvatarJpeg} type="image/jpeg" />
-          <img alt="" className="avatar__image" src={shrekAvatarJpeg} />
+          <img alt="" className="avatar__image" src={shrekAvatar} />
         </picture>
       </button>
     </Tilt>

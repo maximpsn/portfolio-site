@@ -57,6 +57,21 @@
   pointer-events: none;
 }
 
+.avatar__glow {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(255, 255, 255, 0) 40%
+  );
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transition: opacity 200ms ease;
+}
+
 @media (hover: hover) and (pointer: fine) {
   .avatar:hover {
     outline: none;

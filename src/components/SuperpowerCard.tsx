@@ -91,10 +91,10 @@ const BODY_SIZE_BY_RESOLUTION = {
 } as const
 
 const BODY_WEIGHT_BY_RESOLUTION = {
-  large: 'var(--weight-regular-large)',
-  medium: 'var(--weight-regular-medium)',
-  small: 'var(--weight-regular-small)',
-  xsmall: 'var(--weight-regular-xsmall)',
+  large: 'var(--weight-medium-large)',
+  medium: 'var(--weight-medium-medium)',
+  small: 'var(--weight-medium-small)',
+  xsmall: 'var(--weight-medium-xsmall)',
 } as const
 
 const BODY_LINE_HEIGHT_BY_RESOLUTION = {

@@ -5,10 +5,10 @@
 
 :root {
   /* Font Family */
-  --family-sans-large: 'Vercel Geist', sans-serif;
-  --family-sans-medium: 'Vercel Geist', sans-serif;
-  --family-sans-small: 'Vercel Geist', sans-serif;
-  --family-sans-xsmall: 'Vercel Geist', sans-serif;
+  --family-sans-large: 'Inter', sans-serif;
+  --family-sans-medium: 'Inter', sans-serif;
+  --family-sans-small: 'Inter', sans-serif;
+  --family-sans-xsmall: 'Inter', sans-serif;
   --family-mono-large: 'IBM Plex Mono', monospace;
   --family-mono-medium: 'IBM Plex Mono', monospace;
   --family-mono-small: 'IBM Plex Mono', monospace;
@@ -93,14 +93,14 @@
   --tracking-heading-new-medium: -0.56px;
   --tracking-heading-new-small: -0.56px;
   --tracking-heading-new-xsmall: -0.44px;
-  --tracking-body-text-large: -0.18px;
-  --tracking-body-text-medium: -0.18px;
-  --tracking-body-text-small: -0.18px;
-  --tracking-body-text-xsmall: -0.18px;
-  --tracking-body-title-large: -0.18px;
-  --tracking-body-title-medium: -0.18px;
-  --tracking-body-title-small: -0.18px;
-  --tracking-body-title-xsmall: -0.18px;
+  --tracking-body-text-large: -0.4px;
+  --tracking-body-text-medium: -0.4px;
+  --tracking-body-text-small: -0.4px;
+  --tracking-body-text-xsmall: -0.4px;
+  --tracking-body-title-large: -0.4px;
+  --tracking-body-title-medium: -0.4px;
+  --tracking-body-title-small: -0.4px;
+  --tracking-body-title-xsmall: -0.4px;
   --tracking-button-title-large: 0px;
   --tracking-button-title-medium: 0px;
   --tracking-button-title-small: 0px;

@@ -1,6 +1,6 @@
 import './CasePreviewCard.css'
 import { useState } from 'react'
-import { motion } from 'framer-motion'
+import type { CSSProperties } from 'react'
 
 import placeholderImage from '/image-placeholder.svg'
 
@@ -15,33 +15,24 @@ type CasePreviewCardProps = {
 
 function CasePreviewCard({
   className,
-  href = '#components',
+  href = '#projects',
   iconSrc = placeholderImage,
   coverSrc = placeholderImage,
   projectName = 'Project name',
   heading = 'Heading',
 }: CasePreviewCardProps) {
-  const [rotateX, setRotateX] = useState(0)
-  const [rotateY, setRotateY] = useState(0)
+  const [glow, setGlow] = useState<{ x: number; y: number } | null>(null)
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
+    const x = ((e.clientX - rect.left) / rect.width) * 100
+    const y = ((e.clientY - rect.top) / rect.height) * 100
 
-    const centerX = rect.width / 2
-    const centerY = rect.height / 2
-
-    const rotationX = ((y - centerY) / rect.height) * 10
-    const rotationY = ((centerX - x) / rect.width) * 10
-
-    setRotateX(rotationX)
-    setRotateY(rotationY)
+    setGlow({ x, y })
   }
 
   const handleMouseLeave = () => {
-    setRotateX(0)
-    setRotateY(0)
+    setGlow(null)
   }
 
   return (
@@ -56,16 +47,24 @@ function CasePreviewCard({
         <p className="case-preview-card__heading">{heading}</p>
       </div>
 
-      <motion.div
+      <div
         className="case-preview-card__cover"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
-        animate={{ rotateX, rotateY }}
-        transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-        style={{ perspective: 1000 }}
       >
+        <span
+          className="case-preview-card__glow"
+          aria-hidden="true"
+          style={
+            {
+              '--mx': glow ? `${glow.x}%` : '50%',
+              '--my': glow ? `${glow.y}%` : '50%',
+              opacity: glow ? 1 : 0,
+            } as CSSProperties
+          }
+        />
         <img alt="" className="case-preview-card__cover-image" src={coverSrc} />
-      </motion.div>
+      </div>
     </a>
   )
 }

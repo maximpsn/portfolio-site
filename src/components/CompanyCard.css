@@ -13,12 +13,12 @@
   --company-card-heading-tracking: var(--tracking-heading-new-large);
   --company-card-body-title-font: var(--family-sans-large);
   --company-card-body-title-size: var(--size-body-title-large);
-  --company-card-body-title-weight: var(--weight-semibold-large);
+  --company-card-body-title-weight: var(--weight-medium-large);
   --company-card-body-title-line-height: var(--line-height-body-title-large);
   --company-card-body-title-tracking: var(--tracking-body-title-large);
   --company-card-body-font: var(--family-sans-large);
   --company-card-body-size: var(--size-body-text-large);
-  --company-card-body-weight: var(--weight-regular-large);
+  --company-card-body-weight: var(--weight-medium-large);
   --company-card-body-line-height: var(--line-height-body-text-large);
   --company-card-body-tracking: var(--tracking-body-text-large);
 
@@ -82,7 +82,7 @@
   font-weight: var(--company-card-body-weight);
   line-height: var(--company-card-body-line-height);
   letter-spacing: var(--company-card-body-tracking);
-  color: var(--text-icons-tertiary);
+  color: var(--text-icons-secondary);
 }
 
 .company-card__about {
@@ -107,11 +107,12 @@
 .company-card__section-title {
   margin: 0;
   width: 100%;
-  font-family: var(--company-card-body-title-font);
-  font-size: var(--company-card-body-title-size);
-  font-weight: var(--company-card-body-title-weight);
-  line-height: var(--company-card-body-title-line-height);
-  letter-spacing: var(--company-card-body-title-tracking);
+  font-family: var(--company-card-body-font);
+  font-size: var(--company-card-body-size);
+  font-weight: var(--company-card-body-weight);
+  line-height: var(--company-card-body-line-height);
+  letter-spacing: var(--company-card-body-tracking);
+  color: var(--text-icons-secondary);
 }
 
 .company-card__list {
@@ -161,12 +162,12 @@
     --company-card-heading-tracking: var(--tracking-heading-new-medium);
     --company-card-body-title-font: var(--family-sans-medium);
     --company-card-body-title-size: var(--size-body-title-medium);
-    --company-card-body-title-weight: var(--weight-semibold-medium);
+    --company-card-body-title-weight: var(--weight-medium-medium);
     --company-card-body-title-line-height: var(--line-height-body-title-medium);
     --company-card-body-title-tracking: var(--tracking-body-title-medium);
     --company-card-body-font: var(--family-sans-medium);
     --company-card-body-size: var(--size-body-text-medium);
-    --company-card-body-weight: var(--weight-regular-medium);
+    --company-card-body-weight: var(--weight-medium-medium);
     --company-card-body-line-height: var(--line-height-body-text-medium);
     --company-card-body-tracking: var(--tracking-body-text-medium);
   }
@@ -183,12 +184,12 @@
     --company-card-heading-tracking: var(--tracking-heading-new-small);
     --company-card-body-title-font: var(--family-sans-small);
     --company-card-body-title-size: var(--size-body-title-small);
-    --company-card-body-title-weight: var(--weight-semibold-small);
+    --company-card-body-title-weight: var(--weight-medium-small);
     --company-card-body-title-line-height: var(--line-height-body-title-small);
     --company-card-body-title-tracking: var(--tracking-body-title-small);
     --company-card-body-font: var(--family-sans-small);
     --company-card-body-size: var(--size-body-text-small);
-    --company-card-body-weight: var(--weight-regular-small);
+    --company-card-body-weight: var(--weight-medium-small);
     --company-card-body-line-height: var(--line-height-body-text-small);
     --company-card-body-tracking: var(--tracking-body-text-small);
     width: 100%;
@@ -207,12 +208,12 @@
     --company-card-heading-tracking: var(--tracking-heading-new-xsmall);
     --company-card-body-title-font: var(--family-sans-xsmall);
     --company-card-body-title-size: var(--size-body-title-xsmall);
-    --company-card-body-title-weight: var(--weight-semibold-xsmall);
+    --company-card-body-title-weight: var(--weight-medium-xsmall);
     --company-card-body-title-line-height: var(--line-height-body-title-xsmall);
     --company-card-body-title-tracking: var(--tracking-body-title-xsmall);
     --company-card-body-font: var(--family-sans-xsmall);
     --company-card-body-size: var(--size-body-text-xsmall);
-    --company-card-body-weight: var(--weight-regular-xsmall);
+    --company-card-body-weight: var(--weight-medium-xsmall);
     --company-card-body-line-height: var(--line-height-body-text-xsmall);
     --company-card-body-tracking: var(--tracking-body-text-xsmall);
   }

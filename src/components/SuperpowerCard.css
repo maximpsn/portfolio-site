@@ -10,7 +10,7 @@
   --superpower-card-heading-tracking: var(--tracking-heading-new-large);
   --superpower-card-body-font: var(--family-sans-large);
   --superpower-card-body-size: var(--size-body-text-large);
-  --superpower-card-body-weight: var(--weight-regular-large);
+  --superpower-card-body-weight: var(--weight-medium-large);
   --superpower-card-body-line-height: var(--line-height-body-text-large);
   --superpower-card-body-tracking: var(--tracking-body-text-large);
 
@@ -78,7 +78,7 @@
     --superpower-card-heading-tracking: var(--tracking-heading-new-medium);
     --superpower-card-body-font: var(--family-sans-medium);
     --superpower-card-body-size: var(--size-body-text-medium);
-    --superpower-card-body-weight: var(--weight-regular-medium);
+    --superpower-card-body-weight: var(--weight-medium-medium);
     --superpower-card-body-line-height: var(--line-height-body-text-medium);
     --superpower-card-body-tracking: var(--tracking-body-text-medium);
   }
@@ -99,7 +99,7 @@
     --superpower-card-heading-tracking: var(--tracking-heading-new-small);
     --superpower-card-body-font: var(--family-sans-small);
     --superpower-card-body-size: var(--size-body-text-small);
-    --superpower-card-body-weight: var(--weight-regular-small);
+    --superpower-card-body-weight: var(--weight-medium-small);
     --superpower-card-body-line-height: var(--line-height-body-text-small);
     --superpower-card-body-tracking: var(--tracking-body-text-small);
     width: 100%;
@@ -123,7 +123,7 @@
     --superpower-card-heading-tracking: var(--tracking-heading-new-xsmall);
     --superpower-card-body-font: var(--family-sans-xsmall);
     --superpower-card-body-size: var(--size-body-text-xsmall);
-    --superpower-card-body-weight: var(--weight-regular-xsmall);
+    --superpower-card-body-weight: var(--weight-medium-xsmall);
     --superpower-card-body-line-height: var(--line-height-body-text-xsmall);
     --superpower-card-body-tracking: var(--tracking-body-text-xsmall);
   }

@@ -2,7 +2,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-2x);
+  gap: var(--spacing-1-5x);
   min-width: 0;
   height: var(--size-48);
   padding: var(--spacing-3x) var(--spacing-5x) var(--spacing-3x) var(--spacing-3x);
@@ -36,12 +36,11 @@
 }
 
 .secondary-button-dark__label {
-  font-family: var(--family-mono-medium);
-  font-size: var(--size-button-title-medium);
+  font-family: var(--family-sans-medium);
+  font-size: var(--size-body-text-medium);
   font-weight: var(--weight-medium-medium);
-  line-height: var(--line-height-button-title-medium);
-  letter-spacing: var(--tracking-button-title-medium);
-  text-transform: uppercase;
+  line-height: var(--line-height-body-text-medium);
+  letter-spacing: var(--tracking-body-text-medium);
   white-space: nowrap;
 }
 
