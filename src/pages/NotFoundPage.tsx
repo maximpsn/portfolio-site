@@ -1,4 +1,5 @@
 import PrimaryButtonMedium from '../components/PrimaryButtonMedium'
+import { BASE } from '../config'
 import './NotFoundPage.css'
 
 function NotFoundPage() {
@@ -8,7 +9,7 @@ function NotFoundPage() {
       <p className="not-found-page__text">
         Такой страницы нет — возможно, она переехала или была удалена.
       </p>
-      <PrimaryButtonMedium text="На главную" href="/" />
+      <PrimaryButtonMedium text="На главную" href={BASE} />
     </div>
   )
 }

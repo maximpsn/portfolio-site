@@ -3,6 +3,7 @@ import HomePage from './pages/HomePage'
 import CasePlaceholderPage from './pages/CasePlaceholderPage'
 import NotFoundPage from './pages/NotFoundPage'
 import PlaygroundPage from './pages/PlaygroundPage'
+import { BASE } from './config'
 import './App.css'
 
 type Route =
@@ -17,18 +18,30 @@ const CASE_TITLES: Record<string, string> = {
   votvete: 'ВотВете',
 }
 
-function getRouteFromPath(): Route {
-  const { pathname } = window.location
+function normalizePath(pathname: string): string {
+  if (BASE === '/') {
+    return pathname
+  }
 
-  if (pathname === '/' || pathname === '') {
+  if (pathname.startsWith(BASE)) {
+    return pathname.slice(BASE.length - 1)
+  }
+
+  return pathname
+}
+
+function getRouteFromPath(): Route {
+  const path = normalizePath(window.location.pathname)
+
+  if (path === '/' || path === '') {
     return { name: 'home' }
   }
 
-  if (pathname === '/playground') {
+  if (path === '/playground') {
     return { name: 'playground' }
   }
 
-  const match = pathname.match(/^\/cases\/([^/]+)\/?$/)
+  const match = path.match(/^\/cases\/([^/]+)\/?$/)
 
   if (match && CASE_TITLES[match[1]]) {
     return { name: 'case', slug: match[1] }
@@ -76,7 +89,8 @@ function App() {
       }
 
       event.preventDefault()
-      window.history.pushState({}, '', url.pathname + url.search)
+      const nextPath = url.pathname.startsWith(BASE) ? url.pathname + url.search : BASE.replace(/\/$/, '') + url.pathname + url.search
+      window.history.pushState({}, '', nextPath)
       setRoute(getRouteFromPath())
       window.scrollTo(0, 0)
     }

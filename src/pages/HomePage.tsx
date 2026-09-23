@@ -9,6 +9,7 @@ import EmailCopyButtonLarge from '../components/EmailCopyButtonLarge'
 import SuperpowerCard from '../components/SuperpowerCard'
 import CasePreviewCard from '../components/CasePreviewCard'
 import CompanyCard from '../components/CompanyCard'
+import { BASE } from '../config'
 import IconDownload from '../components/icons/IconDownload'
 import IconTelegram from '../components/icons/IconTelegram'
 
@@ -132,19 +133,19 @@ function HomePage() {
               coverSrc={caseThumbnailImage}
               projectName="Afrasuez"
               heading="Веб-платформа для нефтяных трейдеров. Поиск инфраструктуры и специалистов, объявления о купле и продаже"
-              href="/cases/afrasuez"
+              href={`${BASE}cases/afrasuez`}
             />
             <CasePreviewCard
               iconSrc={regroVahtaProjectAvatar}
               projectName="Регро Вахта"
               heading="Приложение для вахтовиков. Устраивайся на работу, оформляй документы, получай билеты — всё в одном месте"
-              href="/cases/regro-vahta"
+              href={`${BASE}cases/regro-vahta`}
             />
             <CasePreviewCard
               iconSrc={votveteProjectAvatar}
               projectName="ВотВете"
               heading="Приложение для клиентов ветклиники. Записывай питомца к врачу, смотри результаты анализов, пополняй баланс для стационара"
-              href="/cases/votvete"
+              href={`${BASE}cases/votvete`}
             />
           </div>
         </section>
