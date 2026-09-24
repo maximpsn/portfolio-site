@@ -86,15 +86,6 @@
 .case-head__cover {
   position: relative;
   width: 100%;
-  border-radius: var(--radius-24);
-  background: var(--surface-neutral-soft-primary);
-}
-
-.case-head__cover-image {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: var(--radius-24);
 }
 
 @media (min-width: 600px) and (max-width: 1299px) {

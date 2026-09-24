@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
-import Lightbox from 'yet-another-react-lightbox'
-import 'yet-another-react-lightbox/styles.css'
 import './CaseHead.css'
+
+import CaseMediaContainer from './CaseMediaContainer'
 
 import placeholderImage from '/image-placeholder.svg'
 
@@ -92,7 +92,6 @@ function CaseHead({
   slides,
 }: CaseHeadProps) {
   const [autoResolution, setAutoResolution] = useState<CaseHeadResolution>(resolutionFromViewport)
-  const [lightboxOpen, setLightboxOpen] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
@@ -113,14 +112,6 @@ function CaseHead({
   const lightboxSlides = slides && slides.length > 0
     ? slides
     : [{ src: coverSrc }]
-
-  const handleOpenLightbox = () => {
-    setLightboxOpen(true)
-  }
-
-  const handleCloseLightbox = () => {
-    setLightboxOpen(false)
-  }
 
   return (
     <div
@@ -155,27 +146,9 @@ function CaseHead({
         ) : null}
       </div>
 
-      <div className="case-head__cover" onClick={handleOpenLightbox} style={{ cursor: 'pointer' }}>
-        <img alt="" className="case-head__cover-image" src={coverSrc} />
+      <div className="case-head__cover">
+        <CaseMediaContainer src={coverSrc} resolution={activeResolution} slides={lightboxSlides} />
       </div>
-
-{lightboxSlides.length > 0 ? (
-        <Lightbox
-          open={lightboxOpen}
-          close={handleCloseLightbox}
-          slides={lightboxSlides}
-          styles={{ root: { '--yarl__color_backdrop': 'rgba(0, 0, 0, 0.5)' } as any }}
-          controller={{
-            closeOnBackdropClick: true,
-            closeOnPullUp: true,
-            closeOnPullDown: true,
-          }}
-          animation={{
-            fade: 250,
-            easing: { fade: 'cubic-bezier(0.22, 1, 0.36, 1)' },
-          }}
-        />
-      ) : null}
     </div>
   )
 }

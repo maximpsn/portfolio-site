@@ -1,0 +1,77 @@
+.secondary-icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--size-48);
+  height: var(--size-48);
+  padding: var(--spacing-3x);
+  border: none;
+  border-radius: var(--radius-absolute);
+  background: var(--surface-neutral-soft-primary);
+  color: var(--text-icons-primary);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transform: scale(1);
+  transform-origin: center;
+  will-change: transform;
+  transition:
+    background-color 0.15s ease,
+    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.secondary-icon-button__icon {
+  width: var(--size-24);
+  height: var(--size-24);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+}
+
+.secondary-icon-button__icon > svg,
+.secondary-icon-button__icon > img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.secondary-icon-button--interactive-preview {
+  background: var(--surface-neutral-soft-secondary);
+}
+
+.secondary-icon-button--touch-pressed {
+  transform: scale(0.95);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .secondary-icon-button:hover,
+  .secondary-icon-button:active {
+    background: var(--surface-neutral-soft-secondary);
+  }
+
+  .secondary-icon-button:active {
+    transform: scale(0.95);
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .secondary-icon-button:active {
+    background: var(--surface-neutral-soft-secondary);
+  }
+
+  .secondary-icon-button,
+  .secondary-icon-button:active {
+    transform: none !important;
+  }
+}
+
+.secondary-icon-button:focus-visible {
+  outline: 2px solid var(--outline-primary);
+  outline-offset: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .secondary-icon-button {
+    transition: background-color 0.15s ease;
+  }
+}

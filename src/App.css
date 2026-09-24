@@ -1,3 +1,32 @@
 #root {
   min-height: 100vh;
 }
+
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  background: var(--page-page-back);
+}
+
+.app-root__page {
+  position: relative;
+  min-height: 100vh;
+  background: var(--page-page-back);
+}
+
+.app-root__transition {
+  position: fixed;
+  inset: 0;
+  background: var(--page-page-back);
+  overflow: hidden;
+}
+
+.transition-leave,
+.transition-enter {
+  position: absolute;
+  inset: 0;
+}
+
+.transition-enter {
+  z-index: 1;
+}

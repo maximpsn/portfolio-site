@@ -5,6 +5,14 @@
   background: var(--page-page-back);
 }
 
+.playground-page__nav {
+  position: fixed;
+  top: var(--spacing-8x);
+  left: var(--spacing-8x);
+  z-index: 20;
+  display: inline-flex;
+}
+
 .playground-page__content {
   display: flex;
   flex-direction: column;
@@ -30,6 +38,7 @@
   align-items: flex-start;
   gap: var(--spacing-7x);
   width: min(100%, 700px);
+  scroll-margin-top: 40px;
 }
 
 @media (min-width: 600px) and (max-width: 1299px) {
@@ -45,6 +54,7 @@
 
   .playground-page__section {
     width: min(100%, 700px);
+    scroll-margin-top: 40px;
   }
 }
 
@@ -61,6 +71,7 @@
 
   .playground-page__section {
     width: 100%;
+    scroll-margin-top: 20px;
   }
 }
 
@@ -77,5 +88,6 @@
 
   .playground-page__section {
     width: 100%;
+    scroll-margin-top: 20px;
   }
 }
