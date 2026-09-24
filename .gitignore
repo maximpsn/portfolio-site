@@ -29,3 +29,7 @@ dist-ssr
 .qwen/vite-dev.out.log
 .qwen/vite-dev.err.log
 .qwen/local-preview-supervisor.*
+
+# Local working files (не для репо)
+.backup-fonts-2026-09-18/
+chat-context-transfer.md
