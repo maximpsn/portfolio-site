@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react'
 import './SecondaryButton.css'
-import useTouchPressState from './useTouchPressState'
+import useTouchPressState from '../hooks/useTouchPressState'
 
 type SecondaryButtonMediumPreviewState = 'default' | 'interactive'
 

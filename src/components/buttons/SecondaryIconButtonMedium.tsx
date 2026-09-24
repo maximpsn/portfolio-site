@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
-import IconChevronLeft from './icons/IconChevronLeft'
+import IconChevronLeft from '../icons/IconChevronLeft'
 import './SecondaryIconButton.css'
-import useTouchPressState from './useTouchPressState'
+import useTouchPressState from '../hooks/useTouchPressState'
 
 type SecondaryIconButtonPreviewState = 'default' | 'interactive'
 

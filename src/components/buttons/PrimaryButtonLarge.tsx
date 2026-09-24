@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
+import { Link } from 'react-router-dom'
 import './PrimaryButton.css'
-import useTouchPressState from './useTouchPressState'
+import useTouchPressState from '../hooks/useTouchPressState'
 
 type PrimaryButtonLargePreviewState = 'default' | 'interactive'
 
@@ -42,6 +43,14 @@ function PrimaryButtonLarge({
   )
 
   if (href) {
+    if (href.startsWith('/')) {
+      return (
+        <Link className={className} to={href} {...handlers}>
+          {content}
+        </Link>
+      )
+    }
+
     return (
       <a className={className} href={href} target={target} rel={rel} {...handlers}>
         {content}

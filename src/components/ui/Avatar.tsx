@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
-import { Tilt } from '../../components/motion-primitives/tilt'
+import { Tilt } from '../../../components/motion-primitives/tilt'
 import './Avatar.css'
 
-import sideAvatar from '../assets/avatar/avatar-side_optimized.jpeg'
-import shrekAvatar from '../assets/avatar/jpeg-avatar-shrek.jpeg'
+import sideAvatar from '../../assets/avatar/avatar-side_optimized.jpeg'
+import shrekAvatar from '../../assets/avatar/jpeg-avatar-shrek.jpeg'
 
 type AvatarProps = {
   className?: string

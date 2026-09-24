@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import IconCopy from './icons/IconCopy'
-import IconSuccess from './icons/IconSuccess'
-import useTouchPressState from './useTouchPressState'
+import IconCopy from '../icons/IconCopy'
+import IconSuccess from '../icons/IconSuccess'
+import useTouchPressState from '../hooks/useTouchPressState'
 import './EmailCopyButton.css'
 
 const EMAIL_TO_COPY = 'pavlusenko.maksim@mail.ru'

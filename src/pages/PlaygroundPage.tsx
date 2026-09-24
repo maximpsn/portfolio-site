@@ -1,11 +1,11 @@
-import TableOfContents from '../components/TableOfContents'
-import type { TableOfContentsItem } from '../components/TableOfContents'
-import CaseHead from '../components/CaseHead'
-import CaseSubheadingText from '../components/CaseSubheadingText'
-import CaseHeadingText from '../components/CaseHeadingText'
-import CaseMediaContainer from '../components/CaseMediaContainer'
-import SecondaryIconButtonMedium from '../components/SecondaryIconButtonMedium'
-import { BASE } from '../config'
+import { useNavigate } from 'react-router-dom'
+import TableOfContents from '../components/nav/TableOfContents'
+import type { TableOfContentsItem } from '../components/nav/TableOfContents'
+import CaseHead from '../components/case/CaseHead'
+import CaseSubheadingText from '../components/case/CaseSubheadingText'
+import CaseHeadingText from '../components/case/CaseHeadingText'
+import CaseMediaContainer from '../components/case/CaseMediaContainer'
+import SecondaryIconButtonMedium from '../components/buttons/SecondaryIconButtonMedium'
 import './PlaygroundPage.css'
 
 import caseCover from '../assets/case-thumbnails/Case cover image.jpg'
@@ -26,10 +26,9 @@ const SECTIONS: TableOfContentsItem[] = [
 ]
 
 function PlaygroundPage() {
+  const navigate = useNavigate()
   const goHome = () => {
-    const path = BASE === '/' ? '/' : BASE
-    window.history.pushState({}, '', path)
-    window.dispatchEvent(new PopStateEvent('popstate'))
+    navigate('/')
   }
 
   return (

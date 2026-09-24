@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from 'react'
-import AnchorLink from '../components/AnchorLink'
-import Avatar from '../components/Avatar'
-import PrimaryButtonLarge from '../components/PrimaryButtonLarge'
-import PrimaryButtonMedium from '../components/PrimaryButtonMedium'
-import SecondaryButtonMedium from '../components/SecondaryButtonMedium'
-import SecondaryButtonDarkMedium from '../components/SecondaryButtonDarkMedium'
-import EmailCopyButtonLarge from '../components/EmailCopyButtonLarge'
-import SuperpowerCard from '../components/SuperpowerCard'
-import CasePreviewCard from '../components/CasePreviewCard'
-import CompanyCard from '../components/CompanyCard'
-import { BASE } from '../config'
+import AnchorLink from '../components/nav/AnchorLink'
+import Avatar from '../components/ui/Avatar'
+import PrimaryButtonLarge from '../components/buttons/PrimaryButtonLarge'
+import PrimaryButtonMedium from '../components/buttons/PrimaryButtonMedium'
+import SecondaryButtonMedium from '../components/buttons/SecondaryButtonMedium'
+import SecondaryButtonDarkMedium from '../components/buttons/SecondaryButtonDarkMedium'
+import EmailCopyButtonLarge from '../components/buttons/EmailCopyButtonLarge'
+import SuperpowerCard from '../components/cards/SuperpowerCard'
+import CasePreviewCard from '../components/cards/CasePreviewCard'
+import CompanyCard from '../components/cards/CompanyCard'
 import IconDownload from '../components/icons/IconDownload'
 import IconTelegram from '../components/icons/IconTelegram'
 
@@ -133,19 +132,19 @@ function HomePage() {
               coverSrc={caseThumbnailImage}
               projectName="Afrasuez"
               heading="Веб-платформа для нефтяных трейдеров. Поиск инфраструктуры и специалистов, объявления о купле и продаже"
-              href={`${BASE}cases/afrasuez`}
+              href="/playground"
             />
             <CasePreviewCard
               iconSrc={regroVahtaProjectAvatar}
               projectName="Регро Вахта"
               heading="Приложение для вахтовиков. Устраивайся на работу, оформляй документы, получай билеты — всё в одном месте"
-              href={`${BASE}cases/regro-vahta`}
+              href="/cases/regro-vahta"
             />
             <CasePreviewCard
               iconSrc={votveteProjectAvatar}
               projectName="ВотВете"
               heading="Приложение для клиентов ветклиники. Записывай питомца к врачу, смотри результаты анализов, пополняй баланс для стационара"
-              href={`${BASE}cases/votvete`}
+              href="/cases/votvete"
             />
           </div>
         </section>

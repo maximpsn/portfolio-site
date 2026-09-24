@@ -12,9 +12,9 @@
   },
   "dependencies": {
     "framer-motion": "^12.40.0",
-    "motion": "^12.40.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-router-dom": "^7.18.4",
     "yet-another-react-lightbox": "^3.32.2"
   },
   "devDependencies": {

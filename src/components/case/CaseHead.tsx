@@ -138,7 +138,16 @@ function CaseHead({
         {links.length > 0 ? (
           <div className="case-head__links">
             {links.map((link) => (
-              <a key={link.label} className="case-head__link" href={link.href}>
+              <a
+                key={link.label}
+                className="case-head__link"
+                href={link.href}
+                onClick={(event) => {
+                  if (link.href.startsWith('#')) {
+                    event.preventDefault()
+                  }
+                }}
+              >
                 {link.label}
               </a>
             ))}

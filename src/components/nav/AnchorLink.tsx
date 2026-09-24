@@ -1,5 +1,5 @@
 import './AnchorLink.css'
-import useTouchPressState from './useTouchPressState'
+import useTouchPressState from '../hooks/useTouchPressState'
 
 type AnchorLinkPreviewState = 'default' | 'interactive'
 

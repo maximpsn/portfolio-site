@@ -1,13 +1,14 @@
-import PrimaryButtonMedium from '../components/PrimaryButtonMedium'
-import SecondaryIconButtonMedium from '../components/SecondaryIconButtonMedium'
-import { BASE } from '../config'
+import { useNavigate } from 'react-router-dom'
+import PrimaryButtonMedium from '../components/buttons/PrimaryButtonMedium'
+import SecondaryIconButtonMedium from '../components/buttons/SecondaryIconButtonMedium'
 import './NotFoundPage.css'
 
 function NotFoundPage() {
+  const navigate = useNavigate()
   const showBack = typeof window !== 'undefined' && window.history.state !== null
 
   const goBack = () => {
-    window.history.back()
+    navigate(-1)
   }
 
   return (
@@ -23,7 +24,7 @@ function NotFoundPage() {
         <p className="not-found-page__text">
           Такой страницы нет — возможно, она переехала или была удалена.
         </p>
-        <PrimaryButtonMedium text="На главную" href={BASE} />
+        <PrimaryButtonMedium text="На главную" href="/" />
       </div>
     </div>
   )

@@ -1,6 +1,7 @@
 import './CasePreviewCard.css'
 import { useState } from 'react'
 import type { CSSProperties } from 'react'
+import { Link } from 'react-router-dom'
 
 import placeholderImage from '/image-placeholder.svg'
 
@@ -36,7 +37,7 @@ function CasePreviewCard({
   }
 
   return (
-    <a className={className || 'case-preview-card'} href={href}>
+    <Link className={className || 'case-preview-card'} to={href}>
       <div className="case-preview-card__text">
         <div className="case-preview-card__title-row">
           <span className="case-preview-card__icon">
@@ -65,7 +66,7 @@ function CasePreviewCard({
         />
         <img alt="" className="case-preview-card__cover-image" src={coverSrc} />
       </div>
-    </a>
+    </Link>
   )
 }
 
