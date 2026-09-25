@@ -38,10 +38,25 @@ function PageTransition() {
   const leaveRef = useRef<HTMLDivElement | null>(null)
   const fixedRef = useRef<HTMLDivElement | null>(null)
   const busyRef = useRef(false)
+  const coarsePointer = useRef<boolean>(
+    typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches,
+  )
 
   useEffect(() => {
     if (location.key === displayedLoc.key || busyRef.current) {
       return
+    }
+
+    // На тач-устройствах (телефоны/планшеты) страницы переключаем без анимации.
+    if (coarsePointer.current) {
+      const rafId = window.requestAnimationFrame(() => {
+        scrollToTopInstant()
+        setDisplayedLoc(location)
+      })
+
+      return () => {
+        window.cancelAnimationFrame(rafId)
+      }
     }
 
     if (location.pathname === displayedLoc.pathname) {
