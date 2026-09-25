@@ -74,7 +74,15 @@ function PageTransition() {
     setLeaving(false)
     setDisplayedLoc(location)
     busyRef.current = false
+
+    window.requestAnimationFrame(() => {
+      window.dispatchEvent(new Event('page-transition-end'))
+    })
   }
+
+  useEffect(() => {
+    document.documentElement.classList.toggle('is-page-transitioning', leaving)
+  }, [leaving])
 
   useLayoutEffect(() => {
     const leaveEl = leaveRef.current

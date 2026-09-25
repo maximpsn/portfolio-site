@@ -12,9 +12,14 @@ type TableOfContentsProps = {
 
 const FOCUS_LINE_RATIO = 0.4
 
+// Активная секция живёт вне компонента: когда страница покидает и
+// TOC пересоздаётся для фейдаута, он стартует с последней секции, а не с 1.
+let savedActiveId: string | undefined
+
 function TableOfContents({ items }: TableOfContentsProps) {
-  const [activeId, setActiveId] = useState<string>(items[0]?.id ?? '')
+  const [activeId, setActiveId] = useState<string>(savedActiveId ?? items[0]?.id ?? '')
   const rafRef = useRef<number | null>(null)
+  const syncTimeoutRef = useRef<number | null>(null)
 
   useEffect(() => {
     const pickActive = () => {
@@ -35,6 +40,7 @@ function TableOfContents({ items }: TableOfContentsProps) {
         }
       }
 
+      savedActiveId = current
       setActiveId(current)
     }
 
@@ -49,16 +55,40 @@ function TableOfContents({ items }: TableOfContentsProps) {
       })
     }
 
-    pickActive()
+    const handleTransitionEnd = () => {
+      window.requestAnimationFrame(() => {
+        pickActive()
+      })
+
+      if (syncTimeoutRef.current !== null) {
+        window.clearTimeout(syncTimeoutRef.current)
+      }
+
+      syncTimeoutRef.current = window.setTimeout(() => {
+        pickActive()
+      }, 300)
+    }
+
+    // Синхронизируем после монтирования (async, чтобы не менять state синхронно в эффекте).
+    const rafId = window.requestAnimationFrame(() => {
+      pickActive()
+    })
+
     window.addEventListener('scroll', handleScroll, { passive: true })
     window.addEventListener('resize', handleScroll)
+    window.addEventListener('page-transition-end', handleTransitionEnd)
 
     return () => {
+      window.cancelAnimationFrame(rafId)
       window.removeEventListener('scroll', handleScroll)
       window.removeEventListener('resize', handleScroll)
+      window.removeEventListener('page-transition-end', handleTransitionEnd)
 
       if (rafRef.current !== null) {
         window.cancelAnimationFrame(rafRef.current)
+      }
+      if (syncTimeoutRef.current !== null) {
+        window.clearTimeout(syncTimeoutRef.current)
       }
     }
   }, [items])

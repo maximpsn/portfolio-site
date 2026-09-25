@@ -37,6 +37,15 @@
   will-change: transform;
 }
 
+/* Серый фон общий и статичный; при переходе двигаются только белые секции.
+   У страниц внутри оверлея прозрачный фон — их серый отдаёт static-оверлей. */
+.transition-leave .app-root__page,
+.transition-enter .app-root__page,
+.transition-leave [class$="-page"],
+.transition-enter [class$="-page"] {
+  background: transparent;
+}
+
 .transition-enter {
   z-index: 1;
 }
