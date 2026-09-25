@@ -33,3 +33,8 @@ dist-ssr
 # Local working files (не для репо)
 .backup-fonts-2026-09-18/
 chat-context-transfer.md
+
+# Env / secrets
+.env
+.env.*
+!.env.example
