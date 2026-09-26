@@ -24,9 +24,9 @@ function NotFoundPage() {
 
       <div className="not-found-page__block">
         <div className="not-found-page__texts">
-          <h1 className="not-found-page__title">Страница не найдена</h1>
+          <h1 className="not-found-page__title">Страница не найдена</h1>
           <p className="not-found-page__text">
-            Такой страницы нет — возможно, она переехала или была удалена.
+            Такой страницы нет — возможно, она переехала или была удалена.
           </p>
         </div>
         <PrimaryButtonMedium text="На главную" href="/" />
