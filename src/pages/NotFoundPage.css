@@ -14,21 +14,31 @@
   display: inline-flex;
 }
 
+/* На медиум–xsmall кнопку назад наверху убираем — её даёт нижний навбар. */
+@media (max-width: 1299px) {
+  .not-found-page__nav {
+    display: none;
+  }
+}
+
 .not-found-page__block {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-4x);
+  gap: var(--spacing-8x);
   padding: var(--spacing-20x);
   background: var(--page-page-front);
   border-radius: var(--radius-48);
   text-align: center;
 }
 
-.not-found-page .primary-button {
-  margin-top: calc(var(--spacing-10x) - var(--spacing-4x));
+.not-found-page__texts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-3x);
 }
 
 .not-found-page__title {

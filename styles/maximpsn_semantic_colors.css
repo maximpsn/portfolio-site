@@ -15,8 +15,8 @@
   --surface-accent-secondary: var(--color-pink-500);
 
   /* Glass */
-  --glass-glass-soft-primary: var(--color-white-200);
-  --glass-glass-soft-secondary: var(--color-white-300);
+  --glass-glass-soft-primary: var(--color-white-100);
+  --glass-glass-soft-secondary: var(--color-white-200);
   --glass-glass-hard-primary: var(--color-black-600);
   --glass-glass-fade-min: var(--color-white-0);
   --glass-glass-fade-max: var(--color-white-1000);

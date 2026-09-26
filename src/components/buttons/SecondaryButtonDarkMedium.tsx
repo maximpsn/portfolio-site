@@ -18,6 +18,7 @@ function SecondaryButtonDarkMedium({
   const { isTouchPressed, handlers } = useTouchPressState()
   const className = [
     'secondary-button-dark',
+    icon ? 'secondary-button-dark--with-icon' : 'secondary-button-dark--no-icon',
     isTouchPressed ? 'secondary-button-dark--touch-pressed' : '',
     previewState === 'interactive' ? 'secondary-button-dark--interactive-preview' : '',
   ]

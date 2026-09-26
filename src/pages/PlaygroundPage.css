@@ -13,6 +13,13 @@
   display: inline-flex;
 }
 
+/* На медиум–xsmall кнопку назад наверху убираем — её даёт нижний навбар. */
+@media (max-width: 1299px) {
+  .playground-page__nav {
+    display: none;
+  }
+}
+
 .playground-page__content {
   display: flex;
   flex-direction: column;

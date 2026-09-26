@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import PrimaryButtonMedium from '../components/buttons/PrimaryButtonMedium'
 import SecondaryIconButtonMedium from '../components/buttons/SecondaryIconButtonMedium'
+import MobileNavbar from '../components/nav/MobileNavbar'
 import './NotFoundPage.css'
 
 function NotFoundPage() {
@@ -19,11 +20,15 @@ function NotFoundPage() {
         </div>
       ) : null}
 
+      <MobileNavbar back={showBack} />
+
       <div className="not-found-page__block">
-        <h1 className="not-found-page__title">Страница не найдена</h1>
-        <p className="not-found-page__text">
-          Такой страницы нет — возможно, она переехала или была удалена.
-        </p>
+        <div className="not-found-page__texts">
+          <h1 className="not-found-page__title">Страница не найдена</h1>
+          <p className="not-found-page__text">
+            Такой страницы нет — возможно, она переехала или была удалена.
+          </p>
+        </div>
         <PrimaryButtonMedium text="На главную" href="/" />
       </div>
     </div>

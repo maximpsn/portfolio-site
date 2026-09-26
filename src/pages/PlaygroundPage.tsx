@@ -6,6 +6,8 @@ import CaseSubheadingText from '../components/case/CaseSubheadingText'
 import CaseHeadingText from '../components/case/CaseHeadingText'
 import CaseMediaContainer from '../components/case/CaseMediaContainer'
 import SecondaryIconButtonMedium from '../components/buttons/SecondaryIconButtonMedium'
+import LightboxIconButton from '../components/buttons/LightboxIconButton'
+import MobileNavbar from '../components/nav/MobileNavbar'
 import './PlaygroundPage.css'
 
 import caseCover from '../assets/case-thumbnails/Case cover image.jpg'
@@ -22,6 +24,7 @@ const SECTIONS: TableOfContentsItem[] = [
   { id: 'case-heading', label: 'Heading text' },
   { id: 'case-media', label: 'Media container' },
   { id: 'icon-button', label: 'Icon button (back)' },
+  { id: 'lightbox-buttons', label: 'Lightbox buttons' },
   { id: 'section-5', label: 'Label' },
 ]
 
@@ -36,6 +39,8 @@ function PlaygroundPage() {
       <div className="playground-page__nav">
         <SecondaryIconButtonMedium ariaLabel="Назад" onClick={goHome} />
       </div>
+
+      <MobileNavbar back />
 
       <TableOfContents items={SECTIONS} />
 
@@ -80,9 +85,28 @@ function PlaygroundPage() {
         </div>
 
         <div className="playground-page__block">
-<section className="playground-page__section" id="icon-button">
-                <SecondaryIconButtonMedium ariaLabel="Назад" />
-              </section>
+          <section className="playground-page__section" id="icon-button">
+            <SecondaryIconButtonMedium ariaLabel="Назад" />
+          </section>
+        </div>
+
+        <div className="playground-page__block">
+          <section className="playground-page__section" id="lightbox-buttons">
+            <div
+              className="playground-page__lightbox-demo"
+              style={{
+                display: 'flex',
+                gap: 'var(--spacing-3x)',
+                background: 'rgba(0, 0, 0, 0.4)',
+                padding: 'var(--spacing-6x)',
+                borderRadius: 'var(--radius-24)',
+              }}
+            >
+              <LightboxIconButton type="left" />
+              <LightboxIconButton type="right" />
+              <LightboxIconButton type="close" />
+            </div>
+          </section>
         </div>
 
         <div className="playground-page__block">

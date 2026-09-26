@@ -1,0 +1,58 @@
+.yarl__container {
+  background-color: var(--glass-glass-hard-primary);
+}
+
+.yarl-lightbox-hit {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.yarl-lightbox-hit--prev {
+  left: 0;
+  top: 90px;
+  bottom: 90px;
+  width: 112px;
+}
+
+.yarl-lightbox-hit--next {
+  right: 0;
+  top: 90px;
+  bottom: 90px;
+  width: 112px;
+}
+
+.yarl__toolbar {
+  top: 0;
+  right: 0;
+  width: 112px;
+  height: 90px;
+  padding: var(--spacing-8x);
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.yarl-lightbox-hit--close {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+/* Мобильные/тач: убираем prev/next (листается свайпом), кнопка закрытия ближе к углу (12px),
+   хит-зона закрытия 12px по бокам от кнопки = 72px. */
+@media (pointer: coarse) {
+  .yarl-lightbox-hit--prev,
+  .yarl-lightbox-hit--next {
+    display: none;
+  }
+
+  .yarl__toolbar {
+    width: 72px;
+    height: 72px;
+    padding: var(--spacing-3x);
+  }
+}
