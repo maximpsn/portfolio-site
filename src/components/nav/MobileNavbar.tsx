@@ -31,6 +31,16 @@ function MobileNavbar({ back = false }: MobileNavbarProps) {
 
   return (
     <nav className="mobile-navbar" aria-label="Навигация и действия">
+      <div className="mobile-navbar__blurs" aria-hidden="true">
+        <span className="mobile-navbar__blur mobile-navbar__blur--1" />
+        <span className="mobile-navbar__blur mobile-navbar__blur--2" />
+        <span className="mobile-navbar__blur mobile-navbar__blur--3" />
+        <span className="mobile-navbar__blur mobile-navbar__blur--4" />
+        <span className="mobile-navbar__blur mobile-navbar__blur--5" />
+        <span className="mobile-navbar__blur mobile-navbar__blur--6" />
+        <span className="mobile-navbar__gradient" />
+      </div>
+
       <div className="mobile-navbar__inner">
         {back ? (
           <div className="mobile-navbar__pill">
