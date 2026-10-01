@@ -8,6 +8,7 @@ import CaseMediaContainer from '../components/case/CaseMediaContainer'
 import SecondaryIconButtonMedium from '../components/buttons/SecondaryIconButtonMedium'
 import LightboxIconButton from '../components/buttons/LightboxIconButton'
 import MobileNavbar from '../components/nav/MobileNavbar'
+import { playUISound } from '../lib/ui-sounds'
 import './PlaygroundPage.css'
 
 import caseCover from '../assets/case-thumbnails/Case cover image.jpg'
@@ -25,8 +26,11 @@ const SECTIONS: TableOfContentsItem[] = [
   { id: 'case-media', label: 'Media container' },
   { id: 'icon-button', label: 'Icon button (back)' },
   { id: 'lightbox-buttons', label: 'Lightbox buttons' },
+  { id: 'sound', label: 'Sound presets' },
   { id: 'section-5', label: 'Label' },
 ]
+
+const SOUND_PRESETS = ['press', 'click', 'tap', 'hover', 'select', 'toggle', 'tick'] as const
 
 function PlaygroundPage() {
   const navigate = useNavigate()
@@ -105,6 +109,27 @@ function PlaygroundPage() {
               <LightboxIconButton type="left" />
               <LightboxIconButton type="right" />
               <LightboxIconButton type="close" />
+            </div>
+          </section>
+        </div>
+
+        <div className="playground-page__block">
+          <section className="playground-page__section" id="sound">
+            <h2 className="playground-page__section-title">Sound presets</h2>
+            <div className="playground-page__sound-row">
+              {SOUND_PRESETS.map((preset) => (
+                <button
+                  key={preset}
+                  type="button"
+                  className="playground-page__sound-btn"
+                  onClick={(event) => {
+                    event.stopPropagation()
+                    playUISound(preset)
+                  }}
+                >
+                  {preset}
+                </button>
+              ))}
             </div>
           </section>
         </div>
