@@ -1,18 +1,13 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Tilt } from '../../../components/motion-primitives/tilt'
 import './Avatar.css'
 
 import mainAva from '../../assets/avatar/main-ava.jpeg'
-import firstAva from '../../assets/avatar/1c-ava.jpeg'
-import shrekAva from '../../assets/avatar/shrek-ava.jpeg'
-import smurfAva from '../../assets/avatar/smurf-ava.jpeg'
 
 type AvatarProps = {
   className?: string
   resolution?: 'large' | 'medium' | 'small' | 'xsmall'
-  /** Какая картинка показывается по ховеру: случайная из неосновных или всегда Шрэк. */
-  hoverVariant?: 'random' | 'shrek'
 }
 
 type AvatarResolution = NonNullable<AvatarProps['resolution']>
@@ -60,23 +55,9 @@ const resolutionFromViewport = (): AvatarResolution => {
   return 'xsmall'
 }
 
-const SWITCH_BACK_DELAY_MS = 600
-
-const RANDOM_HOVER_POOL = [firstAva, shrekAva, smurfAva]
-
-function Avatar({ className, resolution, hoverVariant = 'random' }: AvatarProps) {
+function Avatar({ className, resolution }: AvatarProps) {
   const [autoResolution, setAutoResolution] = useState(resolutionFromViewport)
-  const [showHoverImage, setShowHoverImage] = useState(false)
   const [glowPosition, setGlowPosition] = useState<{ x: number; y: number } | null>(null)
-  const [hoverImage, setHoverImage] = useState<string>(RANDOM_HOVER_POOL[0])
-  const resetTimerRef = useRef<number | null>(null)
-
-  const clearResetTimer = () => {
-    if (resetTimerRef.current !== null) {
-      window.clearTimeout(resetTimerRef.current)
-      resetTimerRef.current = null
-    }
-  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -88,7 +69,6 @@ function Avatar({ className, resolution, hoverVariant = 'random' }: AvatarProps)
 
     return () => {
       window.removeEventListener('resize', handleResize)
-      clearResetTimer()
     }
   }, [])
 
@@ -97,16 +77,6 @@ function Avatar({ className, resolution, hoverVariant = 'random' }: AvatarProps)
   const radius = RADIUS_BY_RESOLUTION[activeResolution]
   const label = LABEL_BY_RESOLUTION[activeResolution]
   const avatarClassName = className ? `avatar ${className}` : 'avatar'
-
-  const handlePointerEnter = () => {
-    clearResetTimer()
-    const chosen =
-      hoverVariant === 'shrek'
-        ? shrekAva
-        : RANDOM_HOVER_POOL[Math.floor(Math.random() * RANDOM_HOVER_POOL.length)]
-    setHoverImage(chosen)
-    setShowHoverImage(true)
-  }
 
   const handlePointerMove = (event: React.PointerEvent<HTMLButtonElement>) => {
     const rect = event.currentTarget.getBoundingClientRect()
@@ -118,20 +88,6 @@ function Avatar({ className, resolution, hoverVariant = 'random' }: AvatarProps)
 
   const handlePointerLeave = () => {
     setGlowPosition(null)
-    clearResetTimer()
-    resetTimerRef.current = window.setTimeout(() => {
-      setShowHoverImage(false)
-      resetTimerRef.current = null
-    }, SWITCH_BACK_DELAY_MS)
-  }
-
-  const handlePointerDown = () => {
-    clearResetTimer()
-    setShowHoverImage(true)
-    resetTimerRef.current = window.setTimeout(() => {
-      setShowHoverImage(false)
-      resetTimerRef.current = null
-    }, SWITCH_BACK_DELAY_MS)
   }
 
   return (
@@ -145,17 +101,15 @@ function Avatar({ className, resolution, hoverVariant = 'random' }: AvatarProps)
         className={avatarClassName}
         data-name={`Avatar ${label}`}
         data-resolution={resolution}
-        aria-label="Показать альтернативную аватарку"
+        aria-label="Аватар"
         style={
           {
             '--avatar-size': size,
             '--avatar-radius': radius,
           } as CSSProperties
         }
-        onPointerEnter={handlePointerEnter}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
-        onPointerDown={handlePointerDown}
       >
         <span
           className="avatar__glow"
@@ -168,11 +122,8 @@ function Avatar({ className, resolution, hoverVariant = 'random' }: AvatarProps)
             } as CSSProperties
           }
         />
-        <picture className={`avatar__picture avatar__picture--default${showHoverImage ? ' avatar__picture--hidden' : ''}`}>
+        <picture className="avatar__picture">
           <img alt="" className="avatar__image" src={mainAva} />
-        </picture>
-        <picture className={`avatar__picture avatar__picture--hover${showHoverImage ? ' avatar__picture--visible' : ''}`}>
-          <img alt="" className="avatar__image" src={hoverImage} />
         </picture>
       </button>
     </Tilt>
