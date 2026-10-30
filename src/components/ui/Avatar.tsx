@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Tilt } from '../../../components/motion-primitives/tilt'
 import './Avatar.css'
 
-import mainAva from '../../assets/avatar/main-ava.jpeg'
+import sideAvatar from '../../assets/avatar/avatar-side_optimized.jpeg'
+import shrekAvatar from '../../assets/avatar/jpeg-avatar-shrek.jpeg'
 
 type AvatarProps = {
   className?: string
@@ -55,9 +56,20 @@ const resolutionFromViewport = (): AvatarResolution => {
   return 'xsmall'
 }
 
+const SWITCH_BACK_DELAY_MS = 600
+
 function Avatar({ className, resolution }: AvatarProps) {
   const [autoResolution, setAutoResolution] = useState(resolutionFromViewport)
+  const [showHoverImage, setShowHoverImage] = useState(false)
   const [glowPosition, setGlowPosition] = useState<{ x: number; y: number } | null>(null)
+  const resetTimerRef = useRef<number | null>(null)
+
+  const clearResetTimer = () => {
+    if (resetTimerRef.current !== null) {
+      window.clearTimeout(resetTimerRef.current)
+      resetTimerRef.current = null
+    }
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -69,6 +81,7 @@ function Avatar({ className, resolution }: AvatarProps) {
 
     return () => {
       window.removeEventListener('resize', handleResize)
+      clearResetTimer()
     }
   }, [])
 
@@ -77,6 +90,11 @@ function Avatar({ className, resolution }: AvatarProps) {
   const radius = RADIUS_BY_RESOLUTION[activeResolution]
   const label = LABEL_BY_RESOLUTION[activeResolution]
   const avatarClassName = className ? `avatar ${className}` : 'avatar'
+
+  const handlePointerEnter = () => {
+    clearResetTimer()
+    setShowHoverImage(true)
+  }
 
   const handlePointerMove = (event: React.PointerEvent<HTMLButtonElement>) => {
     const rect = event.currentTarget.getBoundingClientRect()
@@ -88,6 +106,20 @@ function Avatar({ className, resolution }: AvatarProps) {
 
   const handlePointerLeave = () => {
     setGlowPosition(null)
+    clearResetTimer()
+    resetTimerRef.current = window.setTimeout(() => {
+      setShowHoverImage(false)
+      resetTimerRef.current = null
+    }, SWITCH_BACK_DELAY_MS)
+  }
+
+  const handlePointerDown = () => {
+    clearResetTimer()
+    setShowHoverImage(true)
+    resetTimerRef.current = window.setTimeout(() => {
+      setShowHoverImage(false)
+      resetTimerRef.current = null
+    }, SWITCH_BACK_DELAY_MS)
   }
 
   return (
@@ -101,15 +133,17 @@ function Avatar({ className, resolution }: AvatarProps) {
         className={avatarClassName}
         data-name={`Avatar ${label}`}
         data-resolution={resolution}
-        aria-label="Аватар"
+        aria-label="Показать альтернативную аватарку"
         style={
           {
             '--avatar-size': size,
             '--avatar-radius': radius,
           } as CSSProperties
         }
+        onPointerEnter={handlePointerEnter}
         onPointerMove={handlePointerMove}
         onPointerLeave={handlePointerLeave}
+        onPointerDown={handlePointerDown}
       >
         <span
           className="avatar__glow"
@@ -122,8 +156,11 @@ function Avatar({ className, resolution }: AvatarProps) {
             } as CSSProperties
           }
         />
-        <picture className="avatar__picture">
-          <img alt="" className="avatar__image" src={mainAva} />
+        <picture className={`avatar__picture avatar__picture--default${showHoverImage ? ' avatar__picture--hidden' : ''}`}>
+          <img alt="" className="avatar__image" src={sideAvatar} />
+        </picture>
+        <picture className={`avatar__picture avatar__picture--hover${showHoverImage ? ' avatar__picture--visible' : ''}`}>
+          <img alt="" className="avatar__image" src={shrekAvatar} />
         </picture>
       </button>
     </Tilt>

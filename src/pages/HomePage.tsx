@@ -12,7 +12,7 @@ import CompanyCard from '../components/cards/CompanyCard'
 import IconDownload from '../components/icons/IconDownload'
 import IconTelegram from '../components/icons/IconTelegram'
 
-import mainAva from '../assets/avatar/main-ava.jpeg'
+import sideAvatar from '../assets/avatar/avatar-side_optimized.jpeg'
 import elseCompanyAvatar from '../assets/avatars-companies/else-icon.webp'
 import smartbookingCompanyAvatar from '../assets/avatars-companies/smartbooking-icon.webp'
 import afrasuezProjectAvatar from '../assets/avatars-projects/afrasuez-icon.webp'
@@ -87,7 +87,7 @@ function HomePage() {
       <aside className="home-page__anchors" aria-label="Навигация">
         <div className="home-page__avatar-wrap">
           <picture className="home-page__avatar-picture">
-            <img alt="" className="home-page__avatar-image" src={mainAva} />
+            <img alt="" className="home-page__avatar-image" src={sideAvatar} />
           </picture>
           <span className="home-page__avatar-badge" aria-hidden="true" />
         </div>
