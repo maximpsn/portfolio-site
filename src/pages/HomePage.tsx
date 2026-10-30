@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+﻿import { useEffect, useRef, useState } from 'react'
 import AnchorLink from '../components/nav/AnchorLink'
 import Avatar from '../components/ui/Avatar'
 import PrimaryButtonLarge from '../components/buttons/PrimaryButtonLarge'
@@ -114,14 +114,18 @@ function HomePage() {
             <div className="home-page__hero-copy">
               <h1 className="home-page__hero-name">Максим Павлусенко, Продуктовый дизайнер</h1>
               <p className="home-page__hero-text">
-                В одном волшебном королевстве проживал могучий зелёный исполин по имени Шрэк, который ценил уединение в своём болотистом уголке лесной чащи. С этого момента начинаются приключения огромного огра.
+                Запускаю продукты с нуля и улучшаю существующие. Работал с MedTech, FoodTech, трейдинг, B2B, логистическими, wellness и HR продуктами. Сделал концепты для 4 успешных пресейлов. Помог с наймом 3 дизайнеров в штат
               </p>
             </div>
           </div>
 
           <SuperpowerCard
-            heading="Сильные стороны: визуал и системность"
-            text="Windscribe doesn&apos;t offer a traditional free trial, but we do offer a completely free plan with up to 10GB of data per month (no credit card required). If you need more, you can upgrade to Windscribe Pro for as little as $3 USD per month. If you aren&apos;t ready to upgrade, you can always get more data by referring a friend or posting about us on X."
+            text={
+              <>
+                Сильные стороны: визуал и&nbsp;системность.
+                {'\n'}Делаю красиво, умею в&nbsp;motion-дизайн, 3D, Ai генерации
+              </>
+            }
           />
         </section>
 

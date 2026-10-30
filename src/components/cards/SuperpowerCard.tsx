@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import type { CSSProperties } from 'react'
+import type { CSSProperties, ReactNode } from 'react'
 import './SuperpowerCard.css'
 
 import placeholderImage from '/image-placeholder.svg'
@@ -9,8 +9,7 @@ type SuperpowerCardResolution = 'large' | 'medium' | 'small' | 'xsmall'
 type SuperpowerCardProps = {
   className?: string
   resolution?: SuperpowerCardResolution
-  heading?: string
-  text?: string
+  text?: ReactNode
 }
 
 const SIZE_BY_RESOLUTION = {
@@ -21,10 +20,10 @@ const SIZE_BY_RESOLUTION = {
 } as const
 
 const GAP_BY_RESOLUTION = {
-  large: 'var(--spacing-7x)',
-  medium: 'var(--spacing-6x)',
-  small: 'var(--spacing-5x)',
-  xsmall: 'var(--spacing-5x)',
+  large: 'var(--spacing-4x)',
+  medium: 'var(--spacing-4x)',
+  small: 'var(--spacing-4x)',
+  xsmall: 'var(--spacing-4x)',
 } as const
 
 const IMAGE_RADIUS_BY_RESOLUTION = {
@@ -136,7 +135,6 @@ const resolutionFromViewport = (): SuperpowerCardResolution => {
 function SuperpowerCard({
   className,
   resolution,
-  heading = 'Сильные стороны: визуал и системность',
   text = 'Windscribe doesn’t offer a traditional free trial, but we do offer a completely free plan with up to 10GB of data per month (no credit card required). If you need more, you can upgrade to Windscribe Pro for as little as $3 USD per month. If you aren’t ready to upgrade, you can always get more data by referring a friend or posting about us on X.',
 }: SuperpowerCardProps) {
   const [autoResolution, setAutoResolution] = useState(resolutionFromViewport)
@@ -185,7 +183,6 @@ function SuperpowerCard({
       </div>
 
       <div className="superpower-card__content">
-        <p className="superpower-card__heading">{heading}</p>
         <p className="superpower-card__text">{text}</p>
       </div>
     </article>

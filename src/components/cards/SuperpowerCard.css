@@ -1,6 +1,6 @@
-.superpower-card {
+﻿.superpower-card {
   --superpower-card-width: 700px;
-  --superpower-card-gap: var(--spacing-7x);
+  --superpower-card-gap: var(--spacing-4x);
   --superpower-card-image-radius: var(--radius-24);
   --superpower-card-text-gap: var(--spacing-3x);
   --superpower-card-heading-font: var(--family-sans-large);
@@ -63,13 +63,14 @@
   font-weight: var(--superpower-card-body-weight);
   line-height: var(--superpower-card-body-line-height);
   letter-spacing: var(--superpower-card-body-tracking);
-  color: var(--text-icons-secondary);
+  color: var(--text-icons-primary);
+  white-space: pre-line;
 }
 
 @media (min-width: 600px) and (max-width: 1299px) {
   .superpower-card {
     --superpower-card-width: 700px;
-    --superpower-card-gap: var(--spacing-6x);
+    --superpower-card-gap: var(--spacing-4x);
     --superpower-card-text-gap: var(--spacing-3x);
     --superpower-card-heading-font: var(--family-sans-medium);
     --superpower-card-heading-size: var(--size-heading-new-medium);
@@ -90,7 +91,7 @@
 
 @media (min-width: 400px) and (max-width: 599px) {
   .superpower-card {
-    --superpower-card-gap: var(--spacing-5x);
+    --superpower-card-gap: var(--spacing-4x);
     --superpower-card-text-gap: var(--spacing-2x);
     --superpower-card-heading-font: var(--family-sans-small);
     --superpower-card-heading-size: var(--size-heading-new-small);
@@ -114,7 +115,7 @@
 
 @media (max-width: 399px) {
   .superpower-card {
-    --superpower-card-gap: var(--spacing-5x);
+    --superpower-card-gap: var(--spacing-4x);
     --superpower-card-text-gap: var(--spacing-2x);
     --superpower-card-heading-font: var(--family-sans-xsmall);
     --superpower-card-heading-size: var(--size-heading-new-xsmall);
