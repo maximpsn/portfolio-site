@@ -78,65 +78,6 @@
   background: var(--surface-neutral-soft-secondary);
 }
 
-/* Демо нижней панели: пилюля по центру, кнопка назад появляется плавно */
-.playground-page__navbar-demo {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-}
-
-.playground-page__navbar-pill {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing-1-5x);
-  padding: 6px;
-  border-radius: var(--radius-absolute);
-  background: var(--glass-glass-hard-primary);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-}
-
-.playground-page__navbar-back {
-  display: inline-flex;
-  align-items: center;
-  padding: 0;
-  border: none;
-  background: none;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.playground-page__navbar-slot {
-  min-width: 104px;
-  border: none;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.playground-page__navbar-slot--primary {
-  color: var(--text-icons-on-primary);
-  background: var(--action-action-primary);
-  border-radius: var(--radius-absolute);
-  font-family: var(--family-sans-medium);
-  font-size: var(--size-body-text-medium);
-  font-weight: var(--weight-medium-medium);
-  line-height: var(--line-height-body-text-medium);
-  min-height: 40px;
-  padding: 0 var(--spacing-4x);
-}
-
-.playground-page__navbar-slot--secondary {
-  color: var(--text-icons-primary);
-  background: var(--surface-neutral-soft-primary);
-  border-radius: var(--radius-absolute);
-  font-family: var(--family-sans-medium);
-  font-size: var(--size-body-text-medium);
-  font-weight: var(--weight-medium-medium);
-  line-height: var(--line-height-body-text-medium);
-  min-height: 40px;
-  padding: 0 var(--spacing-4x);
-}
-
 @media (min-width: 600px) and (max-width: 1299px) {
   .playground-page {
     padding: 0;

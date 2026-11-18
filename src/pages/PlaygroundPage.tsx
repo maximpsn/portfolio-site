@@ -1,6 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { AnimatePresence, LayoutGroup, motion } from 'framer-motion'
 import TableOfContents from '../components/nav/TableOfContents'
 import type { TableOfContentsItem } from '../components/nav/TableOfContents'
 import CaseHead from '../components/case/CaseHead'
@@ -32,54 +30,6 @@ const SECTIONS: TableOfContentsItem[] = [
 ]
 
 const SOUND_PRESETS = ['press', 'click', 'tap', 'hover', 'select', 'toggle', 'tick'] as const
-
-const NAVBAR_TWEEN = { duration: 0.35, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] }
-
-function NavbarDemo() {
-  const [showBack, setShowBack] = useState(false)
-
-  return (
-    <div className="playground-page__navbar-demo">
-      <LayoutGroup>
-        <div className="playground-page__navbar-pill">
-          <AnimatePresence>
-            {showBack ? (
-              <motion.button
-                key="back"
-                type="button"
-                layout
-                onClick={() => setShowBack(false)}
-                className="playground-page__navbar-back"
-                initial={{ opacity: 0, x: -12 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -12 }}
-                transition={NAVBAR_TWEEN}
-              >
-                <LightboxIconButton type="left" />
-              </motion.button>
-            ) : null}
-          </AnimatePresence>
-
-          <motion.button
-            type="button"
-            layout
-            onClick={() => setShowBack(true)}
-            className="playground-page__navbar-slot playground-page__navbar-slot--primary"
-          >
-            Телеграм
-          </motion.button>
-          <motion.button
-            type="button"
-            layout
-            className="playground-page__navbar-slot playground-page__navbar-slot--secondary"
-          >
-            Резюме
-          </motion.button>
-        </div>
-      </LayoutGroup>
-    </div>
-  )
-}
 
 function PlaygroundPage() {
   const navigate = useNavigate()
@@ -184,13 +134,6 @@ function PlaygroundPage() {
         <div className="playground-page__block">
           <section className="playground-page__section" id="section-5">
             <h2 className="playground-page__section-title">Label</h2>
-          </section>
-        </div>
-
-        <div className="playground-page__block">
-          <section className="playground-page__section" id="navbar-demo">
-            <h2 className="playground-page__section-title">Navbar demo</h2>
-            <NavbarDemo />
           </section>
         </div>
       </div>
