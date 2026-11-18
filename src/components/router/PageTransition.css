@@ -19,16 +19,19 @@
 .page-layer--entering {
   position: fixed;
   inset: 0;
-  overflow: hidden;
   pointer-events: none;
 }
 
+/* Уходящую страницу не обрезаем по вьюпорту: при уменьшении до 0.9 сверху и снизу
+   должно быть видно продолжение страницы. Fixed-слой в скролл документа не попадает. */
 .page-layer--leaving {
   z-index: 1;
+  overflow: visible;
 }
 
 .page-layer--entering {
   z-index: 2;
+  overflow: hidden;
   transform: translateY(100%);
   will-change: transform;
 }
