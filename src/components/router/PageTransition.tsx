@@ -1,7 +1,14 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { useLocation, useNavigationType, type Location } from 'react-router-dom'
+import { matchRoutes, useLocation, useNavigate, useNavigationType, type Location } from 'react-router-dom'
 import AppRouter from './AppRouter'
 import { consumeInAppNavigation } from '../../lib/navIntent'
+import { RoutePath, routerConfig, AppRoutes } from '../../config/routeConfig'
+
+const KNOWN_ROUTES = Object.values(routerConfig).map(({ path }) => ({ path }))
+
+function isKnownPath(pathname: string): boolean {
+  return matchRoutes(KNOWN_ROUTES, pathname) !== null
+}
 import './PageTransition.css'
 
 const DURATION_MS = 450
@@ -52,6 +59,7 @@ function shouldSkipAnimation(navigationType: string): boolean {
 function PageTransition() {
   const location = useLocation()
   const navigationType = useNavigationType()
+  const navigate = useNavigate()
   const nextIdRef = useRef(1)
   const [layers, setLayers] = useState<Layer[]>(() => [
     { id: 0, location, mode: 'static', frozenY: 0 },
@@ -82,9 +90,18 @@ function PageTransition() {
       return
     }
 
+    // Несуществующий адрес: сразу заменяем на /404 и анимируем уже переход к нему.
+    // Иначе сначала выезжал пустой экран редиректа, а потом второй переход к 404.
+    if (!isKnownPath(location.pathname)) {
+      navigate(RoutePath[AppRoutes.NOT_FOUND], { replace: true })
+      return
+    }
+
     const id = nextIdRef.current++
 
-    if (shouldSkipAnimation(navigationType)) {
+    // Текущий слой — редирект с несуществующего адреса (прямой заход по битой ссылке):
+    // показывать нечего, меняем мгновенно.
+    if (!isKnownPath(current.location.pathname) || shouldSkipAnimation(navigationType)) {
       scrollToTopInstant()
       setLayers([{ id, location, mode: 'static', frozenY: 0 }])
       return
@@ -94,7 +111,7 @@ function PageTransition() {
       { ...current, mode: 'leaving', frozenY: window.scrollY },
       { id, location, mode: 'entering', frozenY: 0 },
     ])
-  }, [location, navigationType, layers, isTransitioning])
+  }, [location, navigationType, navigate, layers, isTransitioning])
   /* eslint-enable react-hooks/set-state-in-effect */
 
   // Запуск анимаций и уборка.
