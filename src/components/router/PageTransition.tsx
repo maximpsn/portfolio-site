@@ -34,6 +34,7 @@ function PageTransition() {
   const location = useLocation()
   const [displayedLoc, setDisplayedLoc] = useState<Location>(location)
   const [leaving, setLeaving] = useState(false)
+  const [leaveY, setLeaveY] = useState(0)
   const leaveRef = useRef<HTMLDivElement | null>(null)
   const fixedRef = useRef<HTMLDivElement | null>(null)
   const busyRef = useRef(false)
@@ -56,6 +57,7 @@ function PageTransition() {
     busyRef.current = true
 
     const rafId = window.requestAnimationFrame(() => {
+      setLeaveY(window.scrollY)
       setLeaving(true)
     })
 
@@ -107,10 +109,10 @@ function PageTransition() {
         <motion.div
           ref={leaveRef}
           className="transition-leave"
-          initial={{ scale: 1, opacity: 1 }}
-          animate={{ scale: 0.9, opacity: 0 }}
-          style={{ transformOrigin: '50% 50%' }}
-          transition={{ scale: TWEEN, opacity: TWEEN }}
+          initial={{ y: -leaveY, scale: 1, opacity: 1 }}
+          animate={{ y: -leaveY, scale: 0.9, opacity: 0 }}
+          style={{ transformOrigin: `50% calc(50% + ${leaveY}px)` }}
+          transition={{ scale: TWEEN, y: TWEEN, opacity: TWEEN }}
         >
           <AppRouter location={displayedLoc} />
         </motion.div>
