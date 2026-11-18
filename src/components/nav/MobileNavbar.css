@@ -10,6 +10,13 @@
   height: 92px;
   min-height: 92px;
   padding: 0;
+  transition: transform 600ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.mobile-navbar--hidden {
+  transform: translateY(100%);
+  pointer-events: none;
 }
 
 .mobile-navbar__blurs,

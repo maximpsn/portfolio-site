@@ -7,7 +7,6 @@ import CaseHeadingText from '../components/case/CaseHeadingText'
 import CaseMediaContainer from '../components/case/CaseMediaContainer'
 import SecondaryIconButtonMedium from '../components/buttons/SecondaryIconButtonMedium'
 import LightboxIconButton from '../components/buttons/LightboxIconButton'
-import MobileNavbar from '../components/nav/MobileNavbar'
 import { playUISound } from '../lib/ui-sounds'
 import './PlaygroundPage.css'
 
@@ -43,8 +42,6 @@ function PlaygroundPage() {
       <div className="playground-page__nav">
         <SecondaryIconButtonMedium ariaLabel="Назад" onClick={goHome} />
       </div>
-
-      <MobileNavbar back />
 
       <TableOfContents items={SECTIONS} />
 

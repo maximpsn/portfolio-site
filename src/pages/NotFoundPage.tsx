@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import PrimaryButtonMedium from '../components/buttons/PrimaryButtonMedium'
 import SecondaryIconButtonMedium from '../components/buttons/SecondaryIconButtonMedium'
-import MobileNavbar from '../components/nav/MobileNavbar'
 import './NotFoundPage.css'
 
 function NotFoundPage() {
@@ -19,8 +18,6 @@ function NotFoundPage() {
           <SecondaryIconButtonMedium ariaLabel="Назад" onClick={goBack} />
         </div>
       ) : null}
-
-      <MobileNavbar back={showBack} />
 
       <div className="not-found-page__block">
         <div className="not-found-page__texts">

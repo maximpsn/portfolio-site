@@ -1,10 +1,8 @@
-﻿import { useEffect, useRef, useState } from 'react'
-import AnchorLink from '../components/nav/AnchorLink'
+﻿import AnchorLink from '../components/nav/AnchorLink'
 import Avatar from '../components/ui/Avatar'
 import PrimaryButtonLarge from '../components/buttons/PrimaryButtonLarge'
 import PrimaryButtonMedium from '../components/buttons/PrimaryButtonMedium'
 import SecondaryButtonMedium from '../components/buttons/SecondaryButtonMedium'
-import SecondaryButtonDarkMedium from '../components/buttons/SecondaryButtonDarkMedium'
 import EmailCopyButtonLarge from '../components/buttons/EmailCopyButtonLarge'
 import SuperpowerCard from '../components/cards/SuperpowerCard'
 import CasePreviewCard from '../components/cards/CasePreviewCard'
@@ -58,32 +56,8 @@ const skills = [
 ]
 
 function HomePage() {
-  const skillsSectionRef = useRef<HTMLElement | null>(null)
-  const [isBottomBarHidden, setIsBottomBarHidden] = useState(false)
-
-  useEffect(() => {
-    const skillsSection = skillsSectionRef.current
-
-    if (!skillsSection) return undefined
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsBottomBarHidden(entry.intersectionRatio >= 0.5)
-      },
-      {
-        threshold: [0, 0.5, 1],
-      },
-    )
-
-    observer.observe(skillsSection)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
-
   return (
-    <main className={isBottomBarHidden ? 'home-page home-page--bottom-bar-hidden' : 'home-page'}>
+    <main className="home-page"> 
       <aside className="home-page__anchors" aria-label="Навигация">
         <div className="home-page__avatar-wrap">
           <picture className="home-page__avatar-picture">
@@ -174,7 +148,7 @@ function HomePage() {
           </div>
         </section>
 
-        <section ref={skillsSectionRef} className="home-page__block" id="skills">
+        <section data-bottom-sentinel className="home-page__block" id="skills">
           <div className="home-page__section home-page__section--skills">
             <p className="home-page__section-title home-page__section-title--md">Навыки</p>
             <ul className="home-page__list">
@@ -206,29 +180,6 @@ function HomePage() {
             </div>
           </div>
         </section>
-      </div>
-
-      <div className="home-page__bottom-bar" aria-label="Навигация и действия">
-        <div className="home-page__bottom-bar-blurs" aria-hidden="true">
-          <span className="home-page__bottom-bar-blur home-page__bottom-bar-blur--1" />
-          <span className="home-page__bottom-bar-blur home-page__bottom-bar-blur--2" />
-          <span className="home-page__bottom-bar-blur home-page__bottom-bar-blur--3" />
-          <span className="home-page__bottom-bar-blur home-page__bottom-bar-blur--4" />
-          <span className="home-page__bottom-bar-blur home-page__bottom-bar-blur--5" />
-          <span className="home-page__bottom-bar-blur home-page__bottom-bar-blur--6" />
-          <span className="home-page__bottom-bar-gradient" />
-        </div>
-        <div className="home-page__bottom-bar-inner">
-          <div className="home-page__bottom-bar-pill">
-            <PrimaryButtonMedium
-              href="https://t.me/velich00"
-              text="Телеграм"
-              target="_blank"
-              rel="noreferrer"
-            />
-            <SecondaryButtonDarkMedium text="Резюме" icon={<IconDownload />} />
-          </div>
-        </div>
       </div>
     </main>
   )

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import PageTransition from './components/router/PageTransition'
+import MobileNavbar from './components/nav/MobileNavbar'
 import { initClickSound } from './lib/uiSound'
 import { preloadImages } from './lib/preloadImages'
 
@@ -19,7 +20,12 @@ function App() {
     }
   }, [])
 
-  return <PageTransition />
+  return (
+    <>
+      <PageTransition />
+      <MobileNavbar />
+    </>
+  )
 }
 
 export default App
