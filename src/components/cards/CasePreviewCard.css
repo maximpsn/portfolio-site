@@ -106,7 +106,7 @@
 
 @media (hover: hover) and (pointer: fine) {
   .case-preview-card__cover:hover .case-preview-card__cover-image {
-    transform: scale(1.05);
+    transform: scale(1.02);
   }
 }
 
