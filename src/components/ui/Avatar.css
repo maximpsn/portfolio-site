@@ -11,6 +11,12 @@
   border: 0;
   border-radius: var(--avatar-radius);
   overflow: hidden;
+  /* Safari (особенно iOS) не обрезает по скруглению анимируемые дочерние слои
+     (3D-наклон Tilt, проявление картинки) и рисует чёрные углы. Маска заставляет
+     обрезать корректно. */
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+  isolation: isolate;
   background: transparent;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
@@ -26,6 +32,7 @@
 }
 
 .avatar__picture {
+  border-radius: inherit;
   position: absolute;
   inset: 0;
   width: 100%;
@@ -52,6 +59,7 @@
 }
 
 .avatar__image {
+  border-radius: inherit;
   object-fit: cover;
   object-position: center;
   pointer-events: none;
