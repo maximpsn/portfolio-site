@@ -41,8 +41,26 @@
   line-height: var(--line-height-body-text-medium);
   letter-spacing: var(--tracking-body-text-medium);
   color: var(--text-icons-secondary);
-  transition: color 200ms ease;
+  transform: scale(1);
+  transform-origin: center;
+  will-change: transform;
+  transition:
+    color 200ms ease,
+    var(--press-transform-transition);
   white-space: nowrap;
+}
+
+/* Прожим по нажатию — тот же, что у якорных ссылок на главной. */
+@media (hover: hover) and (pointer: fine) {
+  .table-of-contents__button:active {
+    transform: scale(var(--press-scale));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .table-of-contents__button {
+    transition: color 200ms ease;
+  }
 }
 
 .table-of-contents__button::before {

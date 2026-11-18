@@ -14,7 +14,7 @@
   will-change: transform;
   transition:
     color 0.15s ease,
-    transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+    var(--press-transform-transition);
 }
 
 .anchor-link--interactive-preview {
@@ -22,7 +22,7 @@
 }
 
 .anchor-link--touch-pressed {
-  transform: scale(0.95);
+  transform: scale(var(--press-scale));
 }
 
 @media (hover: hover) and (pointer: fine) {
@@ -32,7 +32,7 @@
   }
 
   .anchor-link:active {
-    transform: scale(0.95);
+    transform: scale(var(--press-scale));
   }
 }
 

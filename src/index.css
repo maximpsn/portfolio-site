@@ -5,6 +5,10 @@
 @import './styles/fonts.css';
 
 :root {
+  /* Общий «прожим» ссылок по нажатию: якорные ссылки на главной и оглавление кейса. */
+  --press-scale: 0.95;
+  --press-transform-transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+
   font-family: var(--family-sans-medium);
   line-height: 1.5;
   font-weight: var(--weight-medium-medium);
