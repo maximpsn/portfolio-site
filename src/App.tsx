@@ -8,6 +8,11 @@ import votveteIcon from './assets/avatars-projects/votvete-icon.webp'
 
 function App() {
   useEffect(() => {
+    // Скролл при переходах контролирует PageTransition: браузер не должен его восстанавливать.
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+
     initClickSound()
 
     const timeoutId = window.setTimeout(() => {

@@ -4,6 +4,7 @@ import LightboxIconButton from '../buttons/LightboxIconButton'
 import PrimaryButtonMedium from '../buttons/PrimaryButtonMedium'
 import SecondaryButtonDarkMedium from '../buttons/SecondaryButtonDarkMedium'
 import IconDownload from '../icons/IconDownload'
+import { markInAppNavigation } from '../../lib/navIntent'
 import './MobileNavbar.css'
 
 type MobileNavbarProps = {
@@ -44,7 +45,13 @@ function MobileNavbar({ back = false }: MobileNavbarProps) {
       <div className="mobile-navbar__inner">
         {back ? (
           <div className="mobile-navbar__pill">
-            <LightboxIconButton type="left" onClick={() => navigate(-1)} />
+            <LightboxIconButton
+              type="left"
+              onClick={() => {
+                markInAppNavigation()
+                navigate(-1)
+              }}
+            />
           </div>
         ) : null}
 

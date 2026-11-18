@@ -1,10 +1,20 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
-import { motion, type Transition } from 'framer-motion'
-import { useLocation, type Location } from 'react-router-dom'
+import { useLocation, useNavigationType, type Location } from 'react-router-dom'
 import AppRouter from './AppRouter'
+import { consumeInAppNavigation } from '../../lib/navIntent'
 import './PageTransition.css'
 
-const TWEEN: Transition = { type: 'tween', duration: 0.45, ease: [0.42, 0, 0.58, 1] }
+const DURATION_MS = 450
+const EASING = 'cubic-bezier(0.42, 0, 0.58, 1)'
+
+type LayerMode = 'static' | 'leaving' | 'entering'
+
+type Layer = {
+  id: number
+  location: Location
+  mode: LayerMode
+  frozenY: number
+}
 
 function scrollToTopInstant() {
   const html = document.documentElement
@@ -14,155 +24,183 @@ function scrollToTopInstant() {
   html.style.scrollBehavior = previous
 }
 
-function collectFixedElements(root: HTMLElement): HTMLElement[] {
-  const result: HTMLElement[] = []
-  const walker = document.createTreeWalker(root, NodeFilter.SHOW_ELEMENT)
-  let node: Node | null = walker.nextNode()
-
-  while (node !== null) {
-    const element = node as HTMLElement
-    if (getComputedStyle(element).position === 'fixed') {
-      result.push(element)
-    }
-    node = walker.nextNode()
+function shouldSkipAnimation(navigationType: string): boolean {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return true
   }
 
-  return result
+  const fromInAppButton = consumeInAppNavigation()
+
+  // Свайп назад/вперёд на тач-устройстве: браузер уже анимировал переход сам.
+  if (navigationType === 'POP' && !fromInAppButton && window.matchMedia('(pointer: coarse)').matches) {
+    return true
+  }
+
+  return false
 }
 
+/**
+ * Слои страниц живут под стабильными ключами, поэтому уходящая страница не перемонтируется
+ * (раньше перемонтирование давало серое мигание картинок и сбрасывало состояние).
+ *
+ * В покое: один static-слой в обычном потоке, скроллится окно.
+ * В переходе: уходящий слой становится fixed на весь вьюпорт, а его содержимое сдвинуто
+ * на сохранённый scrollY через `top` — позиция визуально не меняется и ничего не подкручивается.
+ * Fixed-потомки (навбар, кнопки, TOC) остаются на своих местах, т.к. контейнер для них —
+ * внешний слой размером с вьюпорт. Новая страница выезжает снизу и всегда начинается с 0.
+ */
 function PageTransition() {
   const location = useLocation()
-  const [displayedLoc, setDisplayedLoc] = useState<Location>(location)
-  const [leaving, setLeaving] = useState(false)
-  const [leaveY, setLeaveY] = useState(0)
-  const leaveRef = useRef<HTMLDivElement | null>(null)
-  const fixedRef = useRef<HTMLDivElement | null>(null)
-  const busyRef = useRef(false)
-  const coarsePointer = useRef<boolean>(
-    typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches,
-  )
+  const navigationType = useNavigationType()
+  const nextIdRef = useRef(1)
+  const [layers, setLayers] = useState<Layer[]>(() => [
+    { id: 0, location, mode: 'static', frozenY: 0 },
+  ])
+  const elementsRef = useRef(new Map<number, HTMLDivElement>())
+  const animationsRef = useRef(new Map<number, Animation[]>())
 
-  useEffect(() => {
-    if (location.key === displayedLoc.key || busyRef.current) {
-      return
-    }
+  const isTransitioning = layers.some((layer) => layer.mode !== 'static')
 
-    // На тач-устройствах (телефоны/планшеты) страницы переключаем без анимации —
-    // однокадровый нативный свап.
-    if (coarsePointer.current) {
-      const rafId = window.requestAnimationFrame(() => {
-        scrollToTopInstant()
-        setDisplayedLoc(location)
-      })
-
-      return () => {
-        window.cancelAnimationFrame(rafId)
-      }
-    }
-
-    if (location.pathname === displayedLoc.pathname) {
-      const rafId = window.requestAnimationFrame(() => {
-        setDisplayedLoc(location)
-      })
-
-      return () => {
-        window.cancelAnimationFrame(rafId)
-      }
-    }
-
-    busyRef.current = true
-
-    const rafId = window.requestAnimationFrame(() => {
-      setLeaveY(window.scrollY)
-      setLeaving(true)
-    })
-
-    return () => {
-      window.cancelAnimationFrame(rafId)
-    }
-  }, [location, displayedLoc.key, displayedLoc.pathname])
-
-  const finishTransition = () => {
-    if (fixedRef.current) {
-      fixedRef.current.replaceChildren()
-    }
-    scrollToTopInstant()
-    setLeaving(false)
-    setDisplayedLoc(location)
-    busyRef.current = false
-
-    window.requestAnimationFrame(() => {
-      window.dispatchEvent(new Event('page-transition-end'))
-    })
-  }
-
-  useEffect(() => {
-    document.documentElement.classList.toggle('is-page-transitioning', leaving)
-  }, [leaving])
-
+  // Старт перехода. Layout-эффект + синхронный setState: смена режима слоёв
+  // коммитится до отрисовки, промежуточного кадра нет. Это намеренно.
+  /* eslint-disable react-hooks/set-state-in-effect */
   useLayoutEffect(() => {
-    const leaveEl = leaveRef.current
-    const fixedEl = fixedRef.current
-
-    if (!leaving || !leaveEl || !fixedEl) {
+    if (isTransitioning) {
+      // Дождёмся конца текущего перехода — эффект перезапустится, когда layers станут static.
       return
     }
 
-    const fixedElements = collectFixedElements(leaveEl)
+    const current = layers[0]
 
-    fixedElements.forEach((element) => {
-      element.style.visibility = 'hidden'
+    if (current.location.key === location.key) {
+      return
+    }
 
-      const clone = element.cloneNode(true) as HTMLElement
-      clone.style.visibility = 'visible'
-      fixedEl.appendChild(clone)
+    // Смена только hash/search на той же странице — без анимации и без перемонтирования.
+    if (current.location.pathname === location.pathname) {
+      setLayers([{ ...current, location }])
+      return
+    }
+
+    const id = nextIdRef.current++
+
+    if (shouldSkipAnimation(navigationType)) {
+      scrollToTopInstant()
+      setLayers([{ id, location, mode: 'static', frozenY: 0 }])
+      return
+    }
+
+    setLayers([
+      { ...current, mode: 'leaving', frozenY: window.scrollY },
+      { id, location, mode: 'entering', frozenY: 0 },
+    ])
+  }, [location, navigationType, layers, isTransitioning])
+  /* eslint-enable react-hooks/set-state-in-effect */
+
+  // Запуск анимаций и уборка.
+  useLayoutEffect(() => {
+    document.documentElement.classList.toggle('is-page-transitioning', isTransitioning)
+
+    layers.forEach((layer) => {
+      const element = elementsRef.current.get(layer.id)
+      const running = animationsRef.current.get(layer.id)
+
+      if (layer.mode === 'static') {
+        // Снимаем fill-трансформ сразу после коммита static-режима, до отрисовки.
+        running?.forEach((animation) => animation.cancel())
+        animationsRef.current.delete(layer.id)
+        return
+      }
+
+      if (!element || running) {
+        return
+      }
+
+      if (layer.mode === 'leaving') {
+        animationsRef.current.set(layer.id, [
+          element.animate(
+            [
+              { transform: 'scale(1)', opacity: 1 },
+              { transform: 'scale(0.9)', opacity: 0 },
+            ],
+            { duration: DURATION_MS, easing: EASING, fill: 'forwards' },
+          ),
+        ])
+        return
+      }
+
+      const enter = element.animate(
+        [{ transform: 'translateY(100%)' }, { transform: 'translateY(0)' }],
+        { duration: DURATION_MS, easing: EASING, fill: 'forwards' },
+      )
+      animationsRef.current.set(layer.id, [enter])
+
+      enter.finished
+        .then(() => {
+          setLayers((previous) => {
+            const entering = previous.find((item) => item.id === layer.id)
+            return entering ? [{ ...entering, mode: 'static', frozenY: 0 }] : previous
+          })
+        })
+        .catch(() => {
+          // Анимацию отменили (размонтирование) — ничего не делаем.
+        })
     })
-  }, [leaving])
 
-  if (leaving) {
-    return (
-      <div className="app-root__transition">
-        <motion.div
-          ref={leaveRef}
-          className="transition-leave"
-          initial={{ y: -leaveY, scale: 1, opacity: 1 }}
-          animate={{ y: -leaveY, scale: 0.9, opacity: 0 }}
-          style={{ transformOrigin: `50% calc(50% + ${leaveY}px)` }}
-          transition={{ scale: TWEEN, y: TWEEN, opacity: TWEEN }}
-        >
-          <AppRouter location={displayedLoc} />
-        </motion.div>
+    // Удаляем записи об анимациях слоёв, которых больше нет.
+    animationsRef.current.forEach((animations, id) => {
+      if (!layers.some((layer) => layer.id === id)) {
+        animations.forEach((animation) => animation.cancel())
+        animationsRef.current.delete(id)
+      }
+    })
+  }, [layers, isTransitioning])
 
-        <motion.div
-          ref={fixedRef}
-          className="transition-fixed"
-          initial={{ scale: 1, opacity: 1 }}
-          animate={{ scale: 0.9, opacity: 0 }}
-          style={{ transformOrigin: '50% 50%' }}
-          transition={{ scale: TWEEN, opacity: TWEEN }}
-        />
+  // Конец перехода: страница в потоке, скролл с нуля, уведомляем подписчиков (TOC).
+  const wasTransitioningRef = useRef(false)
+  useLayoutEffect(() => {
+    if (wasTransitioningRef.current && !isTransitioning) {
+      scrollToTopInstant()
+      window.requestAnimationFrame(() => {
+        window.dispatchEvent(new Event('page-transition-end'))
+      })
+    }
+    wasTransitioningRef.current = isTransitioning
+  }, [isTransitioning])
 
-        <motion.div
-          className="transition-enter"
-          initial={{ y: '100vh' }}
-          animate={{ y: 0 }}
-          style={{ transformOrigin: '50% 50%' }}
-          transition={{ y: TWEEN }}
-          onAnimationComplete={finishTransition}
-        >
-          <div className="app-root__page">
-            <AppRouter location={location} />
-          </div>
-        </motion.div>
-      </div>
-    )
-  }
+  useEffect(() => {
+    return () => {
+      document.documentElement.classList.remove('is-page-transitioning')
+    }
+  }, [])
 
   return (
-    <div className="app-root">
-      <div className="app-root__page">
-        <AppRouter location={displayedLoc} />
-      </div>
+    <div className={isTransitioning ? 'page-stack page-stack--transitioning' : 'page-stack'}>
+      {layers.map((layer) => (
+        <div
+          key={layer.id}
+          ref={(element) => {
+            if (element) {
+              elementsRef.current.set(layer.id, element)
+            } else {
+              elementsRef.current.delete(layer.id)
+            }
+          }}
+          className={`page-layer page-layer--${layer.mode}`}
+          style={
+            layer.mode === 'leaving'
+              ? { transformOrigin: '50% 50%' }
+              : undefined
+          }
+        >
+          <div
+            className="page-layer__inner"
+            style={layer.frozenY ? { top: -layer.frozenY } : undefined}
+          >
+            <AppRouter location={layer.location} />
+          </div>
+        </div>
+      ))}
     </div>
   )
 }

@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import PrimaryButtonMedium from '../components/buttons/PrimaryButtonMedium'
 import SecondaryIconButtonMedium from '../components/buttons/SecondaryIconButtonMedium'
 import MobileNavbar from '../components/nav/MobileNavbar'
+import { markInAppNavigation } from '../lib/navIntent'
 import './NotFoundPage.css'
 
 function NotFoundPage() {
@@ -9,6 +10,7 @@ function NotFoundPage() {
   const showBack = typeof window !== 'undefined' && window.history.state !== null
 
   const goBack = () => {
+    markInAppNavigation()
     navigate(-1)
   }
 

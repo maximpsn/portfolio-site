@@ -1,51 +1,48 @@
-.app-root {
+.page-stack {
   position: relative;
   min-height: 100vh;
   background: var(--page-page-back);
 }
 
-.app-root__page {
-  position: relative;
-  min-height: 100vh;
+.page-layer {
   background: var(--page-page-back);
 }
 
-.app-root__transition {
+.page-layer--static {
+  position: relative;
+  min-height: 100vh;
+}
+
+/* Во время перехода оба слоя — fixed на весь вьюпорт. Трансформ висит на внешнем слое,
+   поэтому fixed-потомки страницы позиционируются относительно него и стоят на своих местах. */
+.page-layer--leaving,
+.page-layer--entering {
   position: fixed;
   inset: 0;
-  background: var(--page-page-back);
   overflow: hidden;
   pointer-events: none;
 }
 
-.transition-leave {
-  position: absolute;
-  inset: 0;
-}
-
-.transition-fixed {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
+.page-layer--leaving {
   z-index: 1;
 }
 
-.transition-enter {
-  position: absolute;
-  inset: 0;
+.page-layer--entering {
   z-index: 2;
+  transform: translateY(100%);
   will-change: transform;
 }
 
-/* Серый фон общий и статичный; при переходе двигаются только белые секции.
-   У страниц внутри оверлея прозрачный фон — их серый отдаёт static-оверлей. */
-.transition-leave .app-root__page,
-.transition-enter .app-root__page,
-.transition-leave [class$="-page"],
-.transition-enter [class$="-page"] {
-  background: transparent;
+.page-layer__inner {
+  position: relative;
+  min-height: 100vh;
 }
 
-.transition-enter {
-  z-index: 1;
+/* Серый фон общий и статичный; при переходе двигаются только белые секции.
+   У страниц внутри анимируемых слоёв прозрачный фон — серый отдаёт .page-stack. */
+.page-layer--leaving,
+.page-layer--entering,
+.page-layer--leaving [class$="-page"],
+.page-layer--entering [class$="-page"] {
+  background: transparent;
 }
