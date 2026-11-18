@@ -14,6 +14,16 @@ import './PageTransition.css'
 const DURATION_MS = 450
 const EASING = 'cubic-bezier(0.42, 0, 0.58, 1)'
 
+// Тач-устройства: вместо выезда страницы — короткая белая шторка, прикрывающая смену.
+// Выезд на мобилке портила динамическая панель браузера, которая дёргается при сбросе скролла.
+const VEIL_MS = 50
+
+type Veil = 'none' | 'covering' | 'revealing'
+
+function isTouchDevice(): boolean {
+  return window.matchMedia('(pointer: coarse)').matches
+}
+
 type LayerMode = 'static' | 'leaving' | 'entering'
 
 type Layer = {
@@ -39,7 +49,7 @@ function shouldSkipAnimation(navigationType: string): boolean {
   const fromInAppButton = consumeInAppNavigation()
 
   // Свайп назад/вперёд на тач-устройстве: браузер уже анимировал переход сам.
-  if (navigationType === 'POP' && !fromInAppButton && window.matchMedia('(pointer: coarse)').matches) {
+  if (navigationType === 'POP' && !fromInAppButton && isTouchDevice()) {
     return true
   }
 
@@ -70,6 +80,9 @@ function PageTransition() {
   // и scrollY не меняется. Иначе документ сжимался до вьюпорта, скролл обнулялся,
   // и мобильные браузеры резко разворачивали свою динамическую панель посреди анимации.
   const [spacerHeight, setSpacerHeight] = useState(0)
+  const [veil, setVeil] = useState<Veil>('none')
+  const pendingLayerRef = useRef<Layer | null>(null)
+  const veilRef = useRef<HTMLDivElement | null>(null)
   const elementsRef = useRef(new Map<number, HTMLDivElement>())
   const animationsRef = useRef(new Map<number, Animation[]>())
 
@@ -79,7 +92,7 @@ function PageTransition() {
   // коммитится до отрисовки, промежуточного кадра нет. Это намеренно.
   /* eslint-disable react-hooks/set-state-in-effect */
   useLayoutEffect(() => {
-    if (isTransitioning) {
+    if (isTransitioning || veil !== 'none') {
       // Дождёмся конца текущего перехода — эффект перезапустится, когда layers станут static.
       return
     }
@@ -113,13 +126,76 @@ function PageTransition() {
       return
     }
 
+    if (isTouchDevice()) {
+      pendingLayerRef.current = { id, location, mode: 'static', frozenY: 0 }
+      setVeil('covering')
+      return
+    }
+
     setSpacerHeight(document.documentElement.scrollHeight)
     setLayers([
       { ...current, mode: 'leaving', frozenY: window.scrollY },
       { id, location, mode: 'entering', frozenY: 0 },
     ])
-  }, [location, navigationType, navigate, layers, isTransitioning])
+  }, [location, navigationType, navigate, layers, isTransitioning, veil])
   /* eslint-enable react-hooks/set-state-in-effect */
+
+  // Шторка на тач-устройствах: 0→1 за VEIL_MS, под ней мгновенная смена страницы и скролл в 0,
+  // затем 1→0 за VEIL_MS.
+  useLayoutEffect(() => {
+    const element = veilRef.current
+
+    if (veil === 'none' || !element) {
+      return undefined
+    }
+
+    if (veil === 'covering') {
+      const cover = element.animate([{ opacity: 0 }, { opacity: 1 }], {
+        duration: VEIL_MS,
+        easing: 'linear',
+        fill: 'forwards',
+      })
+
+      cover.finished
+        .then(() => {
+          const next = pendingLayerRef.current
+          pendingLayerRef.current = null
+          if (next) {
+            setLayers([next])
+          }
+          setVeil('revealing')
+        })
+        .catch(() => {
+          // Отменено размонтированием.
+        })
+
+      return () => {
+        cover.cancel()
+      }
+    }
+
+    // revealing: новая страница уже закоммичена под шторкой.
+    scrollToTopInstant()
+
+    const reveal = element.animate([{ opacity: 1 }, { opacity: 0 }], {
+      duration: VEIL_MS,
+      easing: 'linear',
+      fill: 'forwards',
+    })
+
+    reveal.finished
+      .then(() => {
+        setVeil('none')
+        window.dispatchEvent(new Event('page-transition-end'))
+      })
+      .catch(() => {
+        // Отменено размонтированием.
+      })
+
+    return () => {
+      reveal.cancel()
+    }
+  }, [veil])
 
   // Запуск анимаций и уборка.
   useLayoutEffect(() => {
@@ -228,6 +304,15 @@ function PageTransition() {
 
       {isTransitioning ? (
         <div className="page-stack__spacer" style={{ height: spacerHeight }} aria-hidden="true" />
+      ) : null}
+
+      {veil !== 'none' ? (
+        <div
+          ref={veilRef}
+          className="page-veil"
+          style={{ opacity: veil === 'revealing' ? 1 : 0 }}
+          aria-hidden="true"
+        />
       ) : null}
     </div>
   )

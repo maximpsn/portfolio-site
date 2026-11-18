@@ -36,6 +36,15 @@
   will-change: transform;
 }
 
+/* Белая шторка для тач-устройств — прикрывает мгновенную смену страницы. */
+.page-veil {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: var(--page-page-front);
+  pointer-events: auto;
+}
+
 .page-layer__inner {
   position: relative;
   min-height: 100vh;
