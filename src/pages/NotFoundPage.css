@@ -14,9 +14,20 @@
   display: inline-flex;
 }
 
-/* На медиум–xsmall кнопку назад наверху убираем — её даёт нижний навбар. */
+.not-found-page__buttons {
+  position: fixed;
+  top: var(--spacing-8x);
+  right: var(--spacing-8x);
+  z-index: 20;
+  display: flex;
+  gap: var(--spacing-2x);
+  align-items: center;
+}
+
+/* На медиум–xsmall кнопку назад и контакты наверху убираем — их даёт нижний навбар. */
 @media (max-width: 1299px) {
-  .not-found-page__nav {
+  .not-found-page__nav,
+  .not-found-page__buttons {
     display: none;
   }
 }

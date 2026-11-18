@@ -1,5 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import PrimaryButtonMedium from '../components/buttons/PrimaryButtonMedium'
+import SecondaryButtonMedium from '../components/buttons/SecondaryButtonMedium'
+import IconDownload from '../components/icons/IconDownload'
 import SecondaryIconButtonMedium from '../components/buttons/SecondaryIconButtonMedium'
 import MobileNavbar from '../components/nav/MobileNavbar'
 import { markInAppNavigation } from '../lib/navIntent'
@@ -21,6 +23,12 @@ function NotFoundPage() {
           <SecondaryIconButtonMedium ariaLabel="Назад" onClick={goBack} />
         </div>
       ) : null}
+
+      {/* Десктоп: контакты в правом верхнем углу, как на главной. Ниже 1300px их даёт нижний навбар. */}
+      <div className="not-found-page__buttons">
+        <SecondaryButtonMedium text="Резюме" icon={<IconDownload />} />
+        <PrimaryButtonMedium href="https://t.me/velich00" text="Телеграм" target="_blank" rel="noreferrer" />
+      </div>
 
       <MobileNavbar back={showBack} />
 

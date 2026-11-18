@@ -6,6 +6,9 @@ import CaseSubheadingText from '../components/case/CaseSubheadingText'
 import CaseHeadingText from '../components/case/CaseHeadingText'
 import CaseMediaContainer from '../components/case/CaseMediaContainer'
 import SecondaryIconButtonMedium from '../components/buttons/SecondaryIconButtonMedium'
+import PrimaryButtonMedium from '../components/buttons/PrimaryButtonMedium'
+import SecondaryButtonMedium from '../components/buttons/SecondaryButtonMedium'
+import IconDownload from '../components/icons/IconDownload'
 import LightboxIconButton from '../components/buttons/LightboxIconButton'
 import MobileNavbar from '../components/nav/MobileNavbar'
 import { playUISound } from '../lib/ui-sounds'
@@ -42,6 +45,12 @@ function PlaygroundPage() {
     <div className="playground-page">
       <div className="playground-page__nav">
         <SecondaryIconButtonMedium ariaLabel="Назад" onClick={goHome} />
+      </div>
+
+      {/* Десктоп: контакты в правом верхнем углу, как на главной. Ниже 1300px их даёт нижний навбар. */}
+      <div className="playground-page__buttons">
+        <SecondaryButtonMedium text="Резюме" icon={<IconDownload />} />
+        <PrimaryButtonMedium href="https://t.me/velich00" text="Телеграм" target="_blank" rel="noreferrer" />
       </div>
 
       <MobileNavbar back />
