@@ -8,6 +8,7 @@
   color: var(--text-icons-primary);
   text-decoration: none;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .case-preview-card__text {
