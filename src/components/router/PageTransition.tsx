@@ -53,6 +53,8 @@ function shouldSkipAnimation(navigationType: string): boolean {
  * В покое: один static-слой в обычном потоке, скроллится окно.
  * В переходе: уходящий слой становится fixed на весь вьюпорт, а его содержимое сдвинуто
  * на сохранённый scrollY через `top` — позиция визуально не меняется и ничего не подкручивается.
+ * Распорка сохраняет высоту документа, поэтому scrollY во время анимации не трогается
+ * (панель мобильного браузера не дёргается). Скролл в 0 — только в конце, при смене слоёв.
  * Fixed-потомки (навбар, кнопки, TOC) остаются на своих местах, т.к. контейнер для них —
  * внешний слой размером с вьюпорт. Новая страница выезжает снизу и всегда начинается с 0.
  */
@@ -64,6 +66,10 @@ function PageTransition() {
   const [layers, setLayers] = useState<Layer[]>(() => [
     { id: 0, location, mode: 'static', frozenY: 0 },
   ])
+  // Высота документа на старте перехода. Пока слои fixed, распорка держит прежнюю высоту,
+  // и scrollY не меняется. Иначе документ сжимался до вьюпорта, скролл обнулялся,
+  // и мобильные браузеры резко разворачивали свою динамическую панель посреди анимации.
+  const [spacerHeight, setSpacerHeight] = useState(0)
   const elementsRef = useRef(new Map<number, HTMLDivElement>())
   const animationsRef = useRef(new Map<number, Animation[]>())
 
@@ -107,6 +113,7 @@ function PageTransition() {
       return
     }
 
+    setSpacerHeight(document.documentElement.scrollHeight)
     setLayers([
       { ...current, mode: 'leaving', frozenY: window.scrollY },
       { id, location, mode: 'entering', frozenY: 0 },
@@ -218,6 +225,10 @@ function PageTransition() {
           </div>
         </div>
       ))}
+
+      {isTransitioning ? (
+        <div className="page-stack__spacer" style={{ height: spacerHeight }} aria-hidden="true" />
+      ) : null}
     </div>
   )
 }
