@@ -2,14 +2,18 @@ import './CasePreviewCard.css'
 import { useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Link } from 'react-router-dom'
+import Image from '../ui/Image'
+import type { ImageSource } from '../../lib/responsiveImage'
 
 import placeholderImage from '/image-placeholder.svg'
 
 type CasePreviewCardProps = {
   className?: string
   href?: string
-  iconSrc?: string
-  coverSrc?: string
+  iconSrc?: ImageSource
+  coverSrc?: ImageSource
+  /** Карточка на первом экране — обложка грузится сразу. */
+  priority?: boolean
   projectName?: string
   heading?: string
 }
@@ -21,6 +25,7 @@ function CasePreviewCard({
   coverSrc = placeholderImage,
   projectName = 'Project name',
   heading = 'Heading',
+  priority = false,
 }: CasePreviewCardProps) {
   const [glow, setGlow] = useState<{ x: number; y: number } | null>(null)
 
@@ -41,7 +46,14 @@ function CasePreviewCard({
       <div className="case-preview-card__text">
         <div className="case-preview-card__title-row">
           <span className="case-preview-card__icon">
-            <img alt="" className="case-preview-card__icon-image" src={iconSrc} />
+            <Image
+              source={iconSrc}
+              sizes="32px"
+              priority={priority}
+              shimmer={false}
+              className="case-preview-card__icon-picture"
+              imgClassName="case-preview-card__icon-image"
+            />
           </span>
           <p className="case-preview-card__project-name">{projectName}</p>
         </div>
@@ -64,7 +76,13 @@ function CasePreviewCard({
             } as CSSProperties
           }
         />
-        <img alt="" className="case-preview-card__cover-image" src={coverSrc} />
+        <Image
+          source={coverSrc}
+          sizes="(max-width: 700px) 100vw, 700px"
+          priority={priority}
+          className="case-preview-card__cover-picture"
+          imgClassName="case-preview-card__cover-image"
+        />
       </div>
     </Link>
   )

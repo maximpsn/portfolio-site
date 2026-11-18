@@ -1,0 +1,82 @@
+/* Обёртка: под картинкой — размытое превью, поверх (пока грузится) — шиммер.
+   Размеры и скругления задаёт место использования через className.
+   Базовые правила в :where() — нулевая специфичность, их легко переопределить снаружи. */
+:where(.smart-image) {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background-color: var(--surface-neutral-soft-primary);
+  background-image: var(--smart-image-placeholder, none);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+:where(.smart-image__img) {
+  opacity: 0;
+  transition: opacity 400ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.smart-image[data-state='loaded'] .smart-image__img,
+.smart-image[data-state='instant'] .smart-image__img {
+  opacity: 1;
+}
+
+:where(.smart-image[data-state='instant'] .smart-image__img) {
+  transition: none;
+}
+
+/* Шиммер: светлая полоса проходит по превью. С задержкой — на быстром интернете
+   картинка успевает загрузиться раньше, и шиммер не мелькает. */
+.smart-image--shimmer::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(
+    100deg,
+    rgba(255, 255, 255, 0) 30%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 70%
+  );
+  background-size: 250% 100%;
+  background-repeat: no-repeat;
+  opacity: 0;
+  animation:
+    smart-image-shimmer-in 300ms ease 300ms forwards,
+    smart-image-shimmer 1.6s ease-in-out 300ms infinite;
+  transition: opacity 300ms ease;
+}
+
+.smart-image--shimmer[data-state='loaded']::after,
+.smart-image--shimmer[data-state='instant']::after {
+  animation: none;
+  opacity: 0;
+}
+
+@keyframes smart-image-shimmer-in {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes smart-image-shimmer {
+  from {
+    background-position: 150% 0;
+  }
+
+  to {
+    background-position: -50% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smart-image--shimmer::after {
+    display: none;
+  }
+
+  .smart-image__img {
+    transition: none;
+  }
+}

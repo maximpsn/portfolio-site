@@ -1,6 +1,7 @@
 ﻿import { useEffect, useRef, useState } from 'react'
 import AnchorLink from '../components/nav/AnchorLink'
 import Avatar from '../components/ui/Avatar'
+import Image from '../components/ui/Image'
 import PrimaryButtonLarge from '../components/buttons/PrimaryButtonLarge'
 import PrimaryButtonMedium from '../components/buttons/PrimaryButtonMedium'
 import SecondaryButtonMedium from '../components/buttons/SecondaryButtonMedium'
@@ -12,13 +13,13 @@ import CompanyCard from '../components/cards/CompanyCard'
 import IconDownload from '../components/icons/IconDownload'
 import IconTelegram from '../components/icons/IconTelegram'
 
-import sideAvatar from '../assets/avatar/avatar-side_optimized.jpeg'
-import elseCompanyAvatar from '../assets/avatars-companies/else-icon.webp'
-import smartbookingCompanyAvatar from '../assets/avatars-companies/smartbooking-icon.webp'
-import afrasuezProjectAvatar from '../assets/avatars-projects/afrasuez-icon.webp'
-import regroVahtaProjectAvatar from '../assets/avatars-projects/regro-vahta-icon.webp'
-import votveteProjectAvatar from '../assets/avatars-projects/votvete-icon.webp'
-import caseThumbnailImage from '../assets/case-thumbnails/Case cover image.jpg'
+import sideAvatar from '../assets/avatar/avatar-side_optimized.jpeg?img-small'
+import elseCompanyAvatar from '../assets/avatars-companies/else-icon.webp?img-small'
+import smartbookingCompanyAvatar from '../assets/avatars-companies/smartbooking-icon.webp?img-small'
+import afrasuezProjectAvatar from '../assets/avatars-projects/afrasuez-icon.webp?img-small'
+import regroVahtaProjectAvatar from '../assets/avatars-projects/regro-vahta-icon.webp?img-small'
+import votveteProjectAvatar from '../assets/avatars-projects/votvete-icon.webp?img-small'
+import caseThumbnailImage from '../assets/case-thumbnails/Case cover image.jpg?img'
 
 import './HomePage.css'
 
@@ -86,9 +87,14 @@ function HomePage() {
     <main className={isBottomBarHidden ? 'home-page home-page--bottom-bar-hidden' : 'home-page'}>
       <aside className="home-page__anchors" aria-label="Навигация">
         <div className="home-page__avatar-wrap">
-          <picture className="home-page__avatar-picture">
-            <img alt="" className="home-page__avatar-image" src={sideAvatar} />
-          </picture>
+          <Image
+            source={sideAvatar}
+            sizes="48px"
+            priority
+            shimmer={false}
+            className="home-page__avatar-picture"
+            imgClassName="home-page__avatar-image"
+          />
           <span className="home-page__avatar-badge" aria-hidden="true" />
         </div>
 

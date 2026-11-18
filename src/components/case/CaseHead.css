@@ -16,6 +16,11 @@
   flex: none;
 }
 
+.case-head__avatar-picture {
+  width: 100%;
+  height: 100%;
+}
+
 .case-head__avatar-image {
   display: block;
   width: 100%;

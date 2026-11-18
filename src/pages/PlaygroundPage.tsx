@@ -11,8 +11,8 @@ import MobileNavbar from '../components/nav/MobileNavbar'
 import { playUISound } from '../lib/ui-sounds'
 import './PlaygroundPage.css'
 
-import caseCover from '../assets/case-thumbnails/Case cover image.jpg'
-import votveteIcon from '../assets/avatars-projects/votvete-icon.webp'
+import caseCover from '../assets/case-thumbnails/Case cover image.jpg?img'
+import votveteIcon from '../assets/avatars-projects/votvete-icon.webp?img'
 
 const SLIDES = [
   { src: caseCover },

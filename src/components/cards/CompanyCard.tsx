@@ -1,6 +1,8 @@
 import { useEffect, useState } from 'react'
 import type { CSSProperties } from 'react'
 import './CompanyCard.css'
+import Image from '../ui/Image'
+import type { ImageSource } from '../../lib/responsiveImage'
 
 const companyAvatar = 'https://www.figma.com/api/mcp/asset/48b8873a-e4c4-4c7e-bfce-469590379d3a'
 
@@ -9,7 +11,7 @@ type CompanyCardResolution = 'large' | 'medium' | 'small' | 'xsmall'
 type CompanyCardProps = {
   className?: string
   resolution?: CompanyCardResolution
-  avatarSrc?: string
+  avatarSrc?: ImageSource
   companyName?: string
   period?: string
   aboutCompany?: string
@@ -254,7 +256,13 @@ function CompanyCard({
     >
       <div className="company-card__header">
         <div className="company-card__avatar">
-          <img alt="" className="company-card__avatar-image" src={avatarSrc} />
+          <Image
+            source={avatarSrc}
+            sizes="48px"
+            shimmer={false}
+            className="company-card__avatar-picture"
+            imgClassName="company-card__avatar-image"
+          />
         </div>
 
         <div className="company-card__main-text">

@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties, MouseEvent as ReactMouseEvent, Touch as ReactTouch, TouchEvent as ReactTouchEvent } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import type { ControllerRef, RenderSlideProps } from 'yet-another-react-lightbox'
@@ -6,6 +6,8 @@ import 'yet-another-react-lightbox/styles.css'
 import './CaseMediaContainer.css'
 import './LightboxYarl.css'
 import LightboxIconButton from '../buttons/LightboxIconButton'
+import SmartImage from '../ui/Image'
+import { isResponsiveImage, largestSrc, type ImageSource } from '../../lib/responsiveImage'
 
 import placeholderImage from '/image-placeholder.svg'
 
@@ -14,10 +16,12 @@ type CaseMediaContainerResolution = 'large' | 'medium' | 'small' | 'xsmall'
 type CaseMediaContainerProps = {
   className?: string
   resolution?: CaseMediaContainerResolution
-  src?: string
+  src?: ImageSource
   alt?: string
-  slides?: { src: string; alt?: string }[]
+  slides?: { src: ImageSource; alt?: string }[]
   index?: number
+  /** Медиа на первом экране — грузится сразу. */
+  priority?: boolean
 }
 
 type LightboxSlideProps = {
@@ -192,15 +196,14 @@ function CaseMediaContainer({
   alt = '',
   slides,
   index = 0,
+  priority = false,
 }: CaseMediaContainerProps) {
   const [autoResolution, setAutoResolution] = useState<CaseMediaContainerResolution>(resolutionFromViewport)
   const [lightboxOpen, setLightboxOpen] = useState(false)
-  const [loaded, setLoaded] = useState(false)
   const [viewport, setViewport] = useState({ w: 0, h: 0 })
   const baseAspectRef = useRef(1)
   const aspectRef = useRef<Record<string, number>>({})
   const controllerRef = useRef<ControllerRef>(null)
-  const imageRef = useRef<HTMLImageElement | null>(null)
 
   useEffect(() => {
     if (!lightboxOpen) {
@@ -230,37 +233,34 @@ function CaseMediaContainer({
     }
   }, [])
 
-  useLayoutEffect(() => {
-    const image = imageRef.current
-
-    if (image && image.complete) {
-      setLoaded(true)
-    }
-  }, [src])
-
   const activeResolution: CaseMediaContainerResolution = resolution ?? autoResolution
   const blockClassName = className ? `case-media ${className}` : 'case-media'
 
-  const lightboxSlides = slides && slides.length > 0
-    ? slides
-    : [{ src }]
+  // Лайтбокс получает самую большую версию; грузится она только при открытии.
+  const sourceSlides = slides && slides.length > 0 ? slides : [{ src }]
+  const lightboxSlides = sourceSlides.map((slide) => ({ src: largestSrc(slide.src), alt: slide.alt }))
+  const knownRatios = sourceSlides.map((slide) =>
+    isResponsiveImage(slide.src) ? slide.src.img.w / slide.src.img.h : null,
+  )
 
   const slideSrcs = lightboxSlides.map((slide) => slide.src).join('\u0000')
 
   useEffect(() => {
-    const imgs = lightboxSlides
-      .map((slide) => slide.src)
-      .map((src) => {
-        const img = new Image()
-        img.src = src
-        return img
-      })
-
     let cancelled = false
 
-    const awaited = imgs.map(
-      (img) =>
+    // Пропорции адаптивных картинок известны со сборки — полноразмерные файлы
+    // заранее не качаем. Для обычных URL (заглушки) — по-старому, через загрузку.
+    const awaited = lightboxSlides.map(
+      (slide, i) =>
         new Promise<number>((resolve) => {
+          const known = knownRatios[i]
+          if (known !== null) {
+            resolve(known)
+            return
+          }
+
+          const img = new Image()
+          img.src = slide.src
           const done = () => resolve(img.naturalWidth > 0 ? img.naturalWidth / img.naturalHeight : NaN)
           if (img.complete) {
             done()
@@ -360,12 +360,13 @@ function CaseMediaContainer({
         } as CSSProperties
       }
     >
-      <img
-        ref={imageRef}
+      <SmartImage
+        source={src}
         alt={alt}
-        className={loaded ? 'case-media__image case-media__image--loaded' : 'case-media__image'}
-        src={src}
-        onLoad={() => setLoaded(true)}
+        sizes={`(max-width: ${WIDTH_BY_RESOLUTION[activeResolution]}) 100vw, ${WIDTH_BY_RESOLUTION[activeResolution]}`}
+        priority={priority}
+        className="case-media__picture"
+        imgClassName="case-media__image"
       />
 
       <Lightbox

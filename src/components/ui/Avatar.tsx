@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from 'react'
 import type { CSSProperties } from 'react'
 import { Tilt } from '../../../components/motion-primitives/tilt'
 import './Avatar.css'
+import Image from './Image'
 
-import sideAvatar from '../../assets/avatar/avatar-side_optimized.jpeg'
-import shrekAvatar from '../../assets/avatar/jpeg-avatar-shrek.jpeg'
+import sideAvatar from '../../assets/avatar/avatar-side_optimized.jpeg?img-small'
+import shrekAvatar from '../../assets/avatar/jpeg-avatar-shrek.jpeg?img-small'
 
 type AvatarProps = {
   className?: string
@@ -156,12 +157,20 @@ function Avatar({ className, resolution }: AvatarProps) {
             } as CSSProperties
           }
         />
-        <picture className={`avatar__picture avatar__picture--default${showHoverImage ? ' avatar__picture--hidden' : ''}`}>
-          <img alt="" className="avatar__image" src={sideAvatar} />
-        </picture>
-        <picture className={`avatar__picture avatar__picture--hover${showHoverImage ? ' avatar__picture--visible' : ''}`}>
-          <img alt="" className="avatar__image" src={shrekAvatar} />
-        </picture>
+        <Image
+          source={sideAvatar}
+          sizes={size}
+          priority
+          className={`avatar__picture avatar__picture--default${showHoverImage ? ' avatar__picture--hidden' : ''}`}
+          imgClassName="avatar__image"
+        />
+        <Image
+          source={shrekAvatar}
+          sizes={size}
+          shimmer={false}
+          className={`avatar__picture avatar__picture--hover${showHoverImage ? ' avatar__picture--visible' : ''}`}
+          imgClassName="avatar__image"
+        />
       </button>
     </Tilt>
   )

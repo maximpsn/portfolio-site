@@ -8,18 +8,17 @@
   line-height: 0;
 }
 
+.case-media__picture {
+  width: 100%;
+  border-radius: var(--case-media-radius);
+}
+
 .case-media__image {
   display: block;
   width: 100%;
   height: auto;
   border-radius: var(--case-media-radius);
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 50ms ease;
-}
-
-.case-media__image--loaded {
-  opacity: 1;
 }
 
 .case-stage-slide {

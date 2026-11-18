@@ -3,6 +3,8 @@ import type { CSSProperties } from 'react'
 import './CaseHead.css'
 
 import CaseMediaContainer from './CaseMediaContainer'
+import Image from '../ui/Image'
+import type { ImageSource } from '../../lib/responsiveImage'
 
 import placeholderImage from '/image-placeholder.svg'
 
@@ -16,12 +18,12 @@ type CaseLink = {
 type CaseHeadProps = {
   className?: string
   resolution?: CaseHeadResolution
-  avatarSrc?: string
+  avatarSrc?: ImageSource
   title?: string
   description?: string
   links?: CaseLink[]
-  coverSrc?: string
-  slides?: { src: string; alt?: string }[]
+  coverSrc?: ImageSource
+  slides?: { src: ImageSource; alt?: string }[]
 }
 
 const resolutionFromViewport = (): CaseHeadResolution => {
@@ -128,7 +130,14 @@ function CaseHead({
       }
     >
       <div className="case-head__avatar">
-        <img alt="" className="case-head__avatar-image" src={avatarSrc} />
+        <Image
+          source={avatarSrc}
+          sizes="64px"
+          priority
+          shimmer={false}
+          className="case-head__avatar-picture"
+          imgClassName="case-head__avatar-image"
+        />
       </div>
 
       <div className="case-head__description">
@@ -156,7 +165,7 @@ function CaseHead({
       </div>
 
       <div className="case-head__cover">
-        <CaseMediaContainer src={coverSrc} resolution={activeResolution} slides={lightboxSlides} />
+        <CaseMediaContainer src={coverSrc} resolution={activeResolution} slides={lightboxSlides} priority />
       </div>
     </div>
   )
