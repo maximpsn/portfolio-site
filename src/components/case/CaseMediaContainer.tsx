@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { CSSProperties, MouseEvent as ReactMouseEvent, Touch as ReactTouch, TouchEvent as ReactTouchEvent } from 'react'
 import Lightbox from 'yet-another-react-lightbox'
 import type { ControllerRef, RenderSlideProps } from 'yet-another-react-lightbox'
@@ -195,10 +195,12 @@ function CaseMediaContainer({
 }: CaseMediaContainerProps) {
   const [autoResolution, setAutoResolution] = useState<CaseMediaContainerResolution>(resolutionFromViewport)
   const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [loaded, setLoaded] = useState(false)
   const [viewport, setViewport] = useState({ w: 0, h: 0 })
   const baseAspectRef = useRef(1)
   const aspectRef = useRef<Record<string, number>>({})
   const controllerRef = useRef<ControllerRef>(null)
+  const imageRef = useRef<HTMLImageElement | null>(null)
 
   useEffect(() => {
     if (!lightboxOpen) {
@@ -227,6 +229,14 @@ function CaseMediaContainer({
       window.removeEventListener('resize', handleResize)
     }
   }, [])
+
+  useLayoutEffect(() => {
+    const image = imageRef.current
+
+    if (image && image.complete) {
+      setLoaded(true)
+    }
+  }, [src])
 
   const activeResolution: CaseMediaContainerResolution = resolution ?? autoResolution
   const blockClassName = className ? `case-media ${className}` : 'case-media'
@@ -350,7 +360,13 @@ function CaseMediaContainer({
         } as CSSProperties
       }
     >
-      <img alt={alt} className="case-media__image" src={src} />
+      <img
+        ref={imageRef}
+        alt={alt}
+        className={loaded ? 'case-media__image case-media__image--loaded' : 'case-media__image'}
+        src={src}
+        onLoad={() => setLoaded(true)}
+      />
 
       <Lightbox
         open={lightboxOpen}
