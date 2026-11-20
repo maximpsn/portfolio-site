@@ -1,4 +1,7 @@
 .not-found-page {
+  /* Масштаб центрального блока: 1 — как в макете, на узких экранах меньше. */
+  --not-found-scale: 1;
+
   position: relative;
   min-height: 100vh;
   display: flex;
@@ -6,12 +9,40 @@
   background: var(--page-page-back);
 }
 
-.not-found-page__nav {
+/* Десктоп: аватар слева сверху и контакты справа сверху — как на главной. */
+.not-found-page__avatar {
   position: fixed;
   top: var(--spacing-8x);
   left: var(--spacing-8x);
   z-index: 20;
-  display: inline-flex;
+  display: block;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.not-found-page__avatar:focus-visible {
+  outline: 2px solid var(--outline-primary);
+  outline-offset: 4px;
+}
+
+.not-found-page__avatar-picture,
+.not-found-page__avatar-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.not-found-page__avatar-picture {
+  -webkit-mask-image: -webkit-radial-gradient(white, black);
+  mask-image: radial-gradient(white, black);
+}
+
+.not-found-page__avatar-image {
+  object-fit: cover;
+  object-position: center;
 }
 
 .not-found-page__buttons {
@@ -24,9 +55,9 @@
   align-items: center;
 }
 
-/* На медиум–xsmall кнопку назад и контакты наверху убираем — их даёт нижний навбар. */
+/* На медиум–xsmall аватар и контакты наверху убираем — их даёт нижний навбар. */
 @media (max-width: 1299px) {
-  .not-found-page__nav,
+  .not-found-page__avatar,
   .not-found-page__buttons {
     display: none;
   }
@@ -35,121 +66,105 @@
 .not-found-page__block {
   width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-8x);
   padding: var(--spacing-20x);
   background: var(--page-page-front);
   border-radius: var(--radius-48);
-  text-align: center;
+  overflow: clip;
+}
+
+.not-found-page__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: calc(20px * var(--not-found-scale));
+}
+
+/* «404» и картинка поверх неё. */
+.not-found-page__hero {
+  position: relative;
+  width: calc(385px * var(--not-found-scale));
+  height: calc(354px * var(--not-found-scale));
+}
+
+.not-found-page__code {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin: 0;
+  transform: translateX(-50%);
+  font-family: var(--family-sans-large);
+  font-size: calc(200px * var(--not-found-scale));
+  font-weight: var(--weight-semibold-large);
+  line-height: 1;
+  letter-spacing: var(--tracking-heading-lg-large);
+  white-space: nowrap;
+  color: var(--color-zinc-400);
+  opacity: 0.2;
+  user-select: none;
+}
+
+.not-found-page__image-picture {
+  position: absolute;
+  top: calc(54px * var(--not-found-scale));
+  left: 50%;
+  width: calc(260px * var(--not-found-scale));
+  height: calc(300px * var(--not-found-scale));
+  transform: translateX(-50%);
+  /* Картинка с прозрачным фоном — без серой подложки и размытого превью. */
+  background: none;
+}
+
+.not-found-page__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
 }
 
 .not-found-page__texts {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--spacing-3x);
+  gap: var(--spacing-5x);
+  text-align: center;
 }
 
 .not-found-page__title {
   margin: 0;
   font-family: var(--family-sans-large);
-  font-size: var(--size-heading-new-large);
-  font-weight: var(--weight-semibold-large);
-  line-height: var(--line-height-heading-new-large);
-  letter-spacing: var(--tracking-heading-new-large);
-  color: var(--text-icons-primary);
-}
-
-.not-found-page__text {
-  margin: 0;
-  max-width: 420px;
-  font-family: var(--family-sans-large);
   font-size: var(--size-body-text-large);
   font-weight: var(--weight-medium-large);
   line-height: var(--line-height-body-text-large);
   letter-spacing: var(--tracking-body-text-large);
-  color: var(--text-icons-secondary);
+  color: var(--text-icons-primary);
 }
 
-@media (min-width: 600px) and (max-width: 1299px) {
+@media (max-width: 1299px) {
   .not-found-page {
     padding: 0;
   }
 
   .not-found-page__block {
-    padding: var(--spacing-12x);
+    padding: var(--spacing-12x) var(--spacing-6x) calc(var(--spacing-12x) + 92px);
     border-radius: 0;
-  }
-
-  .not-found-page__title {
-    font-family: var(--family-sans-medium);
-    font-size: var(--size-heading-new-medium);
-    font-weight: var(--weight-semibold-medium);
-    line-height: var(--line-height-heading-new-medium);
-    letter-spacing: var(--tracking-heading-new-medium);
-  }
-
-  .not-found-page__text {
-    font-family: var(--family-sans-medium);
-    font-size: var(--size-body-text-medium);
-    font-weight: var(--weight-medium-medium);
-    line-height: var(--line-height-body-text-medium);
-    letter-spacing: var(--tracking-body-text-medium);
   }
 }
 
-@media (min-width: 400px) and (max-width: 599px) {
+@media (max-width: 599px) {
   .not-found-page {
-    padding: 0;
+    --not-found-scale: 0.8;
   }
 
   .not-found-page__block {
-    padding: var(--spacing-6x);
-    border-radius: 0;
-  }
-
-  .not-found-page__title {
-    font-family: var(--family-sans-small);
-    font-size: var(--size-heading-new-small);
-    font-weight: var(--weight-semibold-small);
-    line-height: var(--line-height-heading-new-small);
-    letter-spacing: var(--tracking-heading-new-small);
-  }
-
-  .not-found-page__text {
-    font-family: var(--family-sans-small);
-    font-size: var(--size-body-text-small);
-    font-weight: var(--weight-medium-small);
-    line-height: var(--line-height-body-text-small);
-    letter-spacing: var(--tracking-body-text-small);
+    padding-inline: var(--spacing-4x);
   }
 }
 
 @media (max-width: 399px) {
   .not-found-page {
-    padding: 0;
-  }
-
-  .not-found-page__block {
-    padding: var(--spacing-6x) var(--spacing-4x);
-    border-radius: 0;
-  }
-
-  .not-found-page__title {
-    font-family: var(--family-sans-xsmall);
-    font-size: var(--size-heading-new-xsmall);
-    font-weight: var(--weight-semibold-xsmall);
-    line-height: var(--line-height-heading-new-xsmall);
-    letter-spacing: var(--tracking-heading-new-xsmall);
-  }
-
-  .not-found-page__text {
-    font-family: var(--family-sans-xsmall);
-    font-size: var(--size-body-text-xsmall);
-    font-weight: var(--weight-medium-xsmall);
-    line-height: var(--line-height-body-text-xsmall);
-    letter-spacing: var(--tracking-body-text-xsmall);
+    --not-found-scale: 0.72;
   }
 }
